@@ -1,0 +1,134 @@
+.ecosystem-section {
+  background-color: #c8b497;
+  padding: 90px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ecosystem-title {
+  font-size: 64px;
+  color: #FFF7EC;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.ecosystem-desc {
+  color: #FFF7EC;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 60px;
+}
+
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0; /* Xóa khoảng cách */
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Hình tròn có margin âm để chồng lên nhau */
+.circle {
+  width: 300px;
+  height: 300px;
+  border: 2px solid #FFF7EC;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF7EC;
+  font-weight: 300;
+  font-size: 30px;
+  background: transparent;
+  margin-left: -25px; /* chồng lấn vào hình trước */
+}
+
+.circle:first-child {
+  margin-left: 0; /* hình đầu tiên không bị đẩy vào trái */
+}
+@media (max-width: 768px) {
+  .ecosystem-section{
+    background-color: #8C795F;
+  }
+  .circle-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    width: 320px; /* 160 * 2 */
+    margin: 0 auto;
+  }
+
+  .circle {
+    width: 160px;
+    height: 160px;
+    font-size: 24px;
+    border-radius: 50%;
+    border: 2px solid #FFF7EC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF7EC;
+    font-weight: 300;
+    background: transparent;
+  }
+
+
+   .circle:nth-child(1) {
+    margin: 0 -10px -12px 0; /* DBPLUS - trên trái */
+    z-index: 4;
+  }
+
+  .circle:nth-child(2) {
+    margin: 0 0 -10px -20px; /* DBHOMES - trên phải */
+    z-index: 3;
+  }
+
+  .circle:nth-child(3) {
+    margin: -10px -10px 0 0; /* MODULE - dưới trái */
+    z-index: 2;
+  }
+
+  .circle:nth-child(4) {
+    margin: -10px 0 0 -20px; /* ESMART - dưới phải */
+    z-index: 1;
+  }
+
+  .ecosystem-title {
+    font-size: 40px;
+  }
+
+  .ecosystem-desc {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+   .ecosystem-section{
+    background-color: #8C795F;
+  }
+  .circle-container {
+    width: 280px;
+  }
+
+  .circle {
+    width: 140px;
+    height: 140px;
+    font-size: 20px;
+  }
+
+
+  .ecosystem-title {
+    font-size: 32px;
+  }
+
+  .ecosystem-desc {
+    font-size: 10px;
+  }
+}
+

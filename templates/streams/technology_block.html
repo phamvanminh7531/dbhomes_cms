@@ -1,0 +1,53 @@
+<!-- streams/technology_block.html -->
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+
+<section class="dbverse-section">
+    <div class="main-content-container">
+        <div class="container">
+            
+            <!-- Block 1: Text Left, Image Right -->
+            <div class="dbverse-block">
+                <div class="text-content">
+                    <h3>
+                        <span>{{ value.block1_title_highlight }}</span> {{value.block1_title_main|linebreaksbr}}
+                    </h3>
+                    {{ value.block1_paragraph1|richtext }}                   
+                    <!-- App Store Buttons - Fixed -->
+                    <div class="app-buttons">
+                        <a href="{{ value.appstore_url }}" target="_blank" rel="noopener">
+                            <img src="{% static 'images/appstore.png' %}" alt="App Store" loading="lazy" />
+                        </a>
+                        <a href="{{ value.chplay_url }}" target="_blank" rel="noopener">
+                            <img src="{% static 'images/chplay.png' %}" alt="Google Play" loading="lazy" />
+                        </a>
+                    </div>
+                </div>
+                <div class="image-content">
+                    {% if value.block1_image %}
+                        {% image value.block1_image width-600 as block1_img %}
+                        <img src="{{ block1_img.url }}" alt="App UI Perspective" loading="lazy" />
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Block 2: Image Left, Text Right -->
+            <div class="dbverse-block reverse">
+                <div class="image-content">
+                    {% if value.block2_image %}
+                        {% image value.block2_image width-600 as block2_img %}
+                        <img src="{{ block2_img.url }}" alt="User Holding Phone" loading="lazy" />
+                    {% endif %}
+                </div>
+                <div class="text-content">
+                    <h3>
+                        <span>{{ value.block2_title_highlight }}</span> {{ value.block2_title_main|linebreaksbr }}
+                    </h3>
+                    {{ value.block2_paragraph|richtext }}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>

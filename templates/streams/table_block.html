@@ -1,0 +1,54 @@
+<!-- streams/table_block.html - Template đã sửa -->
+<div class="project-detail__table-wrapper">
+    {% if value.data %}
+        <table class="project-detail__table">
+            <thead>
+                {% if value.first_row_is_table_header and value.data.0 %}
+                    <tr>
+                        {% for header in value.data.0 %}
+                            <th>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            </thead>
+            <tbody>
+                {% for row in value.data %}
+                    {% if value.first_row_is_table_header %}
+                        {% if not forloop.first %} <!-- Bỏ qua row đầu tiên vì đã dùng làm header -->
+                            <tr>
+                                {% for cell in row %}
+                                    {% if value.first_col_is_header and forloop.first %}
+                                        <th>{{ cell }}</th> <!-- Cột đầu tiên làm header -->
+                                    {% else %}
+                                        <td>{{ cell }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% else %}
+                        <!-- Trường hợp không có header row -->
+                        <tr>
+                            {% for cell in row %}
+                                {% if value.first_col_is_header and forloop.first %}
+                                    <th>{{ cell }}</th>
+                                {% else %}
+                                    <td>{{ cell }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% if value.table_caption %}
+            <div class="table-caption">
+                <small>{{ value.table_caption }}</small>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="table-empty">
+            <p>Chưa có dữ liệu bảng</p>
+        </div>
+    {% endif %}
+</div>

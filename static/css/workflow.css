@@ -1,0 +1,112 @@
+.workflow {
+  background-image: url('../images/bg.png');
+  background-repeat: repeat;
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.workflow__title {
+  font-size: 64px;
+  font-weight: 600;
+  color: #43230C;
+  margin-bottom: 10px;
+}
+
+.workflow__desc {
+  font-size: 24px;
+  color: #43230C;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+  line-height: 1.5;
+}
+
+.workflow__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 30px;
+  justify-items: center;
+}
+
+.workflow__item {
+  max-width: 250px;
+  text-align: left;
+}
+
+.workflow__icon {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.workflow__step-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #43230C;
+  margin-bottom: 6px;
+}
+
+.workflow__step-desc {
+  font-size: 14px;
+  color: #43230C;
+  line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .workflow__title {
+    font-size: 40px; /* Giảm kích thước tiêu đề */
+  }
+
+  .workflow__desc {
+    font-size: 18px; /* Giảm kích thước mô tả */
+  }
+
+  .workflow__grid {
+    grid-template-columns: repeat(2, 1fr); /* Chuyển sang 2 cột */
+    gap: 20px;
+  }
+
+  .workflow__item {
+    max-width: 100%; /* Để item mở rộng hơn khi màn hình nhỏ */
+  }
+
+  .workflow__step-title {
+    font-size: 18px;
+  }
+
+  .workflow__step-desc {
+    font-size: 12px;
+  }
+  .workflow__grid {
+  justify-items: start; /* Căn tất cả phần tử về bên trái */
+}
+
+.workflow__item {
+  text-align: left; /* Căn chữ trong các bước về lề trái */
+}
+}
+
+@media (max-width: 480px) {
+  .workflow__title {
+    font-size: 32px; /* Nhỏ hơn nữa cho điện thoại */
+  }
+
+  .workflow__desc {
+    font-size: 16px;
+  }
+
+  .workflow__grid {
+    grid-template-columns: 1fr; /* Xếp thành 1 cột */
+  }
+
+  .workflow__step-title {
+    font-size: 16px;
+  }
+.workflow__grid {
+  justify-items: start; /* Căn tất cả phần tử về bên trái */
+}
+
+.workflow__item {
+  text-align: left; /* Căn chữ trong các bước về lề trái */
+}
+  .workflow__step-desc {
+    font-size: 12px;
+  }
+}

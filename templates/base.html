@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ self.title }}{% endblock %}</title>
+
+    <meta name="description" content="{% block meta_description %}Better Living - DB Homes{% endblock %}">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="DBHomes">
+
+    <!-- ✅ Các file CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/highlightproject.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/partner.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/services.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/ecosystem.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dbverse.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hero-section-v2.css' %}" />
+
+    {% block extra_css %}{% endblock %}
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+
+<body>
+    {% block header %}
+        {% include "streams/navbar_block.html" with navbar_menu=navbar_menu %}
+    {% endblock %}
+    <main>
+        {% block content %}
+        <!-- Nội dung riêng của từng page sẽ nằm ở đây -->
+        {% endblock %}
+    </main>
+
+        {% block footer %}
+            {% if footer_settings %}
+                {% include "streams/footer_block.html" with footer_settings=footer_settings %}
+            {% endif %}
+        {% endblock %}
+
+
+    <!-- JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/swipercustom.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<section class="partners-section">
+    <div class="main-content-container">
+        <div class="container">
+            <h1 class="title">Đối tác của <span>DBHOMES</span></h1>
+            <div class="partners-logos">
+                <swiper-container class="mySwiper3" space-between="30" slides-per-view="7">
+                    {% for brand in value.brands %}
+                        <swiper-slide><a href="{{ brand.link }}" target="_blank"><img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" /></a></swiper-slide>
+                    {% endfor %}
+                </swiper-container>
+                <!-- Thêm ảnh logo đối tác khác nếu cần -->
+            </div>
+            <div class="partners-banner">
+                <div class="video-wrapper">
+                {% if self.main_media.video_file %}
+                    <video class="video-frame" controls autoplay muted loop playsinline>
+                    <source src="{{ self.main_media.video_file.url }}" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                    </video>
+                {% elif self.main_media.video_url %}
+                    {% with self.main_media.video_url as url %}
+                    {% if "youtube.com/watch" in url %}
+                        {% with url|cut:"https://www.youtube.com/watch?v=" as id %}
+                        <iframe class="video-frame" src="https://www.youtube.com/embed/{{ id }}?autoplay=1&mute=1&loop=1&playlist={{ id }}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        {% endwith %}
+                    {% elif "youtu.be/" in url %}
+                        {% with url|cut:"https://youtu.be/" as id %}
+                        <iframe class="video-frame" src="https://www.youtube.com/embed/{{ id }}?autoplay=1&mute=1&loop=1&playlist={{ id }}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        {% endwith %}
+                    {% elif "vimeo.com/" in url %}
+                        {% with url|cut:"https://vimeo.com/" as id %}
+                        <iframe class="video-frame" src="https://player.vimeo.com/video/{{ id }}?autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        {% endwith %}
+                    {% endif %}
+                    {% endwith %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px; /* Giới hạn kích thước tối đa */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  margin: 2rem auto;
+}
+
+.video-frame {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  display: block;
+  border-radius: 16px;
+}
+</style>

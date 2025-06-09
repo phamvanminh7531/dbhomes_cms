@@ -1,0 +1,201 @@
+.services-section {
+  background-image: url('../images/bg.png');
+  background-repeat: repeat;
+  padding: 0 20px 80px;
+
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.services-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-section .subtitle {
+  color: #96422F;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.services-section .title {
+  font-size: 64px;
+  color: #43230C;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.services-section .description {
+  font-size: 18px;
+  color: #43230C;
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+}
+
+.services-section .service-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .services-section .service-grid {
+    justify-content: center;
+  }
+}
+
+.services-section .service-card {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #8C795F;
+  color: #FFF7EC;
+  transition: background-color 0.3s ease;
+}
+
+.services-section .service-card .card-front,
+.services-section .service-card .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  transition: opacity 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.services-section .service-card .card-front {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  opacity: 1;
+}
+
+.services-section .service-card .card-back {
+  opacity: 0;
+  z-index: 1;
+}
+
+.services-section .service-card:hover {
+  background-color: transparent;
+}
+
+.services-section .service-card:hover .card-front {
+  opacity: 0;
+}
+
+.services-section .service-card:hover .card-back {
+  opacity: 1;
+  z-index: 3;
+}
+
+.services-section .service-card .card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.services-section .service-card .icon {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #fff;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.services-section .service-card .title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: 300;
+  text-align: center;
+}
+
+.services-section .service-card .desc {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 40px 0px;
+    /* Giảm padding để phù hợp với màn hình nhỏ */
+  }
+
+  .services-section .title {
+    font-size: 40px;
+    /* Giảm kích thước tiêu đề */
+    white-space: normal;
+
+  }
+
+  .services-section .subtitle,
+  .services-section .description {
+    font-size: 16px;
+    /* Giảm kích thước phụ đề và mô tả */
+  }
+
+  .services-section .service-card {
+    width: 280px;
+    /* Giảm kích thước thẻ dịch vụ */
+    height: 280px;
+  }
+
+  .services-section .service-card h3 {
+    font-size: 16px;
+    /* Giảm kích thước tiêu đề trong thẻ dịch vụ */
+  }
+
+  .services-section .service-card p {
+    font-size: 14px;
+    /* Giảm kích thước mô tả trong thẻ dịch vụ */
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section .title {
+    font-size: 32px;
+    /* Giảm kích thước tiêu đề hơn nữa */
+  }
+
+  .services-section .subtitle,
+  .services-section .description {
+    font-size: 14px;
+    /* Giảm kích thước phụ đề và mô tả */
+  }
+
+  .services-section .service-card {
+    width: 250px;
+    height: 250px;
+  }
+
+  .services-section .service-card h3 {
+    font-size: 14px;
+  }
+
+  .services-section .service-card p {
+    font-size: 12px;
+  }
+
+}

@@ -1,0 +1,79 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+<section class="footer-db">
+  <div class="main-content-container">
+    <div class="footer-db-container">
+      <div class="footer-db-top">
+        <!-- Cột 1: Logo và tải hồ sơ -->
+        <div class="footer-db-brand">
+          <img src="{% static 'images/logofooter.png' %}" alt="db homes logo" class="footer-db-logo" loading="lazy" />
+
+          {% if footer_settings.capacity_profile %}
+          <a class="footer-db-download" href="{{ footer_settings.capacity_profile.file.url }}" target="_blank" style="text-decoration: none;">
+            Hồ sơ năng lực
+            <img src="{% static 'images/downloadicon.png' %}" alt="db homes logo" class="footer-db-download-icon" loading="lazy"
+              style="width: 25px;" />
+          </a>
+          {% endif %}
+        </div>
+
+        <!-- Cột 2: Liên kết -->
+        <div class="footer-db-links">
+          <ul>
+              {% if footer_settings.menu_items %}
+                  {% for item in footer_settings.menu_items.menu_items.all %}
+                      <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+                  {% endfor %}
+              {% endif %}
+          </ul>
+        </div>
+
+        <!-- Cột 3: Văn phòng + Theo dõi -->
+        <div class="footer-db-info">
+          <div class="footer-db-offices">
+              {% for address in footer_settings.office_addresses.all %}
+              <div>
+                  <strong style="font-weight: 600;">{{ address.title }}</strong>
+                  <p style="margin-top: 20px;">{{ address.address}}</p>
+              </div>
+              {% endfor %}
+          </div>
+          <div class="footer-db-socials">
+            <p style="font-weight: 600;">Theo dõi chúng tôi</p>
+            <div class="footer-db-icons">
+              {% for social in footer_settings.social_links.all %}
+                  <a href="{{ social.link }}">
+                      {% if social.logo_image %}
+                          <img src="{{ social.logo_image.file.url }}" alt="{{ social.logo_alt }}" loading="lazy" />
+                      {% endif %}
+                  </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Cột 4: Liên hệ -->
+        <div class="footer-db-contact">
+          <strong style="font-weight: 600;">Liên hệ</strong>
+          {{ footer_settings.contact|richtext }}
+        </div>
+      </div>
+
+      <!-- Thành viên -->
+      <div class="footer-db-bottom">
+        <div class="footer-db-member">
+          <p>Một thành viên của</p>
+          <div class="footer-db-member-logo">
+            <img src="{% static 'images/logofooter2.png' %}" alt="Creative Interior Logo" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Bản quyền -->
+      <div class="footer-db-copyright">
+        <p>© DBHomes Copyright 2025. All rights reserved</p>
+        <p>Better Living</p>
+      </div>
+    </div>
+  </div>
+</section>

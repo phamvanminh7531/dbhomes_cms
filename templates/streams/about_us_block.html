@@ -1,0 +1,30 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+
+<section class="about-section" style="background-image: url('{{ self.background.image.file.url }}');">
+    <div class="main-content-container">
+        <div class="overlay"></div>
+        <div class="content">
+            <p class="subtitle">Về chúng tôi</p>
+            <h1 class="title">Chúng tôi là <span>DBHOMES!</span></h1>
+            <div class="desc">
+                {{ value.content|richtext }}
+            </div>
+            <div class="buttons">
+                {% for button in self.buttons %}
+                    <a href="{{ button.url }}" class="btn outline">{{ button.label }}</a>
+                {% endfor %}
+            </div>
+
+            <div class="stats">
+                {% for feature in self.feature_items %}
+                    <div class="stat-box">
+                        <div class="number">{{ feature.number }}</div>
+                        <div class="label">{{ feature.description }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

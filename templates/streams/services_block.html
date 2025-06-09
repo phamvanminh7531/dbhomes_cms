@@ -1,0 +1,38 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+<section class="services-section">
+    <div class="main-content-container">
+        <div class="container">
+            <div class="subtitle">
+                <p>Dịch vụ của chúng tôi</p>
+            </div>
+            <h2 class="title">{{ value.title }}</h2>
+            <div class="description">
+                {{ value.description|richtext }}
+            </div>
+            <div class="service-grid">
+                {% for service in self.services %}
+                    <div class="service-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="icon">
+                                    <img src="{{ service.icon.file.url }}" alt="Thiết kế icon" loading="lazy">
+                                </div>
+                                <div class="title">
+                                    <h3>{{ service.title|striptags  }}</h3>
+                                </div>
+                                <div class="desc">
+                                    {{ service.description|richtext }}
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <img src="{{ service.hover_image.file.url }}" alt="Thiết kế nội thất" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

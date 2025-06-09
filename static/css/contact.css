@@ -1,0 +1,92 @@
+.contact-section {
+  background-image: url('../images/Section9bg.png');
+  background-size: cover; /* Phóng ảnh để vừa khít cả khung */
+  background-repeat: no-repeat;
+  background-position: bottom center; /* Ưu tiên giữ phần dưới của ảnh */
+  position: relative;
+  color: white;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding:20px
+}
+
+
+
+.contact-section__container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-section__title {
+  font-size: 64px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.contact-section__form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.contact-section__form input,
+.contact-section__form textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: white;
+  font-size: 18px;
+  padding: 28px 0;
+  outline: none;
+}
+
+.contact-section__form input::placeholder,
+.contact-section__form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-section__form button {
+  margin-top: 60px;
+  background: white;
+  color: #8b4e2d;
+  border: none;
+  border-radius: 30px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-section__form button:hover {
+   background-color: #96422F;
+
+  color: white;
+}
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 16px;
+    height: auto; /* Tránh height cố định 150vh trên điện thoại */
+  }
+
+  .contact-section__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .contact-section__form input,
+  .contact-section__form textarea {
+    font-size: 14px;
+  }
+
+  .contact-section__form button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

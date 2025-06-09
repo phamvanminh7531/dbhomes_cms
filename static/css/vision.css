@@ -1,0 +1,159 @@
+.vision-section {
+ background-image: url('../images//bg.png');
+  background-repeat: repeat;
+  padding: 60px 20px;
+  overflow-x: hidden; /* tránh tràn ngang */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vision__stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+}
+
+.vision__stat {
+  flex: 1 1 25%;
+  justify-items: flex-start;
+ 
+}
+
+.vision__stat strong {
+  display: block;
+  font-size: 64px;
+  font-weight: 600;
+  color: #96422F;
+}
+
+.vision__stat p {
+  margin-top: 5px;
+  color: #5c5c5c;
+  font-size: 18px;
+  text-align: start;
+}
+
+.vision__content {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  gap: 40px;
+}
+
+.vision__text {
+  flex: 1 1 55%;
+  color: #3a2c1c;
+}
+
+.vision__text h2 {
+  font-size: 64px;
+  color: #96422F;
+  margin-bottom: 10px;
+    font-weight: 600;
+}
+
+
+.vision__text p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.vision__image {
+  flex: 1 1 40%;
+  text-align: center;
+}
+
+.vision__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+@media (max-width: 1024px) {
+  .vision__text h2 {
+    font-size: 36px;
+  }
+
+  .vision__text h3 {
+    font-size: 18px;
+  }
+
+  .vision__text p {
+    font-size: 15px;
+  }
+
+  .vision__image {
+    flex: 1 1 100%;
+  }
+
+  .vision__text {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .vision-section {
+    padding: 40px 15px;
+  }
+
+  .vision__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .vision__stat {
+    flex: 1 1 100%;
+  }
+
+  .vision__stat strong {
+    font-size: 36px;
+  }
+
+  .vision__content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vision__text h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .vision__text h3 {
+    text-align: center;
+  }
+
+  .vision__text {
+    text-align: center;
+  }
+
+  .vision__image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .vision__text h2 {
+    font-size: 28px;
+  }
+
+  .vision__stat strong {
+    font-size: 30px;
+  }
+
+  .vision__text p {
+    font-size: 14px;
+  }
+}

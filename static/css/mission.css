@@ -1,0 +1,74 @@
+.mission-section {
+  color: #fff;
+  padding: 60px 20px 0; /* Phía trên có khoảng trống */
+  text-align: center;
+  background-image: url('../images/missionbg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+
+  min-height: 125vh; /* Hiển thị hết ảnh */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Giữ nội dung ở phía trên */
+}
+
+.mission-title {
+  font-size: 38px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #2d2d2d; /* hoặc giữ màu trắng nếu ảnh tối */
+}
+
+.mission-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mission-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #43230C; /* hoặc trắng nếu ảnh nền tối */
+  margin-bottom: 20px;
+}
+
+.text-normal {
+  color: #43230C;
+}
+
+.text-highlight {
+  color: #96422F;
+}
+
+/* ✅ Responsive cho màn hình nhỏ hơn */
+@media (max-width: 1024px) {
+  .mission-section {
+    padding: 40px 15px 0;
+    min-height: 115vh;
+  }
+
+  .mission-title {
+    font-size: 36px;
+  }
+
+  .mission-content p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-section {
+    padding: 30px 10px 0;
+    min-height: 110vh;
+  }
+
+  .mission-title {
+    font-size: 28px;
+  }
+
+  .mission-content p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}

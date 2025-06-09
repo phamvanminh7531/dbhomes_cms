@@ -1,0 +1,144 @@
+.hero-section-v2 {
+  position: relative;
+  height: 100vh;
+  color: white;
+  font-weight: 400;
+  display: flex;
+  align-items: flex-end; /* đẩy content xuống dưới */
+  justify-content: flex-start; /* căn trái */
+  padding: 50px 60px;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ height: 100dvh;
+  object-fit: cover; 
+  object-position: center bottom; 
+  z-index: 0; 
+}
+
+
+.hero-section-v2 .main-content-container {
+  position: relative; 
+  z-index: 1;
+}
+.hero-section-v2 .hero-content .home-title{
+  font-size: 80px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.hero-section-v2 .hero-content h1 {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: #FFF7EC;
+}
+
+.hero-section-v2 .breadcrumb {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-section-v2 .separator {
+  margin: 0 4px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-section-v2 .highlight {
+  font-weight: 500;
+  color: #FFF7EC;
+}
+
+.hero-section-v2 .hero-subtitle {
+  font-size: 38px;
+  font-weight: 600;
+  color: #FFF7EC;
+  margin-top: 10px;
+  white-space: pre-line;
+}
+.background-swiper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.background-swiper swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.background-swiper .bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ảnh nền tĩnh cho mobile */
+.mobile-background {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+}
+
+
+/* Responsive giữ nguyên, chỉ thêm chỉnh sửa nhỏ nếu cần */
+@media (max-width: 1024px) {
+  .hero-section-v2 {
+    padding: 40px 40px;
+
+  }
+.hero-section-v2 .hero-content .home-title{
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+  .hero-section-v2 .hero-content h1 {
+    font-size: 16px;
+  }
+
+  .hero-section-v2 .hero-subtitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section-v2 {
+    padding: 30px 20px;
+ 
+  }
+
+  .hero-section-v2 .hero-content h1 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .hero-section-v2 .hero-subtitle {
+    font-size: 24px;
+    margin-top: 6px;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section-v2 {
+    padding: 20px 15px;
+
+  }
+
+  .hero-section-v2 .hero-content h1 {
+    font-size: 12px;
+  }
+
+  .hero-section-v2 .hero-subtitle {
+    font-size: 20px;
+  }
+}

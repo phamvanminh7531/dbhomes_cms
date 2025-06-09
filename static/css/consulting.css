@@ -1,0 +1,95 @@
+/* Section wrapper */
+.consultation-section {
+   background-image: url('../images//bg.png');
+  background-repeat: repeat;
+
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Container layout */
+.consultation-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  padding: 60px 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Image block */
+.consultation-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form wrapper */
+.consultation-form-wrapper {
+  flex: 1;
+  min-width: 300px;
+}
+
+.consultation-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #43230C;
+}
+
+.consultation-description {
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #43230C;
+}
+
+/* Form styles */
+#consultationForm {
+  display: flex;
+  flex-direction: column;
+
+}
+#consultationForm input,
+#consultationForm textarea {
+  padding: 16px 0; /* tăng khoảng cách trên và dưới */
+  border: none;
+  border-bottom: 1px solid #b8a998;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: none;
+  color: rgba(67, 35, 12, 0.6);
+}
+
+#consultationForm input::placeholder,
+#consultationForm textarea::placeholder {
+  color: rgba(67, 35, 12, 0.6);
+  opacity: 1; /* đảm bảo placeholder hiện rõ trên mọi trình duyệt */
+}
+
+
+#consultationForm textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+#consultationForm button {
+  padding: 12px;
+  border: 1px solid #3e2e1f;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color:#43230C;
+  transition: all 0.3s ease;
+  margin-top: 60px;
+}
+
+#consultationForm button:hover {
+   background-color: #96422F;
+
+  color: white;
+}

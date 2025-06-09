@@ -1,0 +1,59 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.so
+*.log
+*.pot
+*.mo
+
+# Django & Wagtail media uploads
+media/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.webp
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.mp3
+*.wav
+*.pdf
+*.zip
+*.tar.gz
+*.rar
+
+# VSCode and IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Node
+node_modules/
+
+# Database files
+*.sqlite3
+*.db
+
+# Build and dist folders
+build/
+dist/
+*.egg-info/
+
+# Environment files
+.env
+.env.*
+"media/" 

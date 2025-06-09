@@ -1,0 +1,149 @@
+.about-section {
+  position: relative;
+  background-size: cover; /* Phóng ảnh để vừa khít cả khung */
+  background-repeat: no-repeat;
+  background-position: bottom center; 
+  padding: 80px 20px;
+  text-align: center;
+  min-height: 100vh;
+  color: #4B3B39;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+}
+ 
+
+.about-section .content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  text-align: left;
+}
+
+.about-section .subtitle {
+  color: #96422F;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.about-section .title {
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color:#43230C;
+}
+
+.about-section .title span {
+  color: #96422F;
+  font-weight: bold;
+}
+
+.about-section .desc {
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #43230C;
+}
+
+.about-section .buttons {
+  margin: 25px 0;
+  display: flex;
+  gap: 15px;
+}
+
+.about-section .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.about-section .btn.primary {
+  background-color: #943E32;
+  color: #fff;
+  border: none;
+}
+
+
+.about-section .btn.outline {
+  background-color: transparent;
+  color: #4B3B39;
+  border: 1px solid #4B3B39;
+}
+.about-section .btn.outline:hover{
+  background-color: #943E32;
+  color: white;
+  border: 1px solid #4B3B39;
+}
+
+.about-section .stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cột */
+  gap: 40px;
+  margin-top: 20px;
+  width: 65%
+}
+
+.about-section .stat-box .number {
+  font-size: 48px;
+  font-weight: bold;
+  color: #943E32;
+}
+
+.about-section .stat-box .label {
+  font-size: 14px;
+  color: #5C4A46;
+}
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    text-align: left;
+    height: auto;
+    background-size: cover;
+    padding: 40px 0px;
+  }
+
+.about-section .btn {
+
+  font-size: 12px;
+ 
+}
+.about-section .buttons {
+  width: 71%;
+}
+  .about-section .desc:nth-of-type(2) {
+    display: none !important;
+  }
+  .about-section .content {
+    max-width: 100%;
+  }
+
+  .about-section .title {
+    font-size: 26px;
+  }
+
+  .about-section .desc {
+    font-size: 14px;
+    
+  }
+.about-section .stats {
+    gap: 20px; /* giảm khoảng cách */
+     width: 80%
+  }
+
+  .about-section .stat-box .number {
+    font-size: 26px;
+  }
+
+  .about-section .stat-box .label {
+    font-size: 13px;
+  }
+  .about-section .desc:nth-of-type(2) {
+    display: none !important;
+  }
+
+
+  .about-section .btn {
+    width: 100%;
+  }
+}

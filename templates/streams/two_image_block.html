@@ -1,0 +1,11 @@
+<div class="project-detail__image-group">
+    <div class="project-detail__image-row">
+        <img src="{{ self.image1.file.url }}" alt="" />
+        <img src="{{ self.image2.file.url }}" alt="" />
+    </div>
+    <div class="project-detail__caption">
+        <p>
+            {{ self.caption|default:"" }}
+        </p>
+    </div>
+</div>

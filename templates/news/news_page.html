@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+{% load wagtailuserbar %}
+
+
+{% block meta_description %}{{ page.description|default:"Tin tức mới nhất từ DB Homes" }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/project-detail.css' %}" />
+{% endblock %}
+
+{% block title %}{{ page.title }}Tin tức{% endblock %}
+
+{% block content %}
+{% for block in page.hero_section %}
+{% include_block block %}
+{% endfor %}
+<section class="project-detail">
+    <div class="project-detail__container">
+        <div class="project-detail__main">
+            <div class="project-detail__breadcrumbs">
+                <span class="breadcrumb-home">Trang chủ</span>
+                <span class="breadcrumb-separator"> > </span>
+                <span class="breadcrumb-section">Dự án</span>
+                <span class="breadcrumb-separator"> > </span>
+                <span class="breadcrumb-current">The Still Whisper / Diamond Island</span>
+            </div>
+
+            <div class="project-detail__title">
+                <p>{{ page.title }}</p>
+            </div>
+            {% for block in page.content %}
+            {% include_block block %}
+            {% endfor %}
+        </div>
+        <aside class="project-detail__sidebar">
+            <h3 class="project-detail__sidebar-title">Bài viết liên quan</h3>
+
+            <ul class="project-detail__list">
+                {% for post in page.related_posts.all %}
+                <a href="{{ post.url }}">
+                    <li class="project-detail__item">
+                        <div class="project-detail__item-thumb">
+                            <img src="{{ post.intro_image.file.url }}" alt="{{ post.title }}" />
+                        </div>
+                        <div class="project-detail__item-text">{{ post.title }}</div>
+                    </li>
+                </a>
+                {% endfor %}
+            </ul>
+
+            <div class="project-detail__share">
+                <span class="project-detail__share-label">Chia sẻ</span>
+                <img src="../images/fbicon.png" alt="Facebook" class="project-detail__share-icon" />
+                <img src="../images/shareicon.png" alt="Share" class="project-detail__share-icon" />
+            </div>
+
+        </aside>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,242 @@
+.footer-db {
+  background-color: #893f2e;
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-db-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-db-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-db-brand {
+  width: 30%;
+}
+
+.footer-db-links {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-db-info {
+  width: 25%;
+}
+
+.footer-db-contact {
+  width: 20%;
+}
+
+.footer-db-brand, .footer-db-info{
+  display :flex;
+  flex-direction: column;
+}
+.footer-db-info{
+  gap:20px
+}
+
+.footer-db-logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.footer-db-tagline {
+  margin: 8px 0;
+}
+
+.footer-db-download {
+  width: 80%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center; /* ✅ Căn giữa theo trục dọc */
+  padding: 8px 16px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  line-height: 1; /* ✅ Tránh text bị lệch do line-height lớn */
+}
+
+.footer-db-download img {
+  display: block; /* ✅ Loại bỏ khoảng trắng dưới ảnh */
+  width: 25px;
+  height:25px
+}
+
+.footer-db-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-db-links ul li {
+  margin: 24px 0; /* margin mặc định cho tất cả các li */
+}
+
+.footer-db-links ul li:first-child {
+  margin-top: 0; /* đặt margin-top bằng 0 cho phần tử li đầu tiên */
+}
+.footer-db-copyright p {
+ color: rgba(255, 247, 236, 0.5);
+
+}
+
+.footer-db-links a {
+  all: unset;        /* reset gần như tất cả style */
+  color: inherit;    /* kế thừa màu chữ từ cha */
+  cursor: default;   /* con trỏ chuột bình thường, không phải pointer */
+  text-decoration: none; /* bỏ gạch chân */
+}
+
+.footer-db-offices > div {
+  margin-bottom: 50px;
+}
+
+.footer-db-socials {
+  margin-top: 20px;
+}
+
+.footer-db-socials p {
+  margin-bottom: 10px;
+}
+.footer-db-icons {
+  display: flex;
+  gap:30px;
+}
+.footer-db-icons img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+.footer-db-icons img:hover {
+  transform: scale(1.1);
+}
+
+.footer-db-member {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.footer-db-member-logo img {
+  height: 60px;
+}
+
+.footer-db-bottom {
+  margin-top: 30px;
+}
+
+.footer-db-contact p {
+  margin: 5px 0;
+}
+
+.footer-db-contact strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.footer-db-socials a {
+  display: inline-block;
+}
+
+.footer-db-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 40px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .footer-db {
+    padding: 30px 16px;
+    text-align: left; /* ✅ canh lề trái */
+  }
+
+  .footer-db-top {
+    flex-direction: column;
+    align-items: flex-start; /* ✅ canh trái các khối */
+    gap: 40px;
+  }
+
+  .footer-db-brand,
+  .footer-db-links,
+  .footer-db-info,
+  .footer-db-contact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* ✅ các phần tử bên trong canh trái */
+  }
+
+  .footer-db-logo {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+
+  .footer-db-links {
+    justify-content: flex-start; /* ✅ các link canh trái */
+  }
+
+  .footer-db-links ul {
+    padding: 0;
+  }
+
+  .footer-db-links ul li {
+    margin: 12px 0;
+  }
+
+  .footer-db-info {
+    gap: 12px;
+  }
+
+  .footer-db-contact p {
+    margin: 4px 0;
+  }
+
+  .footer-db-download {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .footer-db-icons {
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .footer-db-member {
+    margin-top: 30px;
+    align-items: flex-start;
+  }
+
+  .footer-db-bottom {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .footer-db-copyright {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+  }
+}

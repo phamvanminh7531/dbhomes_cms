@@ -1,0 +1,9 @@
+{% with data=self.hero_section_data layout=self.layout %}
+  {% if layout == "hero_cta_slider_section_block" %}
+    {% include "streams/hero/hero_cta_slider_section_block.html" with hero_section_data=data %}
+  {% elif layout == "hero_title_section_block" %}
+    {% include "streams/hero/hero_title_section_block.html" with hero_section_data=data %}
+  {% elif layout == "hero_empty_section_block" %}
+    {% include "streams/hero/hero_empty_section_block.html" with hero_section_data=data %}
+  {% endif %}
+{% endwith %}

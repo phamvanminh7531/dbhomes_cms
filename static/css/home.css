@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap');
+/*section 1 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400; /* Regular */
+}
+
+body, html {
+
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+padding-top: 60px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.85;
+}
+.main-content-container {
+  position: relative;
+  z-index: 1;
+}
+.navbar .main-content-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-content-container {
+  position: relative; /* để nằm trên z-index mặc định */
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn.secondary {
+  background-color: white;
+  color: #96422F;
+}
+
+.btn.primary {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+.btn.secondary:hover{
+  background-color: #96422F;
+
+  color: white;
+}
+.btn.primary:hover{
+  background-color: white;
+  color: #96422F;
+
+}
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* Responsive */
+/* Ẩn nút burger trên desktop */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 15;
+}
+
+.burger span {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+
+.mobile-background {
+  display: none;
+  width: 100%;
+  height: 100vh; /* chiều cao giống swiper */
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  z-index: 0;
+ background-position: 0% center;
+}
+
+/* Nội dung container trên ảnh nền */
+
+.btn-mobile {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute; /* hoặc tùy chỉnh sao cho không ảnh hưởng layout */
+}
+
+@media (max-width: 768px) {
+  .btn-desktop {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .btn-mobile {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    position: static; /* trở lại bình thường */
+  }
+}
+
+/* Responsive - hiện nút burger trên mobile */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  /* Ẩn menu nav-links mặc định */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px; /* cao hơn navbar */
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    width: 200px;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 0 0 0 6px;
+  }
+
+  /* Khi menu mở (active class) hiện ra */
+  .nav-links.active {
+    display: flex;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-content {
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .buttons {
+    /* flex-direction: column; */
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 12px;
+
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 24px;
+  }
+
+ 
+  .btn {
+    padding: 6px 12px;
+    font-size: 11px;
+
+  }
+}
+
+
