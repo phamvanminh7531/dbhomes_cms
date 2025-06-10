@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<section class="mission-section" style="  background-image: url('{{ value.image.file.url }}');">
+    <div class="mission-wrapper">
+        <div class="main-content-container">
+            <h2 class="mission-title">
+                <span class="text-normal">Chúng tôi là </span>
+                <span class="text-highlight">DBHOMES!</span>
+            </h2>
+            <div class="mission-content">
+                <div class="project-detail__paragraph">
+                    {{ value.content|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

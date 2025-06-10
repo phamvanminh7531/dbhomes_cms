@@ -1,5 +1,5 @@
 .showroom-section {
- background-image: url('../images/bg.png');
+  background-image: url('../images/bg.png');
   background-repeat: repeat;
   padding: 40px 0;
 
@@ -19,25 +19,36 @@
 }
 
 .showroom-section__office-box {
-  background-color: #f6efe6;
+  background-color: transparent;
   border: 1px solid #d8cabb;
   padding: 12px 16px;
   border-radius: 4px;
   width: 250px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  border-radius: 8px;
+  min-width: 330px;
+}
+
+
+
+.showroom-section__office-box h4,
+.showroom-section__office-box p {
+  color: #43230C !important;
+  margin: 0 0 8px;
 }
 
 .showroom-section__office-box h4 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  color: #4a2d13;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.showroom-section__office-box p {
-  margin: 0;
-  font-size: 14px;
-  color: #333;
+.showroom-section__office-box  p {
+  font-size: 16px;
+   margin: 0;
 }
+
+
 .showroom-section__map {
   border-radius: 10px;            /* Bo góc khung */
   overflow: hidden;               /* Ẩn phần vượt ra ngoài */
@@ -77,36 +88,26 @@
   flex-wrap: wrap;
 }
 
-.showroom-section__office-box {
-  background: #f8f8f8;
-  padding: 16px;
-  border-radius: 8px;
-  min-width: 330px;
-}
-.showroom-section__office-box.showroom-section__office--hcm {
+
+/* HCM styles */
+.showroom-section__office-box.active  {
   background-color: #8C795F;
-
 }
-.showroom-section__office-box.showroom-section__office--hn {
-  background-color: transparent;
 
-}
-.showroom-section__office-box.showroom-section__office--hcm h4 {
+.showroom-section__office-box.active  h4,
+.showroom-section__office-box.active  p {
   color: white !important;
+}
+
+.showroom-section__office-box.active  h4 {
   font-size: 14px;
   font-weight: 600;
 }
-.showroom-section__office-box.showroom-section__office--hcm p {
-  color: white !important;
-  font-size: 16px;
 
+.showroom-section__office-box.active  p {
+  font-size: 16px;
 }
-.showroom-section__office-box.showroom-section__office--hn h4 {
-  color: #43230C !important;
-  font-size: 14px;
-   font-weight: 600;
-}
-.showroom-section__office-box.showroom-section__office--hn p {
-  color: #43230C !important;
-   font-size: 16px;
-}
+
+/* HN styles */
+
+

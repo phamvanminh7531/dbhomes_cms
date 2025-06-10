@@ -17,8 +17,6 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -31,6 +29,8 @@ INSTALLED_APPS = [
     "search",
     "news",
     "aboutUs",
+    "service",
+    "contact",
 
     "wagtail.contrib.forms",
     "wagtail.contrib.table_block",

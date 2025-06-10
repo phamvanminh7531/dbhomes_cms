@@ -1,0 +1,27 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<section class="faq-section" >
+    <div class="main-content-container">
+        <div class="faq-container">
+            <!-- Bên trái: Câu hỏi -->
+            <div class="faq-left">
+                <h2 class="faq-title">Các câu hỏi thường gặp</h2>
+                {% for item in self.faq_items %}
+                <div class="faq-item {% if forloop.first %}active{% endif %}">
+                    <div class="faq-question">
+                        {{ item.question }}
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        {{ item.answer|safe }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Bên phải: Hình ảnh -->
+            <div class="faq-right">
+                <img src="{{ value.image.file.url }}" alt="Sofa DBHomes" />
+            </div>
+        </div>
+    </div>
+</section>

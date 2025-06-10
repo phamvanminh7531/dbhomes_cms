@@ -1,0 +1,28 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static %}
+<section class="workflow">
+<div class="main-content-container">
+    <h2 class="workflow__title">{{ value.title.title }}</h2>
+    <div class="workflow__desc">
+        {{ value.title.content|safe }}
+    </div>
+    <div class="workflow__grid">
+        {% for item in self.workflow_items %}
+        <div class="workflow__item">
+            <div class="workflow__icon--custom">
+                <span class="workflow__step-label">(Bước)</span>
+                <span class="workflow__step-number">{{ forloop.counter }}</span>
+            </div>
+            <h3 class="workflow__step-title">{{ item.title }}</h3>
+            <div class="workflow__step-desc">
+                {{ item.content|safe }}
+            </div>
+            {% if forloop.counter != 4 and forloop.counter != 8 %}
+            <img src="{% static 'images/arrow.svg' %}" alt="Process flow arrow" class="workflow__edge-icon" />
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>

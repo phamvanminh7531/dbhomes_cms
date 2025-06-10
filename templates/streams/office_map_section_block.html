@@ -1,0 +1,22 @@
+<section class="showroom-section">
+    <div class="main-content-container">
+        <div class="showroom-section__header-row">
+            <h2 class="showroom-section__title">Văn phòng & Showroom</h2>
+            <div class="showroom-section__offices">
+                {% for office in self.offices %}
+                <div class="showroom-section__office-box {% if forloop.first %}active{% endif %}"
+                    data-map="{{ office.map_link }}">
+                    <h4>{{ office.title }}</h4>
+                    <p>{{ office.address }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="showroom-section__map">
+            {% with first_office=self.offices.0 %}
+            <iframe src="{{ first_office.map_link }}" width="600" height="450" style="border:0;" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {% endwith %}
+        </div>
+    </div>
+</section>

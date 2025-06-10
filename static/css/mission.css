@@ -2,7 +2,7 @@
   color: #fff;
   padding: 60px 20px 0; /* Phía trên có khoảng trống */
   text-align: center;
-  background-image: url('../images/missionbg.png');
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
@@ -26,7 +26,7 @@
   margin: 0 auto;
 }
 
-.mission-content p {
+.mission-content .project-detail__paragraph {
   font-size: 16px;
   line-height: 1.8;
   color: #43230C; /* hoặc trắng nếu ảnh nền tối */

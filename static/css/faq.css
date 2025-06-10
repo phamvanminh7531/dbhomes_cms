@@ -1,6 +1,6 @@
 .faq-section {
-  background-image: url('../images/bg.png');
   background-repeat: repeat;
+  background-image: url('../images//bg.png');
   padding: 0 20px;
   padding-bottom: 80px;
 }
@@ -47,15 +47,35 @@
 }
 
 .faq-answer {
-  padding: 0 20px 15px 20px;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
   font-size: 16px;
   color: #43230C;
-  display: none;
   background-color: transparent;
+  transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
+.faq-answer ul {
+  padding-left: 1.5rem; /* hoặc thử 2rem tùy theo mong muốn */
+  margin-left: 0;       /* reset margin mặc định nếu có */
+}
+
+.faq-answer ol {
+  padding-left: 1.5rem;  /* Thụt vào một chút */
+  margin-left: 0;        /* Reset margin mặc định */
+}
+
+.faq-answer ul li,
+.faq-answer ol li {
+  margin-bottom: 8px;
+}
+
+/* Khi active thì mở rộng chiều cao và padding */
 .faq-item.active .faq-answer {
-  display: block;
+  max-height: 500px; /* chiều cao đủ lớn để chứa nội dung */
+  padding: 15px 20px 15px 20px;
+  display: block; /* giữ display block */
 }
 
 .faq-toggle {
@@ -78,12 +98,12 @@
     font-size: 16px; /* Giảm kích thước câu hỏi */
     padding: 12px 16px; /* Giảm padding */
   }
-  .faq-section{
-    padding-top: 30px;
-  }
+.faq-section {
+  padding: 30px 0;
+}
   .faq-answer {
     font-size: 14px; /* Giảm kích thước câu trả lời */
-    padding: 0 16px 12px 16px;
+    padding: 0 16px;
   }
 
   .faq-container {
@@ -110,15 +130,15 @@
 
   .faq-answer {
     font-size: 12px;
-    padding: 0 14px 10px 14px;
+     padding: 0 16px;
   }
 
   .faq-container {
     gap: 20px;
   }
-  .faq-section{
-    padding-top: 30px;
-  }
+.faq-section {
+  padding: 30px 0;
+}
   .faq-right img {
     max-width: 100%;
     height: auto;

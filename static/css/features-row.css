@@ -1,0 +1,40 @@
+.features-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 60px 0 120px;
+  background-image: url('../images/bg.png'); /* nền sọc nếu có */
+  background-size: cover;
+  text-align: center;
+  flex-wrap: wrap;
+
+}
+
+.feature-box {
+  flex: 1;
+  min-width: 220px;
+  padding: 20px;
+  color: #43230C;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.feature-box h3 {
+  font-size: 24px;
+  color: #96422F;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.feature-box p {
+  font-size: 13px;
+  color: #43230C;
+  opacity: 0.7;
+  max-width: 300px;
+  margin: 0 auto;
+}

@@ -191,7 +191,9 @@ class CTA_Button(Orderable):
     
     link = models.URLField(
         verbose_name="Đường dẫn",
-        help_text="Đường dẫn đến trang đích của nút CTA"
+        help_text="Đường dẫn đến trang đích của nút CTA",
+        null=True,
+        blank=True,
     )
 
     page = models.ForeignKey(

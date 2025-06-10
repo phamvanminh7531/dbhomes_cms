@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<section class="factory-section" style="background-image: url('{{value.image.file.url}}');">
+    <div class="factory-overlay">
+        <div class="factory-content">
+            <h2>{{value.title.title}}</h2>
+            {{value.title.content|safe}}
+            <a href="{{ value.button.url }}" class="factory-button">{{ value.button.label }}</a>
+        </div>
+    </div>
+</section>

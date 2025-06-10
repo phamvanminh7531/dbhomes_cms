@@ -12,6 +12,7 @@ from .models import Menu, HeroSection  # Import Menu model
 from wagtail.contrib.table_block.blocks import TableBlock
 
 
+
 # "-------------------------------------------------------------------------------------------------------------------"
 
 # class NavBarBlock(blocks.StructBlock):
@@ -34,6 +35,64 @@ class CTAButtonBlock(blocks.StructBlock):
     class Meta:
         icon = "plus"
         label = "CTA Button"
+
+class FeatureItemBlock(blocks.StructBlock):
+    "Block cho các số liệu nổi bật"
+    number = blocks.CharBlock(required=True, help_text="Số liệu nổi bật (VD: 100+)")
+    description = blocks.CharBlock(required=True, help_text="Mô tả ngắn về số liệu nổi bật (VD: Dự án đã hoàn thành)")
+
+    class Meta:
+        icon = "star"
+        label = "Số liệu nổi bật"
+
+class Background(blocks.StructBlock):
+    """ Block cho hình nền """
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh nền (kích thước tối thiểu 1920x1080px)")
+    alt_text = blocks.CharBlock(required=False, help_text="Alt text cho hình nền")
+
+    class Meta:
+        icon =  'image'
+        label = 'Hình nền'
+
+class TitleContentBlock(blocks.StructBlock):
+    """Block cho tiêu đề và nội dung"""
+    title = blocks.CharBlock(required=True, help_text="Tiêu đề cho nhóm nội dung")
+    content = RichTextBlock(
+        required=True,
+        help_text= "Nội dung",
+        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code" ]  # Các tính năng có thể tùy chỉnh,
+    )
+
+    class Meta:
+        icon = "title"
+        label = "Tiêu đề và Nội dung"
+
+class TitileContentIconBlock(blocks.StructBlock):
+    """Block cho tiêu đề, nội dung và icon"""
+    title = blocks.CharBlock(required=True, help_text="Tiêu đề cho nhóm nội dung")
+    content = RichTextBlock(
+        required=True,
+        help_text= "Nội dung",
+        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code" ]  # Các tính năng có thể tùy chỉnh,
+    )
+    icon = ImageChooserBlock(required=True, help_text="Hình ảnh biểu tượng (kích thước tối ưu 100x100px v.v)")
+
+    class Meta:
+        icon = "icon"
+        label = "Tiêu đề, Nội dung và Icon"
+
+class QAItemBlock(blocks.StructBlock):
+    """Block cho câu hỏi và câu trả lời"""
+    question = blocks.CharBlock(required=True, help_text="Câu hỏi")
+    answer = RichTextBlock(
+        required=True,
+        help_text="Câu trả lời",
+        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code" ]  # Các tính năng có thể tùy chỉnh,
+    )
+
+    class Meta:
+        icon = "help"
+        label = "Câu hỏi và Câu trả lời"
 
 # "-------------------------------------------------------------------------------------------------------------------"
 # class Hero1SectionBlock(blocks.StructBlock):
@@ -156,7 +215,6 @@ class PartnerBrandItemBlock(blocks.StructBlock):
 
 class PartnerBlock(blocks.StructBlock):
     """Partner Section Block với danh sách các thương hiệu đối tác"""
-    title = blocks.CharBlock(required=True, help_text="Tiêu đề của phần đối tác")
     brands = blocks.ListBlock(PartnerBrandItemBlock(), min_num=1, max_num=7)
     main_media = MediaBlock(required=True, help_text="Ảnh hoặc video chính")
 
@@ -220,24 +278,6 @@ class FooterBlock(blocks.StructBlock):
         label = "Footer Block với menu và mạng xã hội"
 
 # "-------------------------------------------------------------------------------------------------------------------"
-class Background(blocks.StructBlock):
-    """ Block cho hình nền """
-    image = ImageChooserBlock(required=True, help_text="Hình ảnh nền (kích thước tối thiểu 1920x1080px)")
-    alt_text = blocks.CharBlock(required=False, help_text="Alt text cho hình nền")
-
-    class Meta:
-        icon =  'image'
-        label = 'Hình nền'
-
-class FeatureItemBlock(blocks.StructBlock):
-    "Block cho các số liệu nổi bật"
-    number = blocks.CharBlock(required=True, help_text="Số liệu nổi bật (VD: 100+)")
-    description = blocks.CharBlock(required=True, help_text="Mô tả ngắn về số liệu nổi bật (VD: Dự án đã hoàn thành)")
-
-    class Meta:
-        icon = "star"
-        label = "Số liệu nổi bật"
-
 class AboutUsBlock(blocks.StructBlock):
     content = RichTextBlock(
         required=True,
@@ -284,6 +324,138 @@ class ServicesBlock(blocks.StructBlock):
         icon = "cog"
         label = "Dịch vụ"
 
+# "-------------------------------------------------------------------------------------------------------------------"
+class AboutUsBlock2(blocks.StructBlock):
+
+    content = RichTextBlock(
+        required=True,
+        help_text="Nội dung giới thiệu về công ty",
+        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
+    )
+
+    background = Background(required=False, help_text="Thiết lập hình nền cho section này")
+
+    class Meta:
+        template = "streams/about_us_2_block.html"
+        icon = "user"
+        label = "Giới thiệu"
+# "-------------------------------------------------------------------------------------------------------------------"
+class AboutUsMissionBlock(blocks.StructBlock):
+    feature_items = blocks.ListBlock(FeatureItemBlock(), min_num=1, max_num=4, help_text="Danh sách các số liệu nổi bật")
+    contents = blocks.ListBlock(TitleContentBlock(), min_num=1, max_num=3, help_text="Danh sách các tiêu đề và nội dung")
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh minh hoạ cho sứ mệnh")
+
+    class Meta:
+        template = "streams/about_us_mission_block.html"
+        icon = "user"
+        label = "Sứ mệnh và tầm nhìn"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class QASectionBlock(blocks.StructBlock):
+    """Block section các câu hỏi thường gặp"""
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh trang trí")
+    faq_items = blocks.ListBlock(QAItemBlock(), min_num=1, max_num=5, help_text="Danh sách các câu hỏi và câu trả lời")
+
+    class Meta:
+        template = "streams/qa_section_block.html"
+        icon = "help"
+        label = "Câu hỏi thường gặp (FAQ)"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class CoreValuesBlock(blocks.StructBlock):
+    """ Block cho các giá trị cốt lỗi của công ty """
+    block1_title_main = blocks.CharBlock(
+        required=True,
+        help_text="Phần chính của title",
+        max_length=200,
+        default="Theo dõi dự án trong lòng bàn tay"
+    )
+    block1_title_highlight = blocks.CharBlock(
+        required=True,
+        help_text="Phần highlight của title sẽ có màu khác",
+        max_length=50,
+        default="DB.Verse"
+    )
+    core_items = blocks.ListBlock(TitileContentIconBlock(), min_num=3, max_num=6, help_text="Danh sách các giá trị cốt lõi")
+
+    class Meta:
+        template = "streams/core_value_block.html"
+        icon = "cog"
+        label = "Giá trị cốt lõi"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class ContactFeatureSectionBlock(blocks.StructBlock):
+    feature_items = blocks.ListBlock(TitileContentIconBlock(), min_num=3, max_num=3, help_text="Danh sách các feature")
+
+    class Meta:
+        template = "streams/contact_feature_block.html"
+        icon = "cog"
+        label = "Các tính năng nổi bật trang Contact"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class WorkflowSectionBlock(blocks.StructBlock):
+    """ Block giới thiệu quy trình làm việc công ty"""
+    title = TitleContentBlock(required=True, help_text="Tiêu đề cho phần quy trình làm việc")
+    workflow_items = blocks.ListBlock(TitleContentBlock(), min_num=8, max_num=8, help_text="Các bước quy trình làm việc")
+
+    class Meta:
+        template = "streams/workflow_block.html"
+        icon = "list-ol"
+        label = "Block giới thiệu quy trình làm việc công ty"
+
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class OfficeMapItemBlock(blocks.StructBlock):
+    """Block cho các văn phòng công ty"""
+    title = blocks.CharBlock(required=True, help_text="Tên văn phòng")
+    address = blocks.CharBlock(required=True, help_text="Địa chỉ văn phòng")
+    map_link = blocks.URLBlock(required=True, help_text="Link đến bản đồ (Google Maps)")
+
+    class Meta:
+        icon = "map"
+        label = "Văn phòng công ty"
+
+class OfficeMapSectionBlock(blocks.StructBlock):
+    """Block cho phần bản đồ văn phòng công ty"""
+
+    offices = blocks.ListBlock(OfficeMapItemBlock(), min_num=1, max_num=2, help_text="Danh sách các văn phòng công ty")
+
+    class Meta:
+        template = "streams/office_map_section_block.html"
+        icon = "map"
+        label = "Bản đồ văn phòng"
+# "-------------------------------------------------------------------------------------------------------------------"
+class FactoryBlock(blocks.StructBlock):
+    """Block giới thiệu nhà máy"""
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh nhà máy")
+    title = TitleContentBlock(required=True, help_text="Tiêu đề cho phần giới thiệu nhà máy")
+    button = CTAButtonBlock(required=True, help_text="Nút CTA cho phần giới thiệu nhà máy")
+
+    class Meta:
+        template = "streams/factory_block.html"
+        icon = "factory"
+        label = "Giới thiệu nhà máy"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class WeAreDbhomesBlock(blocks.StructBlock):
+    """Block giới thiệu về DBHomes"""
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh background")
+    content = RichTextBlock(
+        required=True,
+        help_text="Nội dung giới thiệu về DBHomes",
+        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
+    )
+
+    class Meta:
+        template = "streams/we_are_dbhomes_block.html"
+        icon = "factory"
+        label = "We are DBHomes block"
+
+# "-------------------------------------------BLOCK FOR CONTENT POST------------------------------------------------------"
+
+# "-------------------------------------------BLOCK FOR CONTENT POST------------------------------------------------------"
+
+# "-------------------------------------------BLOCK FOR CONTENT POST------------------------------------------------------"
 
 # "-------------------------------------------BLOCK FOR CONTENT POST------------------------------------------------------"
 class CustomTableBlock(TableBlock):

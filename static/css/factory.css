@@ -1,6 +1,5 @@
 .factory-section {
   position: relative;
-  background-image: url('../images/factorybg.png'); /* thay bằng đường dẫn ảnh thực tế */
   background-size: cover;
   background-position: center;
   height: 100vh;

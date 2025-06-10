@@ -1,0 +1,22 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<section class="core-values-section">
+    <div class="main-content-container">
+        <p class="core-values-subtitle">Giá trị cốt lõi</p>
+        <div>
+            <h2 class="core-values-title">
+                {{ value.block1_title_main }}
+                <span class="highlight">{{ value.block1_title_highlight }}</span></span>
+            </h2>
+        </div>
+        <div class="core-values-grid">
+            {% for item in self.core_items %}
+            <div class="core-value-item">
+                <img src="{{item.icon.file.url}}" alt="{{ item.title }}" />
+                <h3>{{ item.title }}</h3>
+                {{ item.content|richtext }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
