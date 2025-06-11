@@ -3,11 +3,15 @@
     <!-- Nội dung cố định, nằm trên ảnh nền -->
     <div class="main-content-container">
         <div class="hero-content">
-            <h1>
-                <span class="breadcrumb">Trang chủ</span>
-                <span class="separator"> &gt; </span>
-                <span class="highlight">Dự án</span>
-            </h1>
+            {% for ancestor in page.get_ancestors %}
+                {% if not ancestor.is_root %}
+                    <a class="breadcrumb" href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                    {% if not forloop.last %} › {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% if not page.is_root %}
+                › <span class="highlight">{{ page.title }}</span>
+            {% endif %}
             <p class="hero-subtitle">{{ data.display_text }}</p>
         </div>
     </div>

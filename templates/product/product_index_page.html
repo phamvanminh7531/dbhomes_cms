@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}" />
+<link rel="stylesheet" href="{% static 'css/productpro.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% for block in page.body %}
+{% include_block block %}
+{% endfor %}
+<section class="product-section">
+    <div class="main-content-container">
+        <div class="product-section__breadcrumb">
+            <a href="/">Trang chủ</a> › <a href="{{ page.url }}">Sản phẩm</a>
+            {% if current_category %}
+                › <a href="{% pageurl page %}{{ current_category.slug }}/">{{ current_category.name }}</a>
+            {% endif %}
+        </div>
+
+        <h2 class="product-section__title">Khám phá danh mục sản phẩm</h2>
+
+        <div class="product-section__grid">
+            {% for cat in categories %}
+            <a href="{{ page.url }}{{ cat.slug }}/">
+                <div class="product-section__item">
+                    <div
+                        class="product-section__item__image-wrapper {% if current_category and current_category.slug == cat.slug %}active{% endif %}">
+                        <img src="{{ cat.image.file.url }}" alt="{{ cat.name }}" />
+                    </div>
+                    <p>{{ cat.name }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="product-listing-section" id="product-list-section">
+    <div class="main-content-container">
+        <div class="product-listing-section__tabs">
+            <a href="{% if current_category %}{% pageurl page %}{{ current_category.slug }}{% else %}{% pageurl page %}{% endif %}" class="{% if not current_tag %}active{% endif %}">Tất cả</a>
+            {% for tag in tags %}
+                <a href="{% if current_category %}{% pageurl page %}{{ current_category.slug }}/tag/{{ tag.slug }}/{% else %}{% pageurl page %}tag/{{ tag.slug }}/{% endif %}" class="{% if current_tag.slug == tag.slug %}active{% endif %}">
+                    {{ tag.name }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="product-listing-section__grid">
+            <!-- Sản phẩm -->
+            {% for product in products %}
+            <div class="product-card">
+                <div class="product-card__image-wrapper">
+                    <img src="{{ product.image.file.url }}" alt="{{ product.product_name }}" />
+                </div>
+                <div class="product-card__name">
+                    <p>{{ product.product_name }}</p>
+                </div>
+                <div class="product-card__code">
+                    <span>{{ product.product_code }}</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Thêm 6 thẻ tương tự -->
+        </div>
+        <div class="product-listing-section__pagination">
+            {% if products.has_previous %}
+                {% if current_category %}
+                    <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ products.previous_page_number }}/" class="product-listing-section__arrow">&#60;</a>
+                {% else %}
+                    <a href="{% pageurl page %}page/{{ products.previous_page_number }}/" class="product-listing-section__arrow">&#60;</a>
+                {% endif %}
+            {% endif %}
+
+            {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                    {% if current_category %}
+                        <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ i }}/" class="active">{{ i }}</a>
+                    {% else %}
+                        <a href="{% pageurl page %}page/{{ i }}/" class="active">{{ i }}</a>
+                    {% endif %}
+                {% else %}
+                    {% if current_category %}
+                        <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ i }}/">{{ i }}</a>
+                    {% else %}
+                        <a href="{% pageurl page %}page/{{ i }}/">{{ i }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if products.has_next %}
+                {% if current_category %}
+                    <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ products.next_page_number }}/" class="product-listing-section__arrow">&#62;</a>
+                {% else %}
+                    <a href="{% pageurl page %}page/{{ products.next_page_number }}/" class="product-listing-section__arrow">&#62;</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/product.js' %}"></script>
+{% endblock %}

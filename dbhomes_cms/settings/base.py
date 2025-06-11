@@ -31,10 +31,12 @@ INSTALLED_APPS = [
     "aboutUs",
     "service",
     "contact",
+    "product",
 
     "wagtail.contrib.forms",
     "wagtail.contrib.table_block",
     "wagtail.contrib.redirects",
+    "wagtail.contrib.routable_page",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
