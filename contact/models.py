@@ -3,7 +3,7 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from streams.blocks import ContactFeatureSectionBlock, HeroSectionBlock, AboutUsMissionBlock, CoreValuesBlock, PartnerBlock, QASectionBlock, TechnologyBlock, OfficeMapSectionBlock
-
+from streams.blocks import ContactFormBlock
 # Create your models here.
 class ContactPage(Page):
     body = StreamField([
@@ -13,6 +13,7 @@ class ContactPage(Page):
         ("technology_section", TechnologyBlock()),
         ("partner_section", PartnerBlock()),
         ("qa_section", QASectionBlock()),
+        ("contact_block", ContactFormBlock()),
         ("office_map_section", OfficeMapSectionBlock()),
         ("contact_feature_section", ContactFeatureSectionBlock()),
 

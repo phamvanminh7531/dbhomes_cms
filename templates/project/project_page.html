@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+{% load wagtailuserbar %}
+
+
+{% block meta_description %}{{ page.description|default:"Tin tức mới nhất từ DB Homes" }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/project-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
+{% endblock %}
+
+{% block title %}{{ page.title }}Tin tức{% endblock %}
+
+{% block content %}
+{% for block in page.hero_section %}
+{% include_block block %}
+{% endfor %}
+<section class="project-detail">
+    <div class="project-detail__container">
+        <div class="project-detail__main">
+            <div class="project-detail__breadcrumbs">
+                {% for ancestor in page.get_ancestors %}
+                {% if not ancestor.is_root %}
+                <a class="breadcrumb" href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                {% if not forloop.last %} › {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% if not page.is_root %}
+                › <span class="highlight">{{ page.title }}</span>
+                {% endif %}
+            </div>
+
+            <div class="project-detail__title">
+                <p>{{ page.title }}</p>
+            </div>
+            <div class="project-detail__subtitle">
+                <p>{{ page.design_style.name }} | {{ page.project_scale.name }} | {{ page.project_acreage }} m²</p>
+            </div>
+            {% for block in page.content %}
+            {% include_block block %}
+            {% endfor %}
+        </div>
+        <aside class="project-detail__sidebar">
+            <h3 class="project-detail__sidebar-title">Dự án xem nhiều nhất</h3>
+
+            <ul class="project-detail__list">
+                {% for item in snippet.items.all %}
+                <li class="project-detail__item">
+                    <div class="project-detail__item-thumb">
+                        <a href="{{ item.project.url }}"><img src="{{ item.project.intro_image.file.url }}" alt="{{item.project.title}}"></a>
+                    </div>
+                    <div class="project-detail__item-text">{{item.project.title}}</div>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="project-detail__share">
+                <span class="project-detail__share-label">Chia sẻ</span>
+                <img src="{% static 'images/fbicon.png' %}" alt="Facebook" class="project-detail__share-icon">
+                <img src="{% static 'images/shareicon.png' %}" alt="Share" class="project-detail__share-icon">
+            </div>
+
+        </aside>
+    </div>
+</section>
+<section class="featured-projects" ss="">
+    <div class="main-content-container">
+
+        <div class="featured-projects-header">
+            <h2>Dự án liên quan</h2>
+            <a href="/du-an/" class="see-all-btn">Xem tất cả</a>
+        </div>
+        <div class="project-list">
+
+            {% for post in related_posts %}
+            <a href="{{post.url}}">
+                <div class="project-card">
+                    <div class="image-wrapper">
+                        <img src="{{ post.intro_image.file.url }}" alt="{{ post.title }}">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-info__title">
+                            <h3>{{ post.title }}</h3>
+                        </div>
+                        <div class="project-info__description">
+                            <p>{{ post.design_style.name }} | {{ post.project_scale.name }} | {{ post.project_acreage }}
+                                m²</p>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

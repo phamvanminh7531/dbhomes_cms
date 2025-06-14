@@ -3,13 +3,13 @@
 {% load static %}
 <section class="workflow">
 <div class="main-content-container">
-    <h2 class="workflow__title">{{ value.title.title }}</h2>
-    <div class="workflow__desc">
+    <h2 class="workflow__title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">{{ value.title.title }}</h2>
+    <div class="workflow__desc" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
         {{ value.title.content|safe }}
     </div>
     <div class="workflow__grid">
         {% for item in self.workflow_items %}
-        <div class="workflow__item">
+        <div class="workflow__item" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
             <div class="workflow__icon--custom">
                 <span class="workflow__step-label">(Bước)</span>
                 <span class="workflow__step-number">{{ forloop.counter }}</span>

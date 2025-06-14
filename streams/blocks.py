@@ -4,7 +4,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 # blocks.py - Kiểm tra import đầy đủ
 from wagtail import blocks
-from wagtail.blocks import URLBlock, StructBlock, RichTextBlock, ChoiceBlock
+from wagtail.blocks import URLBlock, StructBlock, RichTextBlock, ChoiceBlock, PageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock  # Import này quan trọng
 from wagtail.snippets.blocks import SnippetChooserBlock
@@ -108,6 +108,34 @@ class QAItemBlock(blocks.StructBlock):
 #         template = "streams/hero_cta_slider_section_block.html"
 #         icon = "image"
 #         label = "Hero 1 Section"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class HotNews(blocks.StructBlock):
+    news_list = blocks.ListBlock(
+        PageChooserBlock(required=True, min_num = 3, max_num = 3, target_model='news.NewsPage'),
+        help_text="Chọn 3 bài tin tức hiển thị"
+    )
+
+    class Meta:
+        template = "streams/hot_news_block.html"
+        icon = "folder-open-inverse"
+        label = "Tin tức"
+
+
+
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class HotProject(blocks.StructBlock):
+    content = TitleContentBlock(required = True, help_text="Nội dung tiêu đề")
+    projects = blocks.ListBlock(
+        PageChooserBlock(required=True, target_model='project.ProjectPage'),
+        help_text="Chọn các dự án nổi bật"
+    )
+
+    class Meta:
+        template = "streams/featured_projects.html"
+        icon = "folder-open-inverse"
+        label = "Dự án nổi bật"
 
 # "-------------------------------------------------------------------------------------------------------------------"
 
@@ -450,6 +478,63 @@ class WeAreDbhomesBlock(blocks.StructBlock):
         template = "streams/we_are_dbhomes_block.html"
         icon = "factory"
         label = "We are DBHomes block"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+
+class CustomerFeedback(blocks.StructBlock):
+    customer_avatar = ImageChooserBlock(required=True, help_text="Hình ảnh avatar khách hàng")
+    customer_name = blocks.CharBlock(required=True, help_text="Tên khách hàng")
+    customer_project = blocks.CharBlock(required=True, help_text="Tên dự án")
+    customer_feedback = RichTextBlock(
+        required=True,
+        help_text="Feedback của khách hàng",
+        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
+    )
+    class Meta:
+        icon = "group"
+        label = "Thông tin feedback của khách hàng"
+
+class CustomerFeedBackBlock(blocks.StructBlock):
+    feedbacks = blocks.ListBlock(CustomerFeedback(), min_num=1, max_num=10, help_text="Danh sách các feedback")
+
+    class Meta:
+        template = "streams/customer_feedback_block.html"
+        icon = "factory"
+        label = "Block hiển thị danh sách feedback của khách hàng"
+
+
+
+# "-------------------------------------------------------------------------------------------------------------------"
+
+class ContactFormBlock(blocks.StructBlock):
+    """Block contact form"""
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh nhà máy")
+
+    class Meta:
+        template = "streams/contact_form_2_block.html"
+        icon = "form"
+        label = "Contact form"
+
+# "-------------------------------------------------------------------------------------------------------------------"
+class ProjectCategoryItems(blocks.StructBlock):
+    title = blocks.CharBlock(required=True, help_text="Tên danh mục")
+    image = ImageChooserBlock(required=True, help_text="Hình ảnh đại diện cho danh mục dự án")
+    link = blocks.CharBlock(required=True, help_text="Slug dẫn tới danh sách dự án vs: /du-an/quy-mo-can-ho-2pn/")
+    
+    
+    class Meta:
+        icon = "form"
+        label = "Item danh mục project"
+
+class ProjectHomePageBlock(blocks.StructBlock):
+    title = TitleContentBlock(required=True, help_text="Tiêu đề cho phần giới thiệu danh mục project")
+    items = blocks.ListBlock(ProjectCategoryItems(), min_num=3, max_num=3, help_text="Danh sách các Danh mục dự án")
+
+    class Meta:
+        template = "streams/project_category_block.html"
+        icon = "form"
+        label = "Block giới thiệu danh mục dự án"
+
 
 # "-------------------------------------------BLOCK FOR CONTENT POST------------------------------------------------------"
 

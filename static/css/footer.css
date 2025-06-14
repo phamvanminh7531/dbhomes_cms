@@ -163,16 +163,66 @@
   font-size: 14px;
   flex-wrap: wrap;
 }
+/* Ẩn các cột ban đầu */
+.footer-db .footer-db-top > div,
+.footer-db .footer-db-bottom,
+.footer-db .footer-db-copyright {
+  opacity: 0;
+  transform: translateY(30px); /* dịch ít hơn cho cảm giác nhanh hơn */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Khi xuất hiện với delay thấp hơn */
+.footer-db.footer-in-view .footer-db-top > div:nth-child(1) {
+  transition-delay: 0.05s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.footer-db.footer-in-view .footer-db-top > div:nth-child(2) {
+  transition-delay: 0.15s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.footer-db.footer-in-view .footer-db-top > div:nth-child(3) {
+  transition-delay: 0.25s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.footer-db.footer-in-view .footer-db-top > div:nth-child(4) {
+  transition-delay: 0.35s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.footer-db.footer-in-view .footer-db-bottom {
+  transition-delay: 0.45s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.footer-db.footer-in-view .footer-db-copyright {
+  transition-delay: 0.55s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 768px) {
   .footer-db {
     padding: 30px 16px;
     text-align: left; /* ✅ canh lề trái */
   }
-
+ .footer-db-links {
+    order: 4; /* chuyển xuống dưới cùng */
+  }
+  .footer-db-info{
+    order: 3;
+    flex-direction: column-reverse;
+  }
+  .footer-db-contact {
+    order: 2; /* chuyển lên vị trí cột 2 */
+  }
   .footer-db-top {
     flex-direction: column;
     align-items: flex-start; /* ✅ canh trái các khối */
-    gap: 40px;
+    gap: 30px;
   }
 
   .footer-db-brand,
@@ -203,7 +253,7 @@
   }
 
   .footer-db-info {
-    gap: 12px;
+    gap: 30px;
   }
 
   .footer-db-contact p {

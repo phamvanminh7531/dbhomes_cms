@@ -22,7 +22,7 @@
           <ul>
               {% if footer_settings.menu_items %}
                   {% for item in footer_settings.menu_items.menu_items.all %}
-                      <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+                      <li><a href="{{ item.page.url }}">{{ item.label }}</a></li>
                   {% endfor %}
               {% endif %}
           </ul>

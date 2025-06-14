@@ -1,0 +1,29 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<section class="living-space-section">
+    <div class="main-content-container">
+        <h2 class="living-space-section__title aos-init aos-animate" data-aos="fade-up" data-aos-delay="0"
+            data-aos-duration="1000">
+            {{value.title.title}}
+        </h2>
+
+        <div class="living-space-section__description aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"
+            data-aos-duration="1000">
+            {{ value.title.content|richtext }}
+        </div>
+
+        <div class="living-space-section__grid">
+            {% for item in self.items %}
+                <a href="{{item.link}}" class="living-space-section__item aos-init aos-animate" data-aos="fade-up"
+                    data-aos-delay="300" data-aos-duration="1000">
+                    <div class="living-space-section__image-wrapper">
+                        <img src="{{item.image.file.url}}" alt="{{item.title}}">
+                    </div>
+                    <div class="living-space-section__label">
+                        <p>{{item.title}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>

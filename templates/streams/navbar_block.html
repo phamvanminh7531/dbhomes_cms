@@ -15,7 +15,7 @@
     </button>
     <nav class="nav-links">
       {% for item in navbar_menu.menu_items.all %}
-      <a href="{{ item.link }}">{{ item.label }}</a>
+      <a href="{{ item.page.url }}">{{ item.label }}</a>
       {% endfor %}
     </nav>
   </div>

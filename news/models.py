@@ -1,35 +1,34 @@
 # Create your models here.
 from django.db import models
+from django.shortcuts import get_object_or_404
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.panels import FieldPanel
 from wagtail.models import Page
-from wagtail.fields import RichTextField, StreamField
+from wagtail.fields import StreamField
 from django.db import models
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.models import Page
-from wagtail.fields import RichTextField
-from modelcluster.models import ClusterableModel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from modelcluster.fields import ParentalManyToManyField
-from django.core.exceptions import ValidationError
 from streams.blocks import HeadingBlock, ImageBlock, CustomTableBlock, PharagraphBlock, TwoImagesBlock, HeroSectionBlock
 from django.utils.text import slugify
 from django import forms
-
 from wagtail.admin.forms import WagtailAdminPageForm
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+from wagtail.models import Orderable
 
 class NewsPageForm(WagtailAdminPageForm):
     def clean(self):
         cleaned_data = super().clean()
         related_posts = cleaned_data.get("related_posts")
 
-        if related_posts and len(related_posts) > 5:
+        if related_posts and len(related_posts) != 3:
             self.add_error(
                 'related_posts',
-                "Chỉ được chọn tối đa 5 bài viết liên quan."
+                "Chỉ được chọn tối đa 3 bài viết liên quan."
             )
-
         return cleaned_data
 
 
@@ -112,6 +111,8 @@ class NewsPage(Page):
    
     def get_context(self, request):
         context = super().get_context(request)
+        snippet = MostViewedNewsList.objects.first()
+        context['snippet'] = snippet
         if self.related_posts.exists():
             context["related_posts"] = self.related_posts.all()
         elif self.category:
@@ -128,75 +129,80 @@ class NewsPage(Page):
         super().save(*args, **kwargs)
     
     class Meta:
-        verbose_name = "News Article"
-        verbose_name_plural = "News Articles"
+        verbose_name = "Bài viết Tin Tức"
+        verbose_name_plural = "Bài viết Tin Tức"
 
-class NewsIndexPage(Page, ClusterableModel):
+
+
+class NewsIndexPage(RoutablePageMixin, Page):
     subpage_types = []
-    intro = RichTextField(blank=True, help_text="Giới thiệu về trang tin tức")
-    
-    # Cài đặt hiển thị
-    posts_per_page = models.IntegerField(
-        default=12,
-        help_text="Số bài viết hiển thị mỗi trang"
-    )
-    
-    show_categories = models.BooleanField(
-        default=True,
-        help_text="Hiển thị filter theo danh mục"
-    )
-    
-    content_panels = Page.content_panels + [
-        FieldPanel("intro"),
-        MultiFieldPanel([
-            FieldPanel("posts_per_page"),
-            FieldPanel("show_categories"),
-        ], heading="Cài đặt hiển thị"),
+    body = StreamField([
+        ("hero_section_2", HeroSectionBlock()),
         
+    ], use_json_field=True ,blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("body"),
     ]
 
-    def get_context(self, request):
-        context = super().get_context(request)
-        
-        # Lấy tất cả bài viết con
-        news_pages = NewsPage.objects.live().descendant_of(self)
-
-        # Filter theo category
-        category_slug = request.GET.get("category")
-        if category_slug:
-            try:
-                category = NewsCategory.objects.get(slug=category_slug)
-                news_pages = news_pages.filter(category=category)
-                context["current_category"] = category
-            except NewsCategory.DoesNotExist:
-                pass
-
-        # Pagination
-        paginator = Paginator(news_pages, self.posts_per_page)
-        page = request.GET.get('page')
-        
-        try:
-            news_pages = paginator.page(page)
-        except PageNotAnInteger:
-            news_pages = paginator.page(1)
-        except EmptyPage:
-            news_pages = paginator.page(paginator.num_pages)
-
-        context["news_pages"] = news_pages
-        context["categories"] = NewsCategory.objects.all()
+    @route(r'^$')
+    @route(r'^page/(?P<page>\d+)/$')
+    def all_news(self, request,page=1):
+        return self.render(request, page=int(page))
     
+    @route(r'^(?P<category_slug>[-\w]+)/$')
+    @route(r'^(?P<category_slug>[-\w]+)/page/(?P<page>\d+)/$')
+    def products_by_category(self, request, category_slug=None, page=1):
+        return self.render(request, category_slug=category_slug, page=int(page))
+    
+    def get_context(self, request, category_slug=None, page=1, **kwargs):
+        context = super().get_context(request)
+
+        news = NewsPage.objects.live()
+
+        if category_slug:
+            category = get_object_or_404(NewsCategory, slug=category_slug)
+            news = news.filter(category = category)
+            context['current_category'] = category
         
-        # Thống kê
-        context["total_posts"] = NewsPage.objects.live().descendant_of(self).count()
-        context["categories_with_count"] = [
-            {
-                'category': cat,
-                'count': NewsPage.objects.live().descendant_of(self).filter(category=cat).count()
-            }
-            for cat in NewsCategory.objects.all()
-        ]
-        
+        paginator = Paginator(news, 9)
+
+        try:
+            paginated_news = paginator.page(page)
+        except (EmptyPage, PageNotAnInteger):
+            paginated_news = paginator.page(1)
+
+        context.update({
+            'news_list': paginated_news,
+            'categories': NewsCategory.objects.all(),
+            'paginator': paginator,
+        })
+
         return context
+
+@register_snippet
+class MostViewedNewsList(ClusterableModel):
+    title = models.CharField(max_length=255, default="Danh sách bài viết xem nhiều nhất", editable=False)
+
+    panels = [
+        InlinePanel("items", label="Dự án được chọn"),
+    ]
+
+    def __str__(self):
+        return self.title
     
     class Meta:
-        verbose_name = "News Index Page"
+        verbose_name = "Dự án nổi bật"
+        verbose_name_plural = "Danh sách bài viết được xem nhiều nhất"
+
+class MostViewedNewsItem(Orderable):
+    parent = ParentalKey(MostViewedNewsList, on_delete=models.CASCADE, related_name="items")
+    news = models.ForeignKey(NewsPage, on_delete=models.CASCADE)
+
+    panels = [
+        FieldPanel("news"),
+    ]
+
+    class Meta:
+        verbose_name = "Bài viết được xem nhiều nhất"
+        verbose_name_plural = "Danh sách bài viết được xem nhiều nhất"

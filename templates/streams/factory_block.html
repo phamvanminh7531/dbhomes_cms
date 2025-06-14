@@ -1,11 +1,11 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 <section class="factory-section" style="background-image: url('{{value.image.file.url}}');">
-    <div class="factory-overlay">
-        <div class="factory-content">
-            <h2>{{value.title.title}}</h2>
+    <div class="factory-overlay" data-aos="fade-up" data-aos-duration="1000">
+        <div class="factory-content" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
+            <h2 data-aos="zoom-in" data-aos-delay="400" data-aos-duration="800">{{value.title.title}}</h2>
             {{value.title.content|safe}}
-            <a href="{{ value.button.url }}" class="factory-button">{{ value.button.label }}</a>
+            <a href="{{ value.button.url }}" class="factory-button" data-aos="fade-up" data-aos-delay="800" data-aos-duration="800">{{ value.button.label }}</a>
         </div>
     </div>
 </section>

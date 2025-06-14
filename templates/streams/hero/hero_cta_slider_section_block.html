@@ -1,7 +1,7 @@
 <section class="hero-section-v2">
   <!-- Swiper container: dùng ảnh động (desktop) -->
-  <swiper-container class="background-swiper" effect="fade" speed="1000" pagination="true"
-    pagination-dynamic-bullets="true">
+  <swiper-container class="background-swiper" speed="1000" pagination="true"
+      pagination-dynamic-bullets="true" autoplay-delay="3000" autoplay-disable-on-interaction="false" speed="5000">
     {% for image in data.hero_images.all %}
     <swiper-slide>
       <img src="{{ image.image.file.url }}" class="bg-img" alt="Slide 3" />

@@ -1,8 +1,8 @@
 <section class="partners-section">
     <div class="main-content-container">
         <div class="container">
-            <h1 class="title">Đối tác của <span>DBHOMES</span></h1>
-            <div class="partners-logos">
+            <h1 class="title" data-aos="fade-up" data-aos-delay="200">Đối tác của <span>DBHOMES</span></h1>
+            <div class="partners-logos" data-aos="fade-up" data-aos-delay="300" onmousedown="startDrag(event)">
                 <swiper-container class="mySwiper3" space-between="30" slides-per-view="7">
                     {% for brand in value.brands %}
                         <swiper-slide><a href="{{ brand.link }}" target="_blank"><img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" /></a></swiper-slide>
@@ -10,7 +10,7 @@
                 </swiper-container>
                 <!-- Thêm ảnh logo đối tác khác nếu cần -->
             </div>
-            <div class="partners-banner">
+            <div class="partners-banner" data-animate="fade-up" data-delay="0.4s">
                 <div class="video-wrapper">
                 {% if self.main_media.video_file %}
                     <video class="video-frame" controls autoplay muted loop playsinline>

@@ -88,7 +88,34 @@
   object-fit: cover;
   z-index: 0;
 }
+.hero-section-v2 .hero-content .home-title {
+  animation: fadeSlideUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
 
+.hero-section-v2 .buttons {
+  animation: fadeSlideUp 1s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Thêm class cho animation */
+.hero-section-v2 .hero-content {
+  animation: fadeSlideUp 1s ease-out forwards;
+  opacity: 0; /* để animation kích hoạt */
+}
 
 /* Responsive giữ nguyên, chỉ thêm chỉnh sửa nhỏ nếu cần */
 @media (max-width: 1024px) {
@@ -98,8 +125,6 @@
   }
 .hero-section-v2 .hero-content .home-title{
   font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 20px;
 }
   .hero-section-v2 .hero-content h1 {
     font-size: 16px;

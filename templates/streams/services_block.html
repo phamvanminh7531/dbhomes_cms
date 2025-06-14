@@ -4,16 +4,16 @@
 <section class="services-section">
     <div class="main-content-container">
         <div class="container">
-            <div class="subtitle">
+            <div class="subtitle" data-aos="fade-down" data-aos-duration="1000">
                 <p>Dịch vụ của chúng tôi</p>
             </div>
-            <h2 class="title">{{ value.title }}</h2>
-            <div class="description">
+            <h2 class="title" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">{{ value.title }}</h2>
+            <div class="description" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                 {{ value.description|richtext }}
             </div>
             <div class="service-grid">
                 {% for service in self.services %}
-                    <div class="service-card">
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="0">
                         <div class="card-inner">
                             <div class="card-front">
                                 <div class="icon">

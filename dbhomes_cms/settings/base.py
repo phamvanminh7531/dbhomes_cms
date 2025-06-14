@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "service",
     "contact",
     "product",
+    "project",
 
     "wagtail.contrib.forms",
     "wagtail.contrib.table_block",

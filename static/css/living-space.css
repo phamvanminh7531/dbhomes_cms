@@ -1,5 +1,4 @@
 .living-space-section {
-  background-image: url('../images//bg.png');
   background-repeat: repeat;
   padding: 60px 20px;
   overflow-x: hidden;
@@ -8,6 +7,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url('../images/bg.png');
 }
 
 .living-space-section__title {
@@ -23,6 +23,11 @@
   margin: 0 auto 60px;
   color: #4F3C22;
   font-size: 18px;
+  text-align: justify;
+
+}
+.living-space-section__description p{
+  text-align: center;
 }
 .living-space-section__grid {
   display: flex;

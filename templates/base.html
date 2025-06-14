@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}{{ self.title }}{% endblock %}</title>
+    <title>Better Living</title>
 
     <meta name="description" content="{% block meta_description %}Better Living - DB Homes{% endblock %}">
     <meta name="robots" content="index, follow">
@@ -13,6 +13,7 @@
 
     <!-- ✅ Các file CSS -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+        
     <link rel="stylesheet" href="{% static 'css/highlightproject.css' %}" />
     <link rel="stylesheet" href="{% static 'css/about.css' %}" />
     <link rel="stylesheet" href="{% static 'css/partner.css' %}" />
@@ -26,11 +27,15 @@
     <link rel="stylesheet" href="{% static 'css/vision.css' %}" />
     <link rel="stylesheet" href="{% static 'css/core-values-section.css' %}" />
     <link rel="stylesheet" href="{% static 'css/faq.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/living-space.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
     <link rel="stylesheet" href="{% static 'css/showroom.css' %}" />
     <link rel="stylesheet" href="{% static 'css/features-row.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}" />
     <link rel="stylesheet" href="{% static 'css/workflow.css' %}" />
     <link rel="stylesheet" href="{% static 'css/factory.css' %}" />
     <link rel="stylesheet" href="{% static 'css/mission.css' %}" />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
     {% block extra_css %}{% endblock %}
 
@@ -46,28 +51,35 @@
 
 <body>
     {% block header %}
-        {% include "streams/navbar_block.html" with navbar_menu=navbar_menu %}
+    {% include "streams/navbar_block.html" with navbar_menu=navbar_menu %}
     {% endblock %}
     <main>
         {% block content %}
         <!-- Nội dung riêng của từng page sẽ nằm ở đây -->
         {% endblock %}
+        {% include "streams/contact_form_block.html"%}
     </main>
 
-        {% block footer %}
-            {% if footer_settings %}
-                {% include "streams/footer_block.html" with footer_settings=footer_settings %}
-            {% endif %}
-        {% endblock %}
+    {% block footer %}
+    {% if footer_settings %}
+    {% include "streams/footer_block.html" with footer_settings=footer_settings %}
+    
+    {% endif %}
+    {% endblock %}
 
 
     <!-- JS -->
+    <script src="{% static 'js/animation-footer.js' %}"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/swipercustom.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
     <script src="{% static 'js/faq.js' %}"></script>
     <script src="{% static 'js/map.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
     {% block extra_js %}{% endblock %}
 </body>
 

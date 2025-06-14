@@ -9,7 +9,7 @@
             
             <!-- Block 1: Text Left, Image Right -->
             <div class="dbverse-block">
-                <div class="text-content">
+                <div class="text-content" data-aos="fade-right" data-aos-duration="1000">
                     <h3>
                         <span>{{ value.block1_title_highlight }}</span> {{value.block1_title_main|linebreaksbr}}
                     </h3>
@@ -24,7 +24,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="image-content">
+                <div class="image-content" data-aos="fade-left" data-aos-duration="1000">
                     {% if value.block1_image %}
                         {% image value.block1_image width-600 as block1_img %}
                         <img src="{{ block1_img.url }}" alt="App UI Perspective" loading="lazy" />
@@ -34,13 +34,13 @@
             
             <!-- Block 2: Image Left, Text Right -->
             <div class="dbverse-block reverse">
-                <div class="image-content">
+                <div class="image-content" data-aos="fade-right" data-aos-duration="1000">
                     {% if value.block2_image %}
                         {% image value.block2_image width-600 as block2_img %}
                         <img src="{{ block2_img.url }}" alt="User Holding Phone" loading="lazy" />
                     {% endif %}
                 </div>
-                <div class="text-content">
+                <div class="text-content" data-aos="fade-left" data-aos-duration="1000">
                     <h3>
                         <span>{{ value.block2_title_highlight }}</span> {{ value.block2_title_main|linebreaksbr }}
                     </h3>

@@ -1,0 +1,32 @@
+<section class="featured-projects">
+    <div class="main-content-container">
+        <div class="featured-projects__news-header" data-aos="fade-up" data-aos-duration="1000">
+            <div class="featured-projects__news-title">
+                <h3>Tin tức</h3>
+            </div>
+            <a href="/tin-tuc/" class="featured-projects__view-all desktop-only">Xem tất cả</a>
+        </div>
+        <div class="project-list">
+            {% for news in self.news_list %}
+                <div class="project-card" data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000">
+                    <div class="image-wrapper">
+                        <img src="{{news.intro_image.file.url }}" alt="{{ news.title }}" />
+                        <div class="news-badge">{{ news.category.name }}</div>
+                    </div>
+                    <div class="project-info">
+                        <p style="color: #96422F;">{{ news.date_created }}</p>
+                        <a href="{{ news.url }}" style="text-decoration: none; color: inherit; display: block;">
+                            <h3 style="color:#43230C">
+                                {{ news.title }}
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="featured-projects__view-all-wrapper mobile-only" data-aos="fade-up" data-aos-delay="300"
+            data-aos-duration="1000">
+            <a href="/tin-tuc/" class="featured-projects__view-all">Xem tất cả</a>
+        </div>
+    </div>
+</section>

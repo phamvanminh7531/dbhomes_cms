@@ -1,1 +1,88 @@
-hello index
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
+<link rel="stylesheet" href="{% static 'css/projects.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% for block in page.body %}
+{% include_block block %}
+{% endfor %}
+<section class="featured-projects" id="featured-projects">
+    <div class="main-content-container">
+
+        <div class="tab-menu">
+            <a href="{% pageurl page %}#featured-projects" class="tab {% if not current_category %}active{% endif %}">Tất cả</a>
+            {% for cat in categories %}
+                <a href="{% pageurl page %}{{ cat.slug }}#featured-projects" class="tab {% if current_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="project-list">
+            {% for news in news_list %}
+                <div class="project-card">
+                    <div class="image-wrapper">
+                        <img src="{{ news.intro_image.file.url }}" alt="{{ news.title }}" />
+                        <div class="news-badge">{{ news.category.name }}</div>
+                    </div>
+                    <div class="project-info">
+                        <p style="color: #96422F;">{{ news.date_created }}</p>
+                        <a href="{{ news.url }}" style="text-decoration: none; color: inherit; display: block;">
+                            <h3 style="color:#43230C">
+                                {{ news.title }}
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="projects-section__pagination">
+            {% if news_list.has_previous %}
+                {% if current_category %}
+                    <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ news_list.previous_page_number }}/#featured-projects"
+                        class="projects-section__arrow">&#60;</a>
+                {% else %}
+                    <a href="{% pageurl page %}page/{{ news_list.previous_page_number }}/#featured-projects"
+                        class="projects-section__arrow">&#60;</a>
+                {% endif %}
+            {% endif %}
+
+            {% for i in news_list.paginator.page_range %}
+                {% if news_list.number == i %}
+                    {% if current_category %}
+                        <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ i }}/#featured-projects" class="active">{{ i }}</a>
+                    {% else %}
+                        <a href="{% pageurl page %}page/{{ i }}/#featured-projects" class="active">{{ i }}</a>
+                    {% endif %}
+                {% else %}
+                    {% if current_category %}
+                        <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ i }}/#featured-projects">{{ i }}</a>
+                    {% else %}
+                        <a href="{% pageurl page %}page/{{ i }}/#featured-projects">{{ i }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if news_list.has_next %}
+                {% if current_category %}
+                    <a href="{% pageurl page %}{{ current_category.slug }}/page/{{ news_list.next_page_number }}/#featured-projects"
+                        class="projects-section__arrow">&#62;</a>
+                {% else %}
+                    <a href="{% pageurl page %}page/{{ news_list.next_page_number }}/#featured-projects"
+                        class="projects-section__arrow">&#62;</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/newstab.js' %}"></script>
+<script src="{% static 'js/pagnigation-news.js' %}"></script>
+{% endblock %}

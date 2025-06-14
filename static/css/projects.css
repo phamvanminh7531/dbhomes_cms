@@ -1,20 +1,22 @@
 .projects-section {
   padding: 60px 20px;
-  background-image: url('../images/bg.png');
   background-repeat: repeat;
+  background-image: url('../images//bg.png');
 }
 .projects-section__filter-bar {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 24px;
+  position: relative;
+  z-index: 1000;
 }
 
 .projects-section__filter-label {
   font-weight: 500;
   color: #43230C;
   margin-right: 8px;
+ 
 }
 
 .filter-button {
@@ -29,6 +31,9 @@
   cursor: pointer;
   font-size: 16px;
   transition: background 0.3s ease;
+  min-width: 160px;
+  align-items: center;
+  justify-content: center;
 }
 
 .filter-button--active {
@@ -36,14 +41,81 @@
   color: white;
   border-color: #A34830;
 }
-
+.filter-tags-wrapper{
+  display: flex;
+  gap:12px
+}
 .filter-tag {
   background-color: #C8B497;
-  padding: 6px 10px;
+  padding: 10px 20px;
   border-radius: 4px;
   font-size: 14px;
   color: #43230C;
+  height: 40px;
+  text-align: center;
+  min-width:120px;
 }
+.dropdown {
+  position: relative;
+  z-index: 1;
+}
+
+
+.dropdown.open .dropdown-menu {
+  display: block;
+  max-height: 500px; /* hoặc auto nếu bạn dùng JS */
+}
+
+.dropdown-menu li {
+  position: relative; /* cần thiết để pseudo-element căn theo li */
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dropdown-menu li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 16px; /* cách lề trái */
+  width: 80%;  /* chiều dài đường gạch */
+  height: 1px;
+  background-color: #43230c47;
+}
+
+.dropdown-menu li:last-child::after {
+  display: none; /* không có gạch dưới ở item cuối */
+}
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+.dropdown-menu {
+    position: absolute;
+    display: none;
+  /* Reset mặc định của ul */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 160px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  z-index: 10000;
+  padding: 8px 0;
+}
+
+
+.dropdown-menu li {
+  list-style: none;
+  background: none;
+
+}
+
 
 .projects-section__search-wrapper {
   margin-left: auto;
@@ -51,6 +123,7 @@
   align-items: center;
   border-bottom: 1px solid #43230C;
   padding-bottom: 4px;
+   height:30px;
 }
 
 .projects-section__search-input {
@@ -62,6 +135,16 @@
   width: 160px;
   color: #43230C;
 }
+.filter-icon {
+  /* Mặc định: màu #43230C */
+  filter: brightness(0) saturate(100%) invert(17%) sepia(34%) saturate(749%) hue-rotate(343deg) brightness(95%) contrast(90%);
+  transition: filter 0.3s ease;
+}
+
+.filter-button--active .filter-icon {
+  /* Trắng */
+  filter: brightness(0) invert(1);
+}
 
 .projects-section__search-wrapper i.icon-search {
   margin-left: 8px;
@@ -71,7 +154,7 @@
 
 .projects-section__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   justify-content: center;
 }
@@ -102,6 +185,10 @@
   font-weight: 500;
   margin: 12px 0 4px;
   color: #43230C;
+}
+
+.projects-section__desc a {
+  text-decoration: underline!important;
 }
 
 .projects-section__desc {
@@ -144,4 +231,19 @@
   color: #96422F;
   font-weight: 600;
   text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .projects-section__grid {
+    grid-template-columns: 1fr; /* 1 cột */
+  }
+  .projects-section__title {
+  font-size: 24px;
+}
+.projects-section__filter-bar{
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.dropdown.open .dropdown-menu {
+width: 100px;
+}
 }

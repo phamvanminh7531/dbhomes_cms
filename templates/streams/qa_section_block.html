@@ -4,10 +4,10 @@
     <div class="main-content-container">
         <div class="faq-container">
             <!-- Bên trái: Câu hỏi -->
-            <div class="faq-left">
+            <div class="faq-left" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
                 <h2 class="faq-title">Các câu hỏi thường gặp</h2>
                 {% for item in self.faq_items %}
-                <div class="faq-item {% if forloop.first %}active{% endif %}">
+                <div class="faq-item {% if forloop.first %}active{% endif %}" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
                     <div class="faq-question">
                         {{ item.question }}
                         <span class="faq-toggle">+</span>
@@ -19,7 +19,7 @@
                 {% endfor %}
             </div>
             <!-- Bên phải: Hình ảnh -->
-            <div class="faq-right">
+            <div class="faq-right" data-aos="fade-left" data-aos-delay="400" data-aos-duration="1000">
                 <img src="{{ value.image.file.url }}" alt="Sofa DBHomes" />
             </div>
         </div>

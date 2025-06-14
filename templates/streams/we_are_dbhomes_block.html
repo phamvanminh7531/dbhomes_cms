@@ -1,14 +1,16 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 <section class="mission-section" style="  background-image: url('{{ value.image.file.url }}');">
-    <div class="mission-wrapper">
+    <div class="mission-wrapper" data-aos="zoom-in-up" data-aos-duration="2000" data-aos-easing="ease-out-cubic">
         <div class="main-content-container">
-            <h2 class="mission-title">
+            <h2 class="mission-title" data-aos="flip-left" data-aos-delay="300" data-aos-duration="1500"
+          data-aos-easing="ease-out-back">
                 <span class="text-normal">Chúng tôi là </span>
                 <span class="text-highlight">DBHOMES!</span>
             </h2>
             <div class="mission-content">
-                <div class="project-detail__paragraph">
+                <div class="project-detail__paragraph" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1800"
+            data-aos-easing="ease-out-cubic">
                     {{ value.content|safe}}
                 </div>
             </div>

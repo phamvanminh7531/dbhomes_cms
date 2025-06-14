@@ -1,0 +1,48 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<section class="highlighted-projects">
+    <div class="main-content-container">
+        <div class="container">
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000"
+                data-aos-easing="ease-out-cubic">Dự án nổi bật</p>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000"
+                data-aos-easing="ease-out-cubic">{{value.content.title}}</h2>
+            <div class="section-desc" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000"
+            data-aos-easing="ease-out-cubic">
+            {{ value.content.content|richtext }}
+            </div>
+
+            <swiper-container class="mySwiper" space-between="30" slides-per-view="1" centered-slides="true" loop="true"
+                effect="slide" init="true" breakpoints='{"768":{"slidesPerView":3,"centeredSlides":true}}'
+                data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-out-cubic"
+                autoplay-delay="3000" autoplay-disable-on-interaction="false" speed="1500">
+                {% for project in self.projects %}
+                    <swiper-slide>
+                        <div class="slide-wrapper" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000"
+                            data-aos-easing="ease-out-cubic">
+                            <img src="{{ project.intro_image.file.url }}" alt="{{ project.title }}" loading="lazy" />
+                            <div class="slide-info">
+                                <div class="slide-title">{{ project.title }}</div>
+                                <div class="slide-description">
+                                    Dự án: {{ project.project_location }}<br>
+                                    Diện tích: {{ project.project_acreage }} m² | {{ project.project_scale.name }}<br>
+                                    Phong cách: {{ project.design_style.name }}<br>
+                                    Thiết kế & Thi công nội thất: DBHomes
+                                </div>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                {% endfor %}
+            </swiper-container>
+
+            <div class="custom-pagination" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000"
+                data-aos-easing="ease-out-cubic">
+                <span class="arrow prev"><i class="fas fa-chevron-left"></i></span>
+                {% for project in self.projects %}
+                    <span class="dot" data-index="{{ forloop.counter0 }}"></span>
+                {% endfor %}
+                <span class="arrow next"><i class="fas fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </div>
+</section>

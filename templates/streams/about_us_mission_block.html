@@ -2,7 +2,7 @@
 {% load wagtailimages_tags %}
 <section class="vision-section">
     <div class="main-content-container">
-        <div class="vision__stats">
+        <div class="vision__stats" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500">
             {% for feature in self.feature_items %}
             <div class="vision__stat"><strong>{{ feature.number }}</strong>
                 <p>{{ feature.description }}</p>
@@ -10,7 +10,8 @@
             {% endfor %}
         </div>
 
-        <div class="vision__content">
+        <div class="vision__content" data-aos="fade-right" data-aos-delay="300" data-aos-duration="2000"
+          data-aos-easing="ease-out-cubic">
             <div class="vision__text">
                 {% for content in self.contents %}
                     <h2>{{ content.title }}</h2>
@@ -18,7 +19,8 @@
                 {% endfor %}
             </div>
 
-            <div class="vision__image">
+            <div class="vision__image" data-aos="zoom-in" data-aos-delay="800" data-aos-duration="2000"
+          data-aos-easing="ease-out-back">
                 <img src="{{ value.image.file.url }}" alt="Nội thất">
             </div>
         </div>
