@@ -65,10 +65,12 @@
 </section>
 <section class="featured-projects">
     <div class="main-content-container">
-        <div class="featured-projects-header">
-            <h2>Bài viết liên quan</h2>
-            <a href="/tin-tuc/" class="see-all-btn">Xem tất cả</a>
+        <div class="featured-projects__news-header" data-aos="fade-up" data-aos-duration="1000">
+        <div class="featured-projects__news-title">
+          <h3>Bài viết liên quan</h3>
         </div>
+        <a href="/tin-tuc/" class="featured-projects__view-all desktop-only">Xem tất cả</a>
+      </div>
         <div class="project-list">
             {% for post in related_posts %}
             <a href="{{post.url}}">
@@ -85,6 +87,10 @@
             </a>
             {% endfor %}
         </div>
+          <div class="featured-projects__view-all-wrapper mobile-only" data-aos="fade-up" data-aos-delay="300"
+        data-aos-duration="1000">
+        <a href="/tin-tuc/" class="featured-projects__view-all">Xem tất cả</a>
+      </div>
     </div>
 </section>
 {% endblock %}

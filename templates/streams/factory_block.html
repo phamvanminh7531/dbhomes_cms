@@ -5,7 +5,7 @@
         <div class="factory-content" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
             <h2 data-aos="zoom-in" data-aos-delay="400" data-aos-duration="800">{{value.title.title}}</h2>
             {{value.title.content|safe}}
-            <a href="{{ value.button.url }}" class="factory-button" data-aos="fade-up" data-aos-delay="800" data-aos-duration="800">{{ value.button.label }}</a>
+            <a href="{% if value.button.page %}{{ value.button.page.url }}{% elif value.button.url %}{{value.button.url}}{% else %}/{% endif %}" class="factory-button" data-aos="fade-up" data-aos-delay="800" data-aos-duration="800">{{ value.button.label }}</a>
         </div>
     </div>
 </section>

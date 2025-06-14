@@ -67,6 +67,7 @@
 
 .about-section .btn.outline {
   background-color: transparent;
+  text-align: center;
   color: #4B3B39;
   border: 1px solid #4B3B39;
 }

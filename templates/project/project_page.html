@@ -68,10 +68,14 @@
 <section class="featured-projects" ss="">
     <div class="main-content-container">
 
-        <div class="featured-projects-header">
-            <h2>Dự án liên quan</h2>
-            <a href="/du-an/" class="see-all-btn">Xem tất cả</a>
+       <div class="featured-projects__news-header" data-aos="fade-up" data-aos-duration="1000">
+        <div class="featured-projects__news-title">
+          <h3>
+          Dự án liên quan
+          </h3>
         </div>
+        <a href="/du-an/" class="featured-projects__view-all desktop-only">Xem tất cả</a>
+      </div>
         <div class="project-list">
 
             {% for post in related_posts %}
@@ -94,6 +98,10 @@
             </a>
             {% endfor %}
         </div>
+         <div class="featured-projects__view-all-wrapper mobile-only" data-aos="fade-up" data-aos-delay="300"
+        data-aos-duration="1000">
+        <a href="/du-an/" class="featured-projects__view-all">Xem tất cả</a>
+      </div>
     </div>
 </section>
 {% endblock %}

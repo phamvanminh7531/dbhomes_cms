@@ -17,7 +17,7 @@
             </div>
             <div class="buttons" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1000">
                 {% for button in self.buttons %}
-                <a href="{{ button.url }}" class="btn outline">{{ button.label }}</a>
+                <a href="{% if button.page %}{{ button.page.url }}{% elif button.url %}{{button.url}}{% else %}/{% endif %}" class="btn outline">{{ button.label }}</a>
                 {% endfor %}
             </div>
 

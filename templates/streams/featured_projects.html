@@ -18,7 +18,7 @@
                 autoplay-delay="3000" autoplay-disable-on-interaction="false" speed="1500">
                 {% for project in self.projects %}
                     <swiper-slide>
-                        <div class="slide-wrapper" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000"
+                        <a href="{{project.url}}" class="slide-wrapper" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000"
                             data-aos-easing="ease-out-cubic">
                             <img src="{{ project.intro_image.file.url }}" alt="{{ project.title }}" loading="lazy" />
                             <div class="slide-info">
@@ -30,7 +30,7 @@
                                     Thiết kế & Thi công nội thất: DBHomes
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </swiper-slide>
                 {% endfor %}
             </swiper-container>

@@ -2,9 +2,8 @@
   background-image: url('../images//bg.png');
   background-repeat: repeat;
   padding: 60px 20px;
-  overflow-x: hidden;
-  /* tránh tràn ngang */
-  min-height: 50vh;
+  overflow-x: hidden; /* tránh tràn ngang */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +22,7 @@
 .vision__stat {
   flex: 1 1 25%;
   justify-items: flex-start;
-
+ 
 }
 
 .vision__stat strong {
@@ -58,7 +57,7 @@
   font-size: 64px;
   color: #96422F;
   margin-bottom: 10px;
-  font-weight: 600;
+    font-weight: 600;
 }
 
 
@@ -77,9 +76,8 @@
   width: 100%;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
 @media (max-width: 1024px) {
   .vision__text h2 {
     font-size: 36px;
@@ -149,6 +147,7 @@
 @media (max-width: 480px) {
   .vision__text h2 {
     font-size: 28px;
+    text-align: left;
   }
 
   .vision__stat strong {
@@ -157,5 +156,7 @@
 
   .vision__text p {
     font-size: 14px;
+    text-align: left;
+    text-align: justify;
   }
 }

@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap');
-/*section 1 */
+
+/* Reset + font */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Manrope', sans-serif;
-  font-weight: 400; /* Regular */
+  font-weight: 400;
 }
 
 body, html {
-
+  scroll-behavior: smooth;
 }
 
 a {
@@ -17,8 +18,11 @@ a {
   text-decoration: none;
 }
 
+
+/* Navbar */
 .navbar {
-  width: 100%;
+   box-sizing: border-box;
+  width: 100vw;
   height: 100px;
   position: fixed;
   top: 0;
@@ -61,9 +65,14 @@ a {
   filter: brightness(0) saturate(100%) invert(17%) sepia(67%) saturate(599%) hue-rotate(0deg) brightness(90%) contrast(85%);
 }
 
-
 .logo img {
   height: 60px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-links a {
@@ -73,31 +82,27 @@ a {
   font-size: 16px;
   transition: opacity 0.2s ease;
 }
-.nav-links{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .nav-links a:hover {
   opacity: 0.85;
 }
-.main-content-container {
-  position: relative;
-  z-index: 1;
-}
-.navbar .main-content-container{
+
+.navbar .main-content-container {
   display: flex;
   justify-content: space-between;
 }
 
+/* Container */
 .main-content-container {
-  position: relative; /* để nằm trên z-index mặc định */
+  position: relative;
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
 }
+
+/* Buttons */
 .buttons {
   display: flex;
   gap: 10px;
@@ -112,6 +117,7 @@ a {
   font-size: 14px;
   transition: color 0.3s ease;
   z-index: 0;
+  background-clip: padding-box;
 }
 
 /* Background animation layer */
@@ -161,14 +167,12 @@ a {
   color: #96422F;
 }
 
-/* Disable opacity change on hover to avoid interference */
+/* Disable opacity change on hover */
 .btn:hover {
   opacity: 1;
 }
 
-
-/* Responsive */
-/* Ẩn nút burger trên desktop */
+/* Burger icon - hidden on desktop */
 .burger {
   display: none;
   flex-direction: column;
@@ -190,57 +194,45 @@ a {
   transition: all 0.3s ease;
 }
 
+/* Background image for mobile */
 
-.mobile-background {
-  display: none;
-  width: 100%;
-  height: 100vh; /* chiều cao giống swiper */
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-size: cover;
-  z-index: 0;
- background-position: 0% center;
-}
 
-/* Nội dung container trên ảnh nền */
-
+/* Mobile-only buttons */
 .btn-mobile {
   display: none;
-  opacity: 0;
   pointer-events: none;
-  position: absolute; /* hoặc tùy chỉnh sao cho không ảnh hưởng layout */
 }
 
 @media (max-width: 768px) {
   .btn-desktop {
     display: none;
-    opacity: 0;
-    pointer-events: none;
   }
+
   .btn-mobile {
     display: block;
-    opacity: 1;
     pointer-events: auto;
-    position: static; /* trở lại bình thường */
+    position: relative; /* Đảm bảo ::before hoạt động đúng */
   }
 }
 
-/* Responsive - hiện nút burger trên mobile */
+/* Responsive navbar */
 @media (max-width: 768px) {
   .navbar.scrolled .nav-links a {
-  color: #ffffff;
-}
+    color: #ffffff;
+  }
+
   .burger {
     display: flex;
   }
-.navbar.scrolled .burger span {
-  background: #5b2c0f;
-}
-  /* Ẩn menu nav-links mặc định */
+
+  .navbar.scrolled .burger span {
+    background: #5b2c0f;
+  }
+
   .nav-links {
     display: none;
     position: absolute;
-    top: 60px; /* cao hơn navbar */
+    top: 60px;
     right: 0;
     background: rgba(0, 0, 0, 0.8);
     width: 200px;
@@ -249,12 +241,11 @@ a {
     border-radius: 0 0 0 6px;
   }
 
-  /* Khi menu mở (active class) hiện ra */
   .nav-links.active {
     display: flex;
     margin-right: 10px;
     border-radius: 5px;
-   background: rgba(91, 44, 15, 0.95); 
+    background: rgba(91, 44, 15, 0.95);
   }
 
   .nav-links a {
@@ -262,6 +253,8 @@ a {
     font-size: 12px;
   }
 }
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .hero-content {
     bottom: 30px;
@@ -274,14 +267,12 @@ a {
   }
 
   .buttons {
-    /* flex-direction: column; */
     gap: 8px;
   }
 
   .btn {
     padding: 8px 16px;
     font-size: 12px;
-
   }
 }
 
@@ -290,12 +281,8 @@ a {
     height: 24px;
   }
 
- 
   .btn {
     padding: 6px 12px;
     font-size: 11px;
-
   }
 }
-
-

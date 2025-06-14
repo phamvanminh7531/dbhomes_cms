@@ -1,39 +1,18 @@
 .partners-section {
   padding: 60px 20px;
   text-align: center;
- background-image: url('../images//bg.png');
   background-repeat: repeat;
   text-align: center;
-
+  background-image: url('../images//bg.png');
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.partners-section swiper-container {
-  width: 100%;
-  height: 100%;
-}
 
-.partners-section swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Cố định chiều rộng slide để đồng đều */
-  width: auto; /* Thường Swiper tự tính theo slidesPerView */
-  height: 80px; /* hoặc chiều cao bạn muốn cho slide */
-}
 
-.partners-section swiper-slide img {
-  display: block;
-  width: auto;   /* Giữ tỉ lệ ảnh */
-  max-height: 60px; /* Giới hạn chiều cao ảnh để đều */
-  object-fit: contain; /* Giữ ảnh không bị cắt */
-  margin: 0 auto;
-}
+
+
 
 .partners-section .title {
   font-size: 38px;
@@ -44,26 +23,46 @@
   color:#43230C;
 }
 
+
+
 .partners-section .title span {
   color: #96422F;
 }
-.partners-logos {
+.partners-section .main-content-container{
+  box-sizing: border-box;
+}
+.partner-logos {
   display: flex;
-  justify-content: center; /* căn giữa hàng */
-  gap: 30px;
-  flex-wrap: wrap; /* cho xuống dòng khi không đủ chỗ */
-  margin-bottom: 40px;
-  width: 100%;
+  overflow-x: auto;
+  gap: 20px;
+padding: 10px 20px 40px 20px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.partners-logos img {
-  flex: 1 1 120px; /* co giãn, tối thiểu 120px */
-  max-width: 150px; /* giới hạn tối đa */
-  height: 60px;
+.partner-logos img {
+  flex: 0 0 auto;
+  height: 120px;
   object-fit: contain;
+  scroll-snap-align: start;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.6;
   filter: grayscale(50%);
-  transition: filter 0.3s ease;
-  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+  padding: 0;
+   pointer-events: none;
+}
+
+
+
+.partner-logos::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 
@@ -77,25 +76,73 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
 }
+
+.partner-logos {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  cursor: grab;
+  padding: 16px 0;
+  scroll-behavior: smooth;
+}
+
+.partner-logos img {
+  flex: 0 0 auto;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop mặc định: 7 logo */
+.partner-logos img {
+  width: calc((100% - 15px * 6) / 7);
+}
+
+/* Tablet: 4 logo */
+@media (max-width: 992px) {
+  .partner-logos img {
+    width: calc((100% - 15px * 3) / 4);
+  }
+  .partner-logos  {
+     margin-bottom: 20px;
+    margin-top: 36px;
+  }
+}
+
+/* Mobile: 3 logo */
+@media (max-width: 600px) {
+  .partner-logos img {
+    width: calc((100% - 15px * 2) / 3);
+  }
+}
+
+
+
+
+
+@media (max-width: 480px) {
+  .partner-logos {
+    padding-bottom: 0px;
+  }
+}
+
+
 @media (max-width: 600px) {
   .partners-section {
-    padding: 40px 10px;
+    padding:0px;
+    padding-top: 40px;
   }
 
   .partners-section .title {
     font-size: 22px;
-    margin-bottom: 20px;
+    margin-bottom: -30px;
   }
 
   .partners-logos {
     gap: 20px;
+    
   }
 
-  .partners-logos img {
-    flex: 1 1 100px;
-    max-width: 100px;
-    height: 15px;
-  }
+ 
 }
 
 /* Medium devices (tablets) */
@@ -104,139 +151,8 @@
     font-size: 28px;
   }
 
-  .partners-logos img {
-    max-width: 120px;
-    height: 15px;
-  }
-}
-
-.partners-section .featured-projects {
-  margin-top: 40px;
-
-  padding: 20px;
-  border-radius: 12px;
-}
-
-.partners-section .featured-projects-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.partners-section .featured-projects-header h2 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #3e1c0a;
-}
-
-.partners-section .see-all-btn {
-  background: transparent;
-  border: 1px solid #3e1c0a;
-  color: #3e1c0a;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.partners-section .see-all-btn:hover {
-  background-color: #96422F;
-
-  color: white;
-}
-
-.partners-section .project-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cột */
-  gap: 20px;
-}
-@media (max-width: 1024px) {
-  .partners-section .project-list {
-    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
-  }
-}
-
-@media (max-width: 600px) {
-  .partners-section .project-list {
-    grid-template-columns: 1fr; /* Mobile: 1 cột */
-  }
-}
-.partners-section .project-card {
-
-  border-radius: 10px;
-  overflow: hidden;
-  flex: 1;
-  min-width: 280px;
-  max-width: 100%;
-  text-align: left;
-}
-
-.partners-section .project-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.partners-section .project-info {
-  padding-top: 5px;
-  color: #43230C;
-}
-
-.partners-section .project-info h3 {
-
-  font-size: 24px;
-  color: #96422F;
-}
-
-.partners-section .project-info p {
-  margin: 0;
-  font-size: 14px;
-}
-.partners-section .tab-menu {
-  display: flex;
-  gap: 40px; /* hoặc 32px nếu muốn nhỏ hơn */
-  align-items: center;
-  margin-bottom: 32px;
-}
-
-.partners-section .tab {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #43230C;
-  font-weight: 500;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-@media (max-width: 768px) {
-  .partners-section .tab-menu {
-    gap: 24px;
+ .partners-section {
+    padding: 40px 0px;
   }
 
-  .partners-section .tab {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .partners-section .tab-menu {
-    gap: 16px;
-    justify-content: center; /* Canh giữa nếu ít tab */
-  }
-
-  .partners-section .tab {
-    font-size: 14px;
-  }
-}
-.partners-section .tab:hover {
-  border-bottom: 2px solid #3a2f25;
-}
-
-.partners-section .tab.active {
-  border-bottom: 2px solid #3a2f25;
-  font-weight: bold;
 }

@@ -30,7 +30,8 @@ from wagtail.contrib.table_block.blocks import TableBlock
 class CTAButtonBlock(blocks.StructBlock):
     """CTA button Block"""
     label = blocks.CharBlock(required=True, help_text="Nhãn nút")
-    url = blocks.URLBlock(required=True, help_text="Đường dẫn khi bấm")
+    url = blocks.CharBlock(required=False, null = True, blank=True ,help_text="Đường dẫn khi bấm")
+    page = PageChooserBlock(required=False, null = True, blank=True, help_text="Trang liên kết")
 
     class Meta:
         icon = "plus"

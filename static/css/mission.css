@@ -2,11 +2,9 @@
   color: #fff;
   padding: 60px 20px 0; /* Phía trên có khoảng trống */
   text-align: center;
-
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-
   min-height: 125vh; /* Hiển thị hết ảnh */
   display: flex;
   flex-direction: column;
@@ -53,7 +51,12 @@
   }
 
   .mission-content p {
+    padding:10px;
+    border-radius: 5px;
+      color: white;
     font-size: 16px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); 
+        background: rgba(0, 0, 0, 0.3);
   }
 }
 

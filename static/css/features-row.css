@@ -38,3 +38,8 @@
   max-width: 300px;
   margin: 0 auto;
 }
+@media (max-width: 1024px) {
+.features-row .main-content-container{
+  flex-direction: column;
+}
+}
