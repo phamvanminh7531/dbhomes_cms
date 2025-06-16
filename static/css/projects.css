@@ -1,7 +1,7 @@
 .projects-section {
   padding: 60px 20px;
+   background-image: url('../images//bg.png');
   background-repeat: repeat;
-  background-image: url('../images//bg.png');
 }
 .projects-section__filter-bar {
   display: flex;
@@ -16,9 +16,13 @@
   font-weight: 500;
   color: #43230C;
   margin-right: 8px;
- 
 }
+.projects-section .dropdown-wrapper{
+  display: flex;
+  gap:12px;
+    flex-wrap: wrap;
 
+}
 .filter-button {
   padding: 8px 16px;
   border: 1px solid #43230C;
@@ -187,10 +191,6 @@
   color: #43230C;
 }
 
-.projects-section__desc a {
-  text-decoration: underline!important;
-}
-
 .projects-section__desc {
   font-size: 16px;
   color: #43230C;
@@ -239,11 +239,37 @@
   .projects-section__title {
   font-size: 24px;
 }
+.filter-tags-wrapper{
+  flex-wrap: wrap;
+}
+.filter-button{
+  padding: 8px 6px;
+  min-width: 140px;
+}
 .projects-section__filter-bar{
   flex-wrap: nowrap;
   flex-direction: column;
 }
+
 .dropdown.open .dropdown-menu {
-width: 100px;
+min-width: 140px;
 }
+.dropdown.open {
+  z-index: 100; /* nổi lên trên khi mở */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 9999; /* cao hơn nữa để nổi trên các thứ khác */
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+}
+@media (max-width: 324px){
+
 }

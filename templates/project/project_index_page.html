@@ -14,46 +14,52 @@
     <div class="main-content-container">
         <div class="projects-section__filter-bar">
             <span class="projects-section__filter-label">Bộ lọc</span>
+            <div class="dropdown-wrapper">
+                <div class="dropdown">
+                    <button class="filter-button dropdown-toggle">
+                        <img src="{% static 'images/homeicon.png' %}" alt="icon home" class="filter-icon" />
+                        Quy mô
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for scale in project_scales %}
 
-            <div class="dropdown">
-                <button class="filter-button dropdown-toggle">
-                    <img src="{% static 'images/homeicon.png' %}" alt="icon home" class="filter-icon" />
-                    Quy mô
-                </button>
-                <ul class="dropdown-menu">
-                    {% for scale in project_scales %}
+                        <a class="filter-items"
+                            href="{% if current_design_style %}{{ page.url }}{{ current_design_style.slug }}/{{ scale.slug }}#projects-section{% else %}{{ page.url }}{{ scale.slug }}#projects-section{% endif %}">
 
-                        <a class="filter-items" href="{% if current_design_style %}{{ page.url }}{{ current_design_style.slug }}/{{ scale.slug }}#projects-section{% else %}{{ page.url }}{{ scale.slug }}#projects-section{% endif %}">
-                            
-                        <li>{{ scale.name }}</li>
+                            <li>{{ scale.name }}</li>
                         </a>
-                    {% endfor %}
-                </ul>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="filter-button dropdown-toggle">
+                        <img src="{% static 'images/brushicon.png' %}" alt="icon style" class="filter-icon" />
+                        Phong cách
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for style in desgin_styles %}
+
+                        <a class="filter-items"
+                            href="{% if current_project_scale %}{{ page.url }}{{ style.slug }}/{{current_project_scale.slug}}#projects-section{% else %}{{ page.url }}{{ style.slug }}#projects-section{% endif %}">
+                            <li>{{ style.name }}</li>
+                        </a>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
 
-            <div class="dropdown">
-                <button class="filter-button dropdown-toggle">
-                    <img src="{% static 'images/brushicon.png' %}" alt="icon style" class="filter-icon" />
-                    Phong cách
-                </button>
-                <ul class="dropdown-menu">
-                    {% for style in desgin_styles %}
-
-                        <a class="filter-items" href="{% if current_project_scale %}{{ page.url }}{{ style.slug }}/{{current_project_scale.slug}}#projects-section{% else %}{{ page.url }}{{ style.slug }}#projects-section{% endif %}">
-                        <li>{{ style.name }}</li>
-                        </a>
-                    {% endfor %}
-                </ul>
-            </div>
 
             <div id="filter-tags-container" class="filter-tags-wrapper">
                 {% if current_design_style %}
-                <a href="{% if current_project_scale %}{{ page.url }}{{ current_project_scale.slug }}#projects-section{% else %}{{ page.url }}#projects-section{% endif %}" class="filter-tag">
+                <a href="{% if current_project_scale %}{{ page.url }}{{ current_project_scale.slug }}#projects-section{% else %}{{ page.url }}#projects-section{% endif %}"
+                    class="filter-tag">
                     x {{ current_design_style.name }}
                 </a>
                 {% endif %}
                 {% if current_project_scale %}
-                <a href="{% if current_design_style %}{{ page.url }}{{ current_design_style.slug }}#projects-section{% else %}{{ page.url }}#projects-section{% endif %}" class="filter-tag">
+                <a href="{% if current_design_style %}{{ page.url }}{{ current_design_style.slug }}#projects-section{% else %}{{ page.url }}#projects-section{% endif %}"
+                    class="filter-tag">
                     x {{ current_project_scale.name }}
                 </a>
                 {% endif %}
@@ -73,7 +79,7 @@
                 </div>
                 <h3 class="projects-section__title">{{ project.title }}</h3>
                 <div class="projects-section__desc">
-                    <p>{{ project.design_style.name }} | {{ project.project_scale.name }} | {{ project.project_acreage }} m²</p>
+                    <p>{{ project.design_style.name }} | {{ project.project_scale.name }} | {{ project.project_acreage}} m²</p>
                 </div>
                 <a href="{{ project.url }}" class="projects-section__link">Xem chi tiết</a>
             </div>
@@ -82,43 +88,50 @@
 
         <div class="projects-section__pagination">
             {% if projects.has_previous %}
-                {% if current_design_style %}
-                    <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ projects.previous_page_number }}/#projects-section" class="projects-section__arrow">&#60;</a>
-                {% elif current_project_scale %}
-                    <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ projects.previous_page_number }}/#projects-section" class="projects-section__arrow">&#60;</a>
-                {% else %}
-                    <a href="{% pageurl page %}page/{{ projects.previous_page_number }}/#projects-section" class="projects-section__arrow">&#60;</a>
-                {% endif %}
+            {% if current_design_style %}
+            <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ projects.previous_page_number }}/#projects-section"
+                class="projects-section__arrow">&#60;</a>
+            {% elif current_project_scale %}
+            <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ projects.previous_page_number }}/#projects-section"
+                class="projects-section__arrow">&#60;</a>
+            {% else %}
+            <a href="{% pageurl page %}page/{{ projects.previous_page_number }}/#projects-section"
+                class="projects-section__arrow">&#60;</a>
+            {% endif %}
             {% endif %}
 
             {% for i in projects.paginator.page_range %}
-                {% if projects.number == i %}
-                    {% if current_design_style %}
-                        <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ i }}/#projects-section" class="active">{{ i }}</a>
-                    {% elif current_project_scale %}
-                        <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ i }}/#projects-section" class="active">{{ i }}</a>
-                    {% else %}
-                        <a href="{% pageurl page %}page/{{ i }}/#projects-section" class="active">{{ i }}</a>
-                    {% endif %}
-                {% else %}
-                    {% if current_design_style %}
-                        <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ i }}/#projects-section">{{ i }}</a>
-                    {% elif current_project_scale %}
-                        <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ i }}/#projects-section">{{ i }}</a>
-                    {% else %}
-                        <a href="{% pageurl page %}page/{{ i }}/#projects-section">{{ i }}</a>
-                    {% endif %}
-                {% endif %}
+            {% if projects.number == i %}
+            {% if current_design_style %}
+            <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ i }}/#projects-section" class="active">{{i}}</a>
+            {% elif current_project_scale %}
+            <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ i }}/#projects-section"
+                class="active">{{ i }}</a>
+            {% else %}
+            <a href="{% pageurl page %}page/{{ i }}/#projects-section" class="active">{{ i }}</a>
+            {% endif %}
+            {% else %}
+            {% if current_design_style %}
+            <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ i }}/#projects-section">{{ i }}</a>
+            {% elif current_project_scale %}
+            <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ i }}/#projects-section">{{ i }}</a>
+            {% else %}
+            <a href="{% pageurl page %}page/{{ i }}/#projects-section">{{ i }}</a>
+            {% endif %}
+            {% endif %}
             {% endfor %}
 
             {% if projects.has_next %}
-                {% if current_design_style %}
-                    <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ projects.next_page_number }}/#projects-section" class="projects-section__arrow">&#62;</a>
-                {% elif current_project_scale %}
-                    <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ projects.next_page_number }}/#projects-section" class="projects-section__arrow">&#62;</a>
-                {% else %}
-                    <a href="{% pageurl page %}page/{{ projects.next_page_number }}/#projects-section" class="projects-section__arrow">&#62;</a>
-                {% endif %}
+            {% if current_design_style %}
+            <a href="{% pageurl page %}{{ current_design_style.slug }}/page/{{ projects.next_page_number }}/#projects-section"
+                class="projects-section__arrow">&#62;</a>
+            {% elif current_project_scale %}
+            <a href="{% pageurl page %}{{ current_project_scale.slug }}/page/{{ projects.next_page_number }}/#projects-section"
+                class="projects-section__arrow">&#62;</a>
+            {% else %}
+            <a href="{% pageurl page %}page/{{ projects.next_page_number }}/#projects-section"
+                class="projects-section__arrow">&#62;</a>
+            {% endif %}
             {% endif %}
         </div>
     </div>

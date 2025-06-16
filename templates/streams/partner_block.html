@@ -5,11 +5,8 @@
             <div class="partners-logos" data-aos="fade-up" data-aos-delay="300" onmousedown="startDrag(event)">
                 <div class="partner-logos" >
                     {% for brand in value.brands %}
-                       <!-- <a href="{{ brand.link }}" target="_blank"></a> -->
-                        <img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" />
-                             <img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" />
-                                  <img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" />
-                                       <img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" />
+                       <a href="{{ brand.link }}" target="_blank">   <img src="{{ brand.image.file.url }}" alt="Đối tác 1" loading="lazy" />        </a>
+                                   
                     {% endfor %}
                 </div>
                 <!-- Thêm ảnh logo đối tác khác nếu cần -->
