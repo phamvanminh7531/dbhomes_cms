@@ -3,15 +3,17 @@
 {% load static %}
 {% load wagtailuserbar %}
 
-
+{% block title %}{{ page.title }}{% endblock %}
 {% block meta_description %}{{ page.description|default:"Tin tức mới nhất từ DB Homes" }}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/project-detail.css' %}" />
 <link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
+<link rel="stylesheet" href="{% static 'css/share.css' %}" />
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
 {% endblock %}
 
-{% block title %}{{ page.title }}Tin tức{% endblock %}
+
 
 {% block content %}
 {% for block in page.hero_section %}
@@ -34,7 +36,7 @@
             </div>
 
             <div class="project-detail__title">
-                <p>{{ page.title }}</p>
+                <h1>{{ page.title }}</h1>
             </div>
             {% for block in page.content %}
             {% include_block block %}
@@ -56,8 +58,8 @@
 
             <div class="project-detail__share">
                 <span class="project-detail__share-label">Chia sẻ</span>
-                <img src="{% static 'images/fbicon.png' %}" alt="Facebook" class="project-detail__share-icon">
-                <img src="{% static 'images/shareicon.png' %}" alt="Share" class="project-detail__share-icon">
+                <img id="facebook-share" src="{% static 'images/fbicon.png' %}" alt="Facebook" class="project-detail__share-icon">
+                <img id="copy-share" src="{% static 'images/shareicon.png' %}" alt="Share" class="project-detail__share-icon">
             </div>
 
         </aside>
@@ -93,4 +95,9 @@
       </div>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/glightbox.js' %}"></script>
+<script src="{% static 'js/share.js' %}"></script>
 {% endblock %}

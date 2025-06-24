@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     "product",
     "project",
 
+    "wagtailseo",
+    "wagtail.contrib.settings",
     "wagtail.contrib.forms",
     "wagtail.contrib.table_block",
     "wagtail.contrib.redirects",
@@ -57,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +88,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
                 "streams.context_processors.footer_settings",
                 "streams.context_processors.navbar"
             ],
@@ -150,8 +154,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # ← đây là thư mục bạn đang code CSS/JS
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # ← nơi Django sẽ gom file để deploy
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # ← nơi Django sẽ gom file để deploy
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -179,6 +184,8 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "dbhomes_cms"
+
+CSRF_TRUSTED_ORIGINS = ["http://testing.dbhomes.com.vn"]
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html

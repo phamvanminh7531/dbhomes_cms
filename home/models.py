@@ -1,5 +1,4 @@
-from django.db import models
-
+from wagtailseo.models import SeoMixin
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel
@@ -7,7 +6,8 @@ from streams.blocks import TechnologyBlock, PartnerBlock, CustomerFeedBackBlock
 from streams.blocks import EcosystemBlock, AboutUsBlock, ServicesBlock, HeroSectionBlock, HotProject, HotNews
 
 
-class HomePage(Page):
+class HomePage(SeoMixin, Page):
+    promote_panels = SeoMixin.seo_panels
     body = StreamField([
         ("hero_section_2", HeroSectionBlock()),
         ("hot_project_section", HotProject()),

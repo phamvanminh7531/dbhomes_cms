@@ -26,3 +26,13 @@ class ContactPage(Page):
 
     class Meta:
         verbose_name = "Trang Liên hệ"
+
+class ContactSubmission(models.Model):
+    name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=12, null=False, blank=False)
+    address = models.CharField(max_length=255)
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.phone_number})"

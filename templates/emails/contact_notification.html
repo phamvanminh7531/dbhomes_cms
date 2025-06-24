@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông báo liên hệ mới</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f6f6f6; padding: 20px; }
+    .container { background: white; padding: 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { color: #2c3e50; }
+    p { line-height: 1.5; margin-bottom: 10px; }
+    .label { font-weight: bold; }
+    .footer { margin-top: 30px; font-size: 0.9em; color: #888; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📬 Bạn có một liên hệ mới</h2>
+
+    <p><span class="label">👤 Họ tên:</span> {{ name }}</p>
+    <p><span class="label">📞 Số điện thoại:</span> {{ phone_number }}</p>
+    <p><span class="label">🏠 Địa chỉ:</span> {{ address }}</p>
+    <p><span class="label">🕒 Thời gian gửi:</span> {{ submitted_at|date:"d/m/Y H:i" }}</p>
+
+    <p><span class="label">✉️ Nội dung tin nhắn:</span></p>
+    <p style="background: #f0f0f0; padding: 10px; border-radius: 4px;">{{ message }}</p>
+
+    <div class="footer">
+      Email này được gửi từ hệ thống liên hệ website của bạn.
+    </div>
+  </div>
+</body>
+</html>

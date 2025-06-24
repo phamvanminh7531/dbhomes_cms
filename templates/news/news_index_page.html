@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load wagtailcore_tags %}
-
+{% block title %}{{ page.title }}{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
 <link rel="stylesheet" href="{% static 'css/projects.css' %}" />

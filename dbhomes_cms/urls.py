@@ -7,6 +7,7 @@ from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from wagtail.contrib.sitemaps.views import sitemap
 
 from search import views as search_views
 
@@ -14,7 +15,10 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
-    path("search/", search_views.search, name="search"), 
+    path("contact/", include("contact.urls")),
+    path("search/", search_views.search, name="search"),
+    path('sitemap.xml', sitemap),
+
 ]
 
 

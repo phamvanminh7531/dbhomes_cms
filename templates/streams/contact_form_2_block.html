@@ -13,14 +13,62 @@
                     dành
                     riêng cho tổ ấm của bạn.
                 </p>
-                <form id="consultationForm">
-                    <input type="text" placeholder="Họ và Tên *" required />
-                    <input type="tel" placeholder="Số điện thoại *" required />
-                    <input type="text" placeholder="Tỉnh/Thành phố *" required />
-                    <input placeholder="Nội dung yêu cầu"></input>
+                <form id="consultationForm" method="post" action="{% url 'contact_form_submit' %}">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Họ và Tên *" required />
+                    <input type="tel" name="phone_number" placeholder="Số điện thoại *" required />
+                    <input type="text" name="address" placeholder="Tỉnh/Thành phố *" required />
+                    <input name="message" placeholder="Nội dung yêu cầu"></input>
                     <button type="submit">Gửi yêu cầu</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  fetch('/contact/submit/', {
+    method: 'POST',
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest', // để server trả về JSON
+      'X-CSRFToken': getCookie('csrftoken') // nếu dùng CSRF
+    },
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(data.message || 'Gửi thành công!');
+      form.reset();
+    } else {
+      alert(data.error || 'Có lỗi xảy ra, vui lòng thử lại.');
+    }
+  })
+  .catch(error => {
+    console.error('Lỗi:', error);
+    alert('Đã xảy ra lỗi trong quá trình gửi.');
+  });
+
+  // CSRF token helper (Django-specific)
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+});
+</script>

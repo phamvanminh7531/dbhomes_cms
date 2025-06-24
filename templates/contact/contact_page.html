@@ -2,7 +2,7 @@
 {% extends "base_without_contact_form.html" %}
 {% load static %}
 {% load wagtailcore_tags %}
-
+{% block title %}{{ page.title }}{% endblock %}
 {% block content %}
   {% for block in page.body %}
     {% include_block block %}

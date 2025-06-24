@@ -18,6 +18,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
+from wagtailseo.models import SeoMixin, SeoType
 
 class NewsPageForm(WagtailAdminPageForm):
     def clean(self):
@@ -49,9 +50,14 @@ class NewsCategory(models.Model):
         verbose_name = "NewsCategory"
         verbose_name_plural = "NewsCategories"
 
-class NewsPage(Page):
+class NewsPage(SeoMixin, Page):
     base_form_class = NewsPageForm
     subpage_types = []
+
+    # Indicate this is article-style content.
+    seo_content_type = SeoType.ARTICLE
+    promote_panels = SeoMixin.seo_panels
+
     hero_section = StreamField([
         ('hero_section', HeroSectionBlock()),
         # Thêm các block khác nếu có
