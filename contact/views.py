@@ -10,6 +10,7 @@ import json
 from .models import ContactSubmission
 from django.core.mail import send_mail
 from django.conf import settings
+import threading
 
 
 
@@ -39,8 +40,16 @@ def contact_form_submit(request):
             address=address,
             message=message
         )
-        notify_admin_by_email(submission)
-        return redirect(request.META.get('HTTP_REFERER', '/'))      
+        # notify_admin_by_email(submission)
+        threading.Thread(target=notify_admin_by_email, args=(submission,)).start()
+
+        success_message = 'Cảm ơn bạn đã liên hệ, chúng tôi sẽ phản hồi sớm nhất.'
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': True, 'message': success_message})
+
+        # Nếu không phải AJAX, redirect như bình thường
+        messages.success(request, success_message)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
     except Exception as e:
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return JsonResponse({'success': False, 'error': 'An error occurred. Please try again.'})

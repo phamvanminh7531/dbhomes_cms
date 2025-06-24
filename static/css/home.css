@@ -18,6 +18,68 @@ a {
   text-decoration: none;
 }
 
+/* Modal Overlay */
+.modal-overlay {
+  display: none; /* Cho phép căn giữa modal-box */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999; /* Đảm bảo đủ cao để đè lên mọi thứ */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Box */
+.modal-box {
+  background: #fff9f5;
+  border: 1px solid #e5c8bb;
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+  width: 400px;
+  animation: fadeSlideUp 0.4s ease;
+}
+
+/* Icon */
+.modal-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+}
+
+/* Title */
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #43230C;
+  margin-bottom: 12px;
+}
+
+/* Message */
+.modal-message {
+  font-size: 15px;
+  color: #5c4032;
+  margin-bottom: 30px;
+}
+
+/* Button */
+.modal-button {
+  background: linear-gradient(to right, #96422F, #b8775d);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-button:hover {
+  background: linear-gradient(to right, #7c321e, #9b5d4b);
+}
+
 
 /* Navbar */
 .navbar {
