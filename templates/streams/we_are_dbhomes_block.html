@@ -1,5 +1,11 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/mission.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
 <section class="mission-section" style="  background-image: url('{{ value.image.file.url }}');">
     <div class="mission-wrapper" data-aos="zoom-in-up" data-aos-duration="2000" data-aos-easing="ease-out-cubic">
         <div class="main-content-container">

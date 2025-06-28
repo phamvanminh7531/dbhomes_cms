@@ -1,6 +1,12 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% load static %}
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
 
 <section class="about-section" style="background-image: url('{{ self.background.image.file.url }}');">
     <div class="main-content-container">

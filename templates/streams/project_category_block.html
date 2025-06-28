@@ -1,5 +1,13 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/living-space.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
 <section class="living-space-section">
     <div class="main-content-container">
         <h2 class="living-space-section__title aos-init aos-animate" data-aos="fade-up" data-aos-delay="0"

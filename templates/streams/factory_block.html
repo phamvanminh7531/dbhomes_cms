@@ -1,5 +1,13 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/factory.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
 <section class="factory-section" style="background-image: url('{{value.image.file.url}}');">
     <div class="factory-overlay" data-aos="fade-up" data-aos-duration="1000">
         <div class="factory-content" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">

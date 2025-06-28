@@ -1,7 +1,18 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/hero-section-v2.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/hero-section.js' %}"></script>
+{% endaddtoblock %}
+
+
+
 <section class="hero-section-v2">
   <!-- Swiper container: dùng ảnh động (desktop) -->
-  <swiper-container class="background-swiper" speed="1000" pagination="true"
-      pagination-dynamic-bullets="true" autoplay-delay="3000" autoplay-disable-on-interaction="false" speed="5000">
+ <swiper-container class="background-swiper" effect="fade" speed="5000" pagination="true"
+      pagination-dynamic-bullets="true" autoplay-delay="3000" autoplay-disable-on-interaction="false"
+      data-aos="fade-down-right" data-aos-duration="1500" data-aos-delay="1200" data-aos-once="true">
     {% for image in data.hero_images.all %}
     <swiper-slide>
       <img src="{{ image.image.file.url }}" class="bg-img" alt="Slide 3" />
@@ -13,7 +24,7 @@
   <!-- Nội dung cố định -->
   <div class="main-content-container">
     <div class="hero-content">
-      <h1 class="home-title">{{ data.display_text }}</h1>
+      <h1 id="main-title" class="home-title">{{ data.display_text }}</h1>
       <div class="buttons">
         {% for button in data.cta_buttons.all %}
           {% if button.page %}

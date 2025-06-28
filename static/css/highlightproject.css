@@ -1,38 +1,39 @@
 .highlighted-projects {
-  background-image: url('../images//bg.png');
   color: #fff;
   padding: 80px 20px;
   text-align: center;
   background-repeat: repeat;
+  background-image: url('../images//bg.png');
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
+
 .highlighted-projects .main-content-container {
   max-width: none;
   width: 100%;
- 
 }
-
+.highlighted-projects swiper-slide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container {
-  /* max-width: 1200px; */
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width:100%;
+  width: 100%;
 }
 
 .section-subtitle {
   color: #96422F;
   font-size: 18px;
   margin-bottom: 10px;
-  width:70%;
+  width: 70%;
   text-align: center;
-
 }
 
 .section-title {
@@ -41,83 +42,99 @@
   width: 100%;
   text-align: center;
   font-weight: 600;
-  margin: 0; /* Reset cả margin trên & dưới */
-  padding: 0; /* (Tùy chọn) Nếu có padding */
+  margin: 0;
+  padding: 0;
 }
 
 .section-desc {
   color: #4F3C22;
   margin-bottom: 60px;
   font-size: 18px;
-  width:60%;
+  width: 60%;
   text-align: center;
-   white-space: pre-line;
+  white-space: pre-line;
 }
-
 
 .highlighted-projects swiper-container {
   width: 100%;
   height: auto;
 }
 
-.highlighted-projectss swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
-
+/* Scale toàn bộ slide không active */
+.highlighted-projects swiper-slide {
+  transition: transform 0.4s ease;
   overflow: hidden;
 }
+
+.highlighted-projects swiper-slide:not(.swiper-slide-active) {
+  transform: scale(0.9);
+  transform-origin: center center;
+}
+
 .highlighted-projects swiper-slide img {
   width: 576px;
   height: 365px;
   object-fit: cover;
   border-radius: 10px;
-transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-
+  transition: transform 0.8s ease;
 }
 
-/* Slide trung tâm */
 .highlighted-projects swiper-slide.swiper-slide-active img {
-
   z-index: 2;
   border-radius: 10px;
 }
 
-/* Slide hai bên */
-.highlighted-projects swiper-slide:not(.swiper-slide-active) img {
-  transform: scale(0.9);
-}
-
-
 .slide-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+.img-container {
   position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
   overflow: hidden;
 }
 
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit; /* kế thừa từ .img-container */
+  display: block;
+}
 .slide-info {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 16px 16px 16px 16px; /* có thể giảm padding bên trái nếu muốn */
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  padding: 10px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all 0.5s ease;
+}
 
-  text-align: left;  /* canh lề trái */
-  transition: all 0.8s ease-in-out
-}
-.highlighted-projects swiper-slide:not(.swiper-slide-active) .slide-info {
-  padding: 16px 16px 36px 52px; /* padding khác, ví dụ giảm padding trái phải */
-  /* Hoặc bạn có thể set padding-left khác để căn chỉnh chữ */
-    transition: all 0.8s ease-in-out;
-}
+
+
 .slide-title {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
   transition: all 0.4s ease;
   position: relative;
-  text-align: left; /* canh lề trái */
+  text-align: left;
+  margin-bottom: 8px;
 }
 
 .slide-description {
@@ -127,10 +144,8 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
   transition: all 1s ease;
   color: #fff;
   font-size: 14px;
-  margin-top: 8px;
-  text-align: left; /* canh lề trái */
+  text-align: left;
 }
-
 
 /* Hover Effect */
 .slide-wrapper:hover .slide-info {
@@ -146,6 +161,7 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
   max-height: 200px;
 }
 
+/* Pagination */
 .custom-pagination {
   display: flex;
   justify-content: center;
@@ -167,6 +183,7 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
   background-color: #96422F;
 }
 
+/* Arrow buttons */
 .arrow {
   cursor: pointer;
   font-size: 18px;
@@ -181,20 +198,16 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
   align-items: center;
   width: 32px;
   height: 32px;
-  line-height: 32px;  /* giúp căn giữa dọc */
+  line-height: 32px;
   transition: border-color 0.3s, color 0.3s;
   font-weight: 300;
 }
 
-
 .arrow:hover {
   color: white;
-  background-color:#96422F ;
+  background-color: #96422F;
 }
 
-
-
-/* Nút chuyển */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -215,18 +228,30 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
 .next-btn {
   right: -10px;
 }
- 
-/* Responsive */
-@media (max-width: 768px) {
-  .highlighted-projects swiper-slide img {
-  width: 330px;
-  height: 230px;
- 
 
-}
-  .highlighted-projects{
-     padding: 80px 0px;
+/* Responsive */
+@media (max-width: 1024px) {
+  .highlighted-projects swiper-slide img {
+    width: 330px;
+    height: 230px;
+      border-radius: 10px;
   }
+ .highlighted-projects swiper-slide {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+    .slide-title {
+    font-size: 18px;
+  }
+
+  .slide-description {
+    font-size: 14px;
+  }
+  .highlighted-projects {
+    padding: 80px 0px;
+  }
+
   .project-card {
     flex: 0 0 80%;
   }
@@ -241,10 +266,14 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 40px;
+
+  .slide-title {
+    font-size: 16px;
   }
 
+  .slide-description {
+    font-size: 13px;
+  }
   .section-subtitle,
   .section-desc {
     font-size: 16px;
@@ -257,11 +286,14 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
   .slide-description {
     font-size: 12px;
   }
+  
 }
+
 @media (max-width: 480px) {
-   .highlighted-projects{
-     padding: 80px 0px;
+  .highlighted-projects {
+    padding: 80px 0px;
   }
+
   .section-title {
     font-size: 32px;
   }
@@ -270,11 +302,12 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
   .section-desc {
     font-size: 14px;
   }
-  .section-desc{
-    width:100%;
+
+  .section-desc {
+    width: 100%;
     white-space: normal;
-       
   }
+
   .slide-title {
     font-size: 14px;
   }
@@ -283,3 +316,22 @@ transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezi
     font-size: 12px;
   }
 }
+
+@media (min-width: 1024px) and (max-width:1755px) {
+  .highlighted-projects swiper-slide img {
+    width: 320px;
+    height: 200px;
+  }
+ 
+  .project-card {
+    flex: 0 0 33.33%;
+  }
+
+  .highlighted-projects {
+    padding: 80px 0;
+  }
+}
+
+
+
+

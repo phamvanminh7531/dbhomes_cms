@@ -1,5 +1,14 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/features-row.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+
 <section class="features-row">
     <div class="main-content-container" style="display: flex; justify-content: space-between;">
         {% for feature in self.feature_items %}

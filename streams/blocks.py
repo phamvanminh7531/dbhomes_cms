@@ -120,14 +120,14 @@ class HotNews(blocks.StructBlock):
     class Meta:
         template = "streams/hot_news_block.html"
         icon = "folder-open-inverse"
-        label = "Tin tức"
+        label = "Tin tức"          
 
 
 
 
 # "-------------------------------------------------------------------------------------------------------------------"
 class HotProject(blocks.StructBlock):
-    content = TitleContentBlock(required = True, help_text="Nội dung tiêu đề")
+    content = TitleContentBlock(required = True, help_text="Nội dung tiêu đề. Title thẻ: h2, Content thẻ: p ")
     projects = blocks.ListBlock(
         PageChooserBlock(required=True, target_model='project.ProjectPage'),
         help_text="Chọn các dự án nổi bật"
@@ -137,7 +137,6 @@ class HotProject(blocks.StructBlock):
         template = "streams/featured_projects.html"
         icon = "folder-open-inverse"
         label = "Dự án nổi bật"
-
 # "-------------------------------------------------------------------------------------------------------------------"
 
 class HeroSectionBlock(blocks.StructBlock):
@@ -161,13 +160,13 @@ class TechnologyBlock(blocks.StructBlock):
     # Block 1 - Text Left, Image Right
     block1_title_highlight = blocks.CharBlock(
         required=True,
-        help_text="Phần highlight của title (VD: DB.Verse)",
+        help_text="Phần highlight của title (VD: DB.Verse). Thẻ h3",
         max_length=50,
         default="DB.Verse"
     )
     block1_title_main = blocks.CharBlock(
         required=True,
-        help_text="Phần chính của title",
+        help_text="Phần chính của title. Thẻ h3",
         max_length=200,
         default="Theo dõi dự án trong lòng bàn tay"
     )
@@ -196,13 +195,13 @@ class TechnologyBlock(blocks.StructBlock):
     # Block 2 - Image Left, Text Right
     block2_title_highlight = blocks.CharBlock(
         required=True,
-        help_text="Phần highlight của title block 2",
+        help_text="Phần highlight của title block 2. Thẻ h3",
         max_length=50,
         default="DB.Verse"
     )
     block2_title_main = blocks.CharBlock(
         required=True,
-        help_text="Phần chính của title block 2",
+        help_text="Phần chính của title block 2. Thẻ h3",
         max_length=200,
         default="Theo dõi dự án trong lòng bàn tay"
     )
@@ -256,7 +255,7 @@ class PartnerBlock(blocks.StructBlock):
 # "-------------------------------------------------------------------------------------------------------------------"
 
 class EcosystemBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True, help_text="Tiêu đề của phần giới thiệu hệ sinh thái")
+    title = blocks.CharBlock(required=True, help_text="Tiêu đề của phần giới thiệu hệ sinh thái. Thẻ h2")
     description = RichTextBlock(
         required=True,
         help_text="Mô tả ngắn về hệ sinh thái",
@@ -310,7 +309,7 @@ class FooterBlock(blocks.StructBlock):
 class AboutUsBlock(blocks.StructBlock):
     content = RichTextBlock(
         required=True,
-        help_text="Nội dung giới thiệu về công ty",
+        help_text="Nội dung giới thiệu về công ty.",
         features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
     )
     buttons = blocks.ListBlock(CTAButtonBlock(), min_num=0, max_num=2, help_text="Danh sách các nút CTA")
@@ -340,13 +339,13 @@ class ServiceItem(blocks.StructBlock):
 
 class ServicesBlock(blocks.StructBlock):
     """Block cho phần dịch vụ của công ty"""
-    title = blocks.TextBlock(required=True, help_text="Tiêu đề của phần dịch vụ")
+    title = blocks.TextBlock(required=True, help_text="Tiêu đề của phần dịch vụ. Title thẻ h2")
     description = RichTextBlock(
         required=True,
         help_text="Mô tả ngắn về phần dịch vụ",
         features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
     )
-    services = blocks.ListBlock(ServiceItem(), min_num=3, max_num=3, help_text="Danh sách các dịch vụ")
+    services = blocks.ListBlock(ServiceItem(), min_num=3, max_num=3, help_text="Danh sách các dịch vụ. Title thẻ h3")
 
     class Meta:
         template = "streams/services_block.html"
@@ -371,7 +370,7 @@ class AboutUsBlock2(blocks.StructBlock):
 # "-------------------------------------------------------------------------------------------------------------------"
 class AboutUsMissionBlock(blocks.StructBlock):
     feature_items = blocks.ListBlock(FeatureItemBlock(), min_num=1, max_num=4, help_text="Danh sách các số liệu nổi bật")
-    contents = blocks.ListBlock(TitleContentBlock(), min_num=1, max_num=3, help_text="Danh sách các tiêu đề và nội dung")
+    contents = blocks.ListBlock(TitleContentBlock(), min_num=1, max_num=3, help_text="Danh sách các tiêu đề và nội dung. Title thẻ h2")
     image = ImageChooserBlock(required=True, help_text="Hình ảnh minh hoạ cho sứ mệnh")
 
     class Meta:
@@ -397,15 +396,15 @@ class CoreValuesBlock(blocks.StructBlock):
         required=True,
         help_text="Phần chính của title",
         max_length=200,
-        default="Theo dõi dự án trong lòng bàn tay"
+        default="Theo dõi dự án trong lòng bàn tay. Thẻ h2"
     )
     block1_title_highlight = blocks.CharBlock(
         required=True,
-        help_text="Phần highlight của title sẽ có màu khác",
+        help_text="Phần highlight của title sẽ có màu khác. Thẻ h2",
         max_length=50,
         default="DB.Verse"
     )
-    core_items = blocks.ListBlock(TitileContentIconBlock(), min_num=3, max_num=6, help_text="Danh sách các giá trị cốt lõi")
+    core_items = blocks.ListBlock(TitileContentIconBlock(), min_num=3, max_num=6, help_text="Danh sách các giá trị cốt lõi. Title thẻ h3, Content thẻ p")
 
     class Meta:
         template = "streams/core_value_block.html"
@@ -457,7 +456,7 @@ class OfficeMapSectionBlock(blocks.StructBlock):
 class FactoryBlock(blocks.StructBlock):
     """Block giới thiệu nhà máy"""
     image = ImageChooserBlock(required=True, help_text="Hình ảnh nhà máy")
-    title = TitleContentBlock(required=True, help_text="Tiêu đề cho phần giới thiệu nhà máy")
+    title = TitleContentBlock(required=True, help_text="Tiêu đề cho phần giới thiệu nhà máy. Title thẻ h2")
     button = CTAButtonBlock(required=True, help_text="Nút CTA cho phần giới thiệu nhà máy")
 
     class Meta:

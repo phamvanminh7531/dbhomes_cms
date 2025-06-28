@@ -1,5 +1,16 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/faq.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/faq.js' %}"></script>
+{% endaddtoblock %}
+
+
+
 <section class="faq-section" >
     <div class="main-content-container">
         <div class="faq-container">

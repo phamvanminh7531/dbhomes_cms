@@ -113,7 +113,7 @@ class HeroSection(ClusterableModel):
         null=True,
         max_length=255,
         verbose_name="Văn bản hiển thị",
-        help_text="Văn bản hiển thị trên phần Hero"
+        help_text="Văn bản hiển thị trên phần Hero. Thẻ h1"
     )
     is_multi_image = models.BooleanField(
         default=False,

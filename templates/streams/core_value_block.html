@@ -1,5 +1,13 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/core-values-section.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
 <section class="core-values-section">
     <div class="main-content-container">
         <p class="core-values-subtitle" data-aos="fade-down" data-aos-delay="100" data-aos-duration="1200">Giá trị cốt lõi</p>

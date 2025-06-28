@@ -1,5 +1,11 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/vision.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
 <section class="vision-section">
     <div class="main-content-container">
         <div class="vision__stats" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500">

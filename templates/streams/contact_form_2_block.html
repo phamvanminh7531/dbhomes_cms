@@ -1,3 +1,10 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/consulting.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/noti.js' %}"></script>
+{% endaddtoblock %}
 <section class="consultation-section">
     <div class="main-content-container">
         <div class="consultation-container">

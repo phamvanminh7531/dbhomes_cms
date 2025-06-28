@@ -1,5 +1,18 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+<script src="{% static 'js/navbar.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endaddtoblock %}
+
+
 <header class="navbar">
   <div class="main-content-container">
     <div class="logo">

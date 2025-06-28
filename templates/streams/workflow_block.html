@@ -1,6 +1,11 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% load static %}
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/workflow.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
 <section class="workflow">
 <div class="main-content-container">
     <h2 class="workflow__title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">{{ value.title.title }}</h2>

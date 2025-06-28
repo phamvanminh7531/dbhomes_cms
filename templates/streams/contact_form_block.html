@@ -1,5 +1,12 @@
-{% load static %}
-<section class="contact-section" style="background-image: url('{% static 'images/Section9bg.png' %}');">
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/noti.js' %}"></script>
+{% endaddtoblock %}
+<section class="contact-section" id="contact-section" style="background-image: url('{% static 'images/Section9bg.png' %}');">
     <div class="main-content-container">
         <div class="contact-section__overlay">
             <div class="contact-section__container" data-aos="fade-up" data-aos-duration="1200">
@@ -22,6 +29,9 @@
         </div>
     </div>
 </section>
+
+
+
 <div id="successModal" class="modal-overlay">
   <div class="modal-box">
     <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email Sent" class="modal-icon" />

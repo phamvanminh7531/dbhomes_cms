@@ -144,7 +144,7 @@
     height: auto;
   }
 }
-.features-row {
+.faq-section .features-row {
   display: flex;
   justify-content: space-between;
   gap: 30px;

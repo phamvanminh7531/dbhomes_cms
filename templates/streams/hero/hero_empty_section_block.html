@@ -1,3 +1,10 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/hero-section-v2.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
 <section class="hero-section-v2">
     <img src="{{ data.hero_images.first.image.file.url }}" alt="Background" class="hero-bg-img" />
     <!-- Nội dung cố định, nằm trên ảnh nền -->

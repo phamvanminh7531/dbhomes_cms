@@ -1,5 +1,15 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/feedback.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/swipercustom.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+{% endaddtoblock %}
+
 <section class="feedback-news-section">
     <div class="main-content-container">
         <div class="feedback-news-section__container">

@@ -132,11 +132,12 @@ class ProjectPage(Page):
         ], heading="Thông tin cơ bản"),
         
         MultiFieldPanel([
+            
             FieldPanel("intro_image"),
         ], heading="Nội dung"),
         FieldPanel("content"),
         FieldPanel("related_posts", widget=forms.CheckboxSelectMultiple),
-    ]    
+    ]
    
     def get_context(self, request):
         context = super().get_context(request)

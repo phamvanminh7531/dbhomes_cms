@@ -1,5 +1,12 @@
-{% load static %}
 {% load wagtailcore_tags wagtailimages_tags %}
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/animation-footer.js' %}"></script>
+{% endaddtoblock %}
 <section class="footer-db">
   <div class="main-content-container">
     <div class="footer-db-container">
@@ -15,6 +22,14 @@
               style="width: 25px;" />
           </a>
           {% endif %}
+            <div class="footer-db-bottom">
+        <div class="footer-db-member">
+          <p>Một thành viên của</p>
+          <div class="footer-db-member-logo">
+            <img src="{% static 'images/logofooter2.png' %}" alt="Creative Interior Logo" loading="lazy" />
+          </div>
+        </div>
+      </div>
         </div>
 
         <!-- Cột 2: Liên kết -->
@@ -60,14 +75,7 @@
       </div>
 
       <!-- Thành viên -->
-      <div class="footer-db-bottom">
-        <div class="footer-db-member">
-          <p>Một thành viên của</p>
-          <div class="footer-db-member-logo">
-            <img src="{% static 'images/logofooter2.png' %}" alt="Creative Interior Logo" loading="lazy" />
-          </div>
-        </div>
-      </div>
+    
 
       <!-- Bản quyền -->
       <div class="footer-db-copyright">

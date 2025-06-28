@@ -1,27 +1,42 @@
+
+
 .dbverse-section {
- background-image: url('../images//bg.png');
   background-repeat: repeat;
   background-position: 1px 0;
-  padding-bottom: 200px;
+  padding-bottom: 50px;
+    background-image: url('../images//bg.png');
+  position: relative;
+}
+
+
+.dbverse-section .main-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  padding:0px;
 }
 
 .dbverse-section .container {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap:250px;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+   justify-content: normal;
+  align-items: normal;
+  flex-direction: row;
+  touch-action: pan-y;
+    user-select: none;
 }
 
 .dbverse-block {
+  min-width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 40px;
+  padding: 40px 20px;
 }
-
-
 
 .dbverse-block .text-content {
   flex: 1 1 50%;
@@ -68,12 +83,9 @@
   height: 40px;
   object-fit: contain;
 }
-.dbverse-section {
-  position: relative;
-}
 
-/* Tạo vệt sáng ở giữa */
-.dbverse-section::before {
+/* Vệt sáng ở giữa */
+/* .dbverse-section::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -83,68 +95,87 @@
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 30%,  /* sáng mờ hơn */
-    rgba(255, 255, 255, 1) 50%,    /* vùng sáng rõ */
-    rgba(255, 255, 255, 0.8) 70%,  /* sáng mờ hơn */
+    rgba(255, 255, 255, 0.8) 30%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.8) 70%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
+} */
+
+.slider-nav {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.slider-nav button {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 768px) {
-  .dbverse-section {
-    padding-bottom: 100px; /* Giảm khoảng cách dưới */
-  }
 
-  .dbverse-section .container {
-    gap: 100px; /* Giảm khoảng cách giữa các khối */
-  }
 
   .dbverse-block {
-    flex-direction: column; /* Chuyển sang layout dọc */
-    align-items: left; /* Căn giữa */
+
+    align-items: flex-start;
   }
 
   .dbverse-block .text-content {
-    max-width: 100%; /* Cho phép nội dung text mở rộng hơn */
-    text-align: left; /* Căn giữa nội dung */
+    max-width: 100%;
+    text-align: left;
   }
 
   .dbverse-block .text-content h3 {
-    font-size: 28px; /* Giảm kích thước tiêu đề */
+    font-size: 28px;
   }
 
   .dbverse-block .text-content p {
-    font-size: 16px; /* Giảm kích thước chữ */
+    font-size: 16px;
   }
 
   .dbverse-block .image-content {
-    flex: none; /* Ngăn hình ảnh chiếm quá nhiều diện tích */
-    width: 80%; /* Giảm kích thước ảnh */
+    flex: none;
+    width: 80%;
   }
 
   .app-buttons {
-    justify-content: left; /* Căn giữa nút */
+    justify-content: flex-start;
   }
 
   .app-buttons img {
-    height: 35px; /* Giảm kích thước nút */
+    height: 35px;
   }
 }
 
 @media (max-width: 480px) {
   .dbverse-block .text-content h3 {
-    font-size: 24px; /* Giảm tiêu đề hơn nữa */
+    font-size: 24px;
   }
 
   .dbverse-block .text-content p {
-    font-size: 14px; /* Nhỏ hơn cho điện thoại */
+    font-size: 14px;
   }
 
   .dbverse-block .image-content {
-    width: 100%; /* Full width cho màn hình nhỏ */
+    width: 100%;
   }
 
   .app-buttons img {

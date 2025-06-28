@@ -1,3 +1,11 @@
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/showroom.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/map.js' %}"></script>
+{% endaddtoblock %}
+
 <section class="showroom-section">
     <div class="main-content-container">
         <div class="showroom-section__header-row">

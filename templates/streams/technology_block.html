@@ -1,7 +1,15 @@
 <!-- streams/technology_block.html -->
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% load static %}
+
+
+{% load sekizai_tags static %}
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/dbverse.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'js/animation-dbverse.js' %}"></script>
+{% endaddtoblock %}
 
 <section class="dbverse-section">
     <div class="main-content-container">

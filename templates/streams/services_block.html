@@ -1,6 +1,13 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
-{% load static %}
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/services.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
 <section class="services-section">
     <div class="main-content-container">
         <div class="container">

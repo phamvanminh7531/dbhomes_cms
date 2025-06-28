@@ -1,3 +1,10 @@
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
+{% endaddtoblock %}
+{% addtoblock "js" %}
+{% endaddtoblock %}
 <section class="featured-projects">
     <div class="main-content-container">
         <div class="featured-projects__news-header" data-aos="fade-up" data-aos-duration="1000">

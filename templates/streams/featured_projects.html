@@ -1,5 +1,15 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
+{% load sekizai_tags static %}
+
+{% addtoblock "css" %}
+  <link rel="stylesheet" href="{% static 'css/highlightproject.css' %}">
+{% endaddtoblock %}
+{% addtoblock "js" %}
+  <script src="{% static 'js/swipercustom.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+{% endaddtoblock %}
+
 <section class="highlighted-projects">
     <div class="main-content-container">
         <div class="container">
@@ -15,19 +25,21 @@
             <swiper-container class="mySwiper" space-between="30" slides-per-view="1" centered-slides="true" loop="true"
                 effect="slide" init="true" breakpoints='{"768":{"slidesPerView":3,"centeredSlides":true}}'
                 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-out-cubic"
-                autoplay-delay="3000" autoplay-disable-on-interaction="false" speed="1500">
+                 speed="1500" autoplay-delay="3000" autoplay-disable-on-interaction="false">
                 {% for project in self.projects %}
                     <swiper-slide>
                         <a href="{{project.url}}" class="slide-wrapper" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000"
                             data-aos-easing="ease-out-cubic">
-                            <img src="{{ project.intro_image.file.url }}" alt="{{ project.title }}" loading="lazy" />
-                            <div class="slide-info">
-                                <div class="slide-title">{{ project.title }}</div>
-                                <div class="slide-description">
-                                    Dự án: {{ project.project_location }}<br>
-                                    Diện tích: {{ project.project_acreage }} m² | {{ project.project_scale.name }}<br>
-                                    Phong cách: {{ project.design_style.name }}<br>
-                                    Thiết kế & Thi công nội thất: DBHomes
+                            <div class="img-container">
+                                <img src="{{ project.intro_image.file.url }}" alt="{{ project.title }}" loading="lazy" />
+                                <div class="slide-info" style="margin-bottom: 0px;">
+                                    <div class="slide-title">{{ project.title }}</div>
+                                    <div class="slide-description">
+                                        Dự án: {{ project.project_location }}<br>
+                                        Diện tích: {{ project.project_acreage }} m² | {{ project.project_scale.name }}<br>
+                                        Phong cách: {{ project.design_style.name }}<br>
+                                        Thiết kế & Thi công nội thất: DBHomes
+                                    </div>
                                 </div>
                             </div>
                         </a>
