@@ -5,8 +5,9 @@
 {% endaddtoblock %}
 {% addtoblock "js" %}
 <script src="{% static 'js/noti.js' %}"></script>
+<script src="{% static 'js/load-provinces.js' %}"></script>
 {% endaddtoblock %}
-<section class="contact-section" id="contact-section" style="background-image: url('{% static 'images/Section9bg.png' %}');">
+<!-- <section class="contact-section" id="contact-section" style="background-image: url('{% static 'images/Section9bg.png' %}');">
     <div class="main-content-container">
         <div class="contact-section__overlay">
             <div class="contact-section__container" data-aos="fade-up" data-aos-duration="1200">
@@ -28,9 +29,57 @@
             </div>
         </div>
     </div>
+</section> -->
+
+<section class="contact-section" id="contact-section">
+    <div class="main-content-container">
+        <div class="contact-section__overlay">
+            <div class="contact-section__container" data-aos="fade-up" data-aos-duration="1200">
+                <h2 class="contact-section__title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1200">
+                    Đồng hành cùng bạn<br>kiến tạo tổ ấm.
+                </h2>
+                <form id="consultationForm" class="contact-section__form" action="{% url 'contact_form_submit' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-wrapper">
+                        <input type="text" name="name" placeholder="Họ và Tên *" data-aos="fade-up" required data-aos-delay="200"
+                            data-aos-duration="1200" />
+                    </div>
+                    <div class="input-wrapper">
+                    <input type="tel" pattern="^(\+?\d{7,15})$" name="phone_number" placeholder="Số điện thoại *" required data-aos="fade-up" data-aos-delay="300"
+                        data-aos-duration="1200" />
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="custom-select-wrapper" data-aos="fade-up" data-aos-delay="400"
+                            data-aos-duration="1200">
+                            <div class="custom-select-trigger">Tỉnh / Thành phố *</div>
+                            <div class="custom-select-dropdown">
+                                <input type="text" id="provinceSearchInput" placeholder="Tìm tỉnh/thành..." />
+                                <ul id="provinceList" class="custom-options"></ul>
+                            </div>
+                            <input type="hidden" id="provinceSelectHidden" name="address" required>
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-wrapper">
+                        <textarea name="message" required placeholder="Nội dung yêu cầu: 
+        + Tư vấn thiết kế?
+        + Giá gói?
+        + Thi công trong bao lâu?" rows="4" data-aos="fade-up" data-aos-delay="500"
+                            data-aos-duration="1200"></textarea>
+                    </div>
+
+
+
+
+                    <button type="submit" data-aos-delay="200" data-aos="fade-up" data-aos-duration="1200">Gửi yêu
+                        cầu</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
-
-
 
 <div id="successModal" class="modal-overlay">
   <div class="modal-box">

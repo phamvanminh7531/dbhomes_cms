@@ -221,3 +221,5 @@ WAGTAILDOCS_EXTENSIONS = [
     "mp4",
     "mov",
 ]
+
+WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]

@@ -23,8 +23,6 @@ def contact_form_submit(request):
         phone_number = request.POST.get('phone_number')
         address = request.POST.get('address')
         message = request.POST.get('message')
-
-        print(name)
         
         # Validate required fields
         if not all([name, phone_number, address, message]):

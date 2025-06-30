@@ -1,37 +1,95 @@
 {% load sekizai_tags static %}
+
 {% addtoblock "css" %}
-  <link rel="stylesheet" href="{% static 'css/consulting.css' %}" />
+<link rel="stylesheet" href="{% static 'css/consulting.css' %}" />
+
 {% endaddtoblock %}
 {% addtoblock "js" %}
 <script src="{% static 'js/noti.js' %}"></script>
+<script src="{% static 'js/load-provinces-consulting.js' %}"></script>
+
 {% endaddtoblock %}
-<section class="consultation-section">
-    <div class="main-content-container">
-        <div class="consultation-container">
-            <div class="consultation-image">
-                <img src="{{value.image.file.url}}" alt="Phòng ngủ ấm áp" />
-            </div>
-            <div class="consultation-form-wrapper">
-                <h2 class="consultation-title">
-                    Đồng hành cùng bạn <br />kiến tạo tổ ấm.
-                </h2>
-                <p class="consultation-description">
-                    Hãy cho chúng tôi biết nhu cầu của bạn – đội ngũ DBHOMES sẽ liên hệ và tư vấn giải pháp phù hợp nhất
-                    dành
-                    riêng cho tổ ấm của bạn.
-                </p>
-                <form id="consultationForm" method="post" action="{% url 'contact_form_submit' %}">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="Họ và Tên *" required />
-                    <input type="tel" pattern="^(\+?\d{7,15})$" name="phone_number" placeholder="Số điện thoại *" required />
-                    <input type="text" name="address" placeholder="Tỉnh/Thành phố *" required />
-                    <input name="message" placeholder="Nội dung yêu cầu"></input>
-                    <button type="submit">Gửi yêu cầu</button>
-                </form>
-            </div>
-        </div>
+
+<!-- <section class="consultation-section">
+  <div class="main-content-container">
+    <div class="consultation-container">
+      <div class="consultation-image">
+        <img src="{{value.image.file.url}}" alt="Phòng ngủ ấm áp" />
+      </div>
+      <div class="consultation-form-wrapper">
+        <h2 class="consultation-title">
+          Đồng hành cùng bạn <br />kiến tạo tổ ấm.
+        </h2>
+        <p class="consultation-description">
+          Hãy cho chúng tôi biết nhu cầu của bạn – đội ngũ DBHOMES sẽ liên hệ và tư vấn giải pháp phù hợp nhất
+          dành
+          riêng cho tổ ấm của bạn.
+        </p>
+        <form id="consultationForm" method="post" action="{% url 'contact_form_submit' %}">
+          {% csrf_token %}
+          <input type="text" name="name" placeholder="Họ và Tên *" required />
+          <input type="tel" pattern="^(\+?\d{7,15})$" name="phone_number" placeholder="Số điện thoại *" required />
+          <input type="text" name="address" placeholder="Tỉnh/Thành phố *" required />
+          <input name="message" placeholder="Nội dung yêu cầu"></input>
+          <button type="submit">Gửi yêu cầu</button>
+        </form>
+      </div>
     </div>
+  </div>
+</section> -->
+
+<!-- Section: Tư vấn tổ ấm -->
+<section class="consultation-section">
+  <div class="main-content-container">
+    <div class="consultation-container">
+      <div class="consultation-image">
+        <img src="{{value.image.file.url}}" alt="Phòng ngủ ấm áp" />
+      </div>
+      <div class="consultation-form-wrapper">
+        <h2 class="consultation-title">
+          Đồng hành cùng bạn <br />kiến tạo tổ ấm.
+        </h2>
+        <p class="consultation-description">
+          Hãy cho chúng tôi biết nhu cầu của bạn – đội ngũ DBHOMES sẽ liên hệ và tư vấn giải pháp phù hợp nhất dành
+          riêng cho tổ ấm của bạn.
+        </p>
+        <form id="consultationForm" method="post" action="{% url 'contact_form_submit' %}">
+          {% csrf_token %}
+          <div class="input-wrapper">
+            <input name="name" type="text" placeholder="Họ và Tên *" required />
+          </div>
+          <div class="input-wrapper">
+            <input type="text" placeholder="Số điện thoại *" name="phone_number" required pattern="^\+?[0-9]{10,12}$"
+              title="Số điện thoại phải từ 10 đến 12 chữ số, có thể bắt đầu bằng dấu +" />
+          </div>
+          <div class="input-wrapper">
+            <div class="custom-select-wrapper" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200">
+              <div class="custom-select-trigger">Tỉnh / Thành phố *</div>
+              <div class="custom-select-dropdown">
+                <input type="text" id="provinceSearchInput2" placeholder="Tìm tỉnh/thành..." />
+                <ul id="provinceList2" class="custom-options"></ul>
+              </div>
+              <input type="hidden" id="provinceSelectHidden2" name="address" required>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <textarea placeholder="Nội dung yêu cầu: 
+                      + Tư vấn thiết kế?
+                      + Giá gói?
+                      + Thi công trong bao lâu?" rows="4" data-aos="fade-up" data-aos-delay="500"
+              data-aos-duration="1200" name="message"></textarea>
+          </div>
+          <button type="submit">Gửi yêu cầu</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  </div>
 </section>
+
+
+
 <div id="successModal" class="modal-overlay">
   <div class="modal-box">
     <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email Sent" class="modal-icon" />

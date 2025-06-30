@@ -203,18 +203,17 @@ class ProjectIndexPage(RoutablePageMixin, Page):
     @route(r'^$')
     @route(r'^page/(?P<page>\d+)/$')
     def all_projects(self, request,page=1):
+        srch = request.GET.get("srch")
         return self.render(request, page=int(page))
     
     @route(r'^(?P<design_style_slug>[-\w]+)/$')
     @route(r'^(?P<design_style_slug>[-\w]+)/page/(?P<page>\d+)/$')
     def projects_by_design_style(self, request, design_style_slug=None, page=1):
-        print("Stykle")
         return self.render(request, design_style_slug=design_style_slug, page=int(page))
     
     @route(r'^(?P<project_scale_slug>[-\w]+)/$')
     @route(r'^(?P<project_scale_slug>[-\w]+)/page/(?P<page>\d+)/$')
     def projects_by_project_scale(self, request, project_scale_slug=None, page=1):
-        print("Quy mo")
         return self.render(request, project_scale_slug=project_scale_slug, page=int(page))
     
     @route(r'^(?P<design_style_slug>[-\w]+)/(?P<project_scale_slug>[-\w]+)/$')
@@ -222,7 +221,7 @@ class ProjectIndexPage(RoutablePageMixin, Page):
     def products_by_design_style_and_project_scale(self, request, design_style_slug, project_scale_slug, page=1):
         return self.render(request, design_style_slug=design_style_slug, project_scale_slug=project_scale_slug, page=int(page))
     
-    def get_context(self, request, design_style_slug=None, project_scale_slug=None, page=1, **kwargs):
+    def get_context(self, request, design_style_slug=None, project_scale_slug=None, srch=None, page=1, **kwargs):
         context = super().get_context(request)
 
         projects = ProjectPage.objects.live().descendant_of(self)
@@ -236,7 +235,22 @@ class ProjectIndexPage(RoutablePageMixin, Page):
             project_scale = get_object_or_404(ProjectScale, slug=project_scale_slug)
             projects = projects.filter(project_scale = project_scale)
             context['current_project_scale'] = project_scale
+        
+        if srch:
+            srch = srch.strip().lower()
 
+            matched_design_style = DesignStyle.objects.filter(name__icontains=srch).first()
+            matched_project_scale = ProjectScale.objects.filter(name__icontains=srch).first()
+
+            if matched_design_style:
+                projects = projects.filter(design_style=matched_design_style)
+                context['current_design_style'] = matched_design_style
+            
+            if matched_project_scale:
+                projects = projects.filter(project_scale=matched_project_scale)
+                context['current_project_scale'] = matched_project_scale
+
+            context['search_query'] = srch
         
         paginator = Paginator(projects, 9)
 

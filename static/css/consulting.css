@@ -1,7 +1,7 @@
 /* Section wrapper */
 .consultation-section {
   background-repeat: repeat;
-  background-image: url('../images//bg.png');
+  background-image: url('../images/bg.png');
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -53,9 +53,8 @@
 }
 #consultationForm input,
 #consultationForm textarea {
-  padding: 16px 0; /* tăng khoảng cách trên và dưới */
+  padding: 16px 12px; /* tăng khoảng cách trên và dưới */
   border: none;
-  border-bottom: 1px solid #b8a998;
   background-color: transparent;
   font-size: 14px;
   line-height: 1.4;
@@ -73,6 +72,7 @@
 #consultationForm textarea {
   resize: vertical;
   min-height: 60px;
+  width:100%;
 }
 
 #consultationForm button {
@@ -158,6 +158,33 @@
 .modal-button:hover {
   background: linear-gradient(to right, #7c321e, #9b5d4b);
 }
+.consultation-form-wrapper select {
+  padding: 16px 12px;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: none;
+  color: rgba(67, 35, 12, 0.6);
+  width: 100%;
+  appearance: none; /* Ẩn kiểu native */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%2343230C' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 8px 10px;
+}
+
+.consultation-form-wrapper select:invalid {
+  color: rgba(67, 35, 12, 0.6);
+}
+
+.consultation-form-wrapper select option[disabled] {
+  display: none;
+}
+
+
 
 /* Animation */
 @keyframes fadeSlideUp {
@@ -169,4 +196,111 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+.consultation-section .input-wrapper {
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.consultation-section .input-wrapper input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 28px 12px 8px 12px;
+  outline: none;
+  width: 100%;
+
+}
+.consultation-section .input-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px; /* bắt đầu từ text */
+  width: calc(100% - 24px);
+  height: 1px;
+  background-color: #b8a998;
+}
+.consultation-section .custom-select-trigger{
+   color: rgba(67, 35, 12, 0.6);
+    font-size: 14px;
+    line-height: 1.4;
+    padding:16px 12px;
+}
+
+.consultation-section .custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  z-index:1000;
+}
+
+.consultation-section .custom-select-trigger {
+  padding: 28px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+.consultation-section .contact-section__form {
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+.consultation-section .contact-section__container {
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.consultation-section .custom-select-dropdown {
+  background-image: url('../images/bg.png');
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  /* background: white; */
+  z-index: 999;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.consultation-section .custom-select-dropdown input {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  color:black
+}
+
+.consultation-section .custom-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;
+}
+.consultation-section .custom-options::-webkit-scrollbar {
+  display: none;               /* Chrome, Safari */
+}
+.consultation-section .custom-options li {
+  padding: 10px 12px;
+  cursor: pointer;
+  color: black;
+  font-size:14px;
+  color:rgba(67, 35, 12, 1)
+}
+
+.consultation-section .custom-options li:hover {
+  background: #fdfdfd;
 }

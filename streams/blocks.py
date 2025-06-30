@@ -394,15 +394,13 @@ class CoreValuesBlock(blocks.StructBlock):
     """ Block cho các giá trị cốt lỗi của công ty """
     block1_title_main = blocks.CharBlock(
         required=True,
-        help_text="Phần chính của title",
+        help_text="Phần chính của title. Thẻ h2" ,
         max_length=200,
-        default="Theo dõi dự án trong lòng bàn tay. Thẻ h2"
     )
     block1_title_highlight = blocks.CharBlock(
         required=True,
         help_text="Phần highlight của title sẽ có màu khác. Thẻ h2",
         max_length=50,
-        default="DB.Verse"
     )
     core_items = blocks.ListBlock(TitileContentIconBlock(), min_num=3, max_num=6, help_text="Danh sách các giá trị cốt lõi. Title thẻ h3, Content thẻ p")
 

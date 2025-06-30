@@ -78,7 +78,6 @@
 
 
 
-
 .contact-section__container {
   max-width: 800px;
   margin: 0 auto;
@@ -96,18 +95,45 @@
   display: flex;
   flex-direction: column;
 
+}.input-wrapper {
+  position: relative;
+  width: 100%;
+  text-align: left;
 }
+
+.input-wrapper input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 28px 12px 8px 12px;
+  outline: none;
+  width: 100%;
+  
+}
+
+.input-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px; /* bắt đầu từ text */
+  width: calc(100% - 24px);
+  height: 1px;
+  background-color: white;
+}
+
 
 .contact-section__form input,
 .contact-section__form textarea {
   background: transparent;
   border: none;
-  border-bottom: 1px solid #fff;
   color: white;
   font-size: 18px;
-  padding: 28px 0;
+  padding: 28px 12px;
   outline: none;
+  position: relative;
 }
+
 
 .contact-section__form input::placeholder,
 .contact-section__form textarea::placeholder {
@@ -115,27 +141,189 @@
 }
 
 .contact-section__form button {
+  position: relative;
+  overflow: hidden;
   margin-top: 60px;
   background: white;
   color: #8b4e2d;
   border: none;
   border-radius: 30px;
-  padding: 14px;
+  padding: 14px 28px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  z-index: -1; /* Cho text nằm ở lớp cơ bản */
+  transition: color 0.3s ease;
+}
+
+.contact-section__form button::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #96422F;
+  border-radius: 30px; /* Match với nút để không bị vuông */
+  z-index: -2; /* Đẩy lớp nền xuống dưới chữ */
+  transition: transform 0.6s ease;
+  transform: translateY(0%);
+}
+
+.contact-section__form button:hover::before {
+  transform: translateY(100%);
 }
 
 .contact-section__form button:hover {
-   background-color: #96422F;
-
   color: white;
 }
+.contact-section__form select {
+  background: transparent;
+  border: none;
+  width:100%;
+  color: white;
+  font-size: 18px;
+  padding: 28px 12px; /* top-bottom: 14px, left-right: 12px */
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23fff' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px 6px;
+}
+
+
+
+.contact-section__form select:invalid {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-section__form option {
+  color: black;
+  background-color: white;
+}
+
+/* Áp dụng cho dropdown options khi hiển thị */
+.contact-section__form select option {
+  max-height: 300px;  /* Giới hạn chiều cao */
+  overflow-y: auto;   /* Cho phép cuộn */
+    scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;
+}
+ .custom-options::-webkit-scrollbar {
+  display: none;               /* Chrome, Safari */
+}
+
+.contact-section__custom-group input {
+  background: transparent;
+  border: none;
+
+  color: white;
+  font-size: 18px;
+  padding: 28px 12px;
+  width: 100%;
+  outline: none;
+  appearance: none;
+}
+.contact-section__custom-group select {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 28px 12px 80px 12px; /* mặc định nhiều padding */
+  width: 100%;
+  outline: none;
+  appearance: none;
+  line-height: 1.4;
+  transition: padding 0.3s ease;
+}
+.contact-section__custom-group select.select--compact {
+  padding-bottom: 12px; /* thu gọn lại khi chọn "Khác" */
+}
+.contact-section__custom-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-section__custom-group select option {
+  color: black;
+  background-color: white;
+}
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  z-index:1000;
+}
+
+.custom-select-trigger {
+  padding: 28px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+.contact-section__form {
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+.contact-section__container {
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.custom-select-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2b2b2b ;
+  z-index: 999;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.custom-select-dropdown input {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  color:#e0e0e0
+}
+
+.custom-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.custom-options li {
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #e0e0e0;
+}
+
+.custom-options li:hover {
+  background: #f0f0f0;
+  color:#333
+}
+
 @media (max-width: 768px) {
   .contact-section {
-    padding: 60px 16px;
-    height: auto; /* Tránh height cố định 150vh trên điện thoại */
+    padding: 60px 0px;
+    height: auto;
   }
 
   .contact-section__title {
@@ -143,13 +331,34 @@
     margin-bottom: 24px;
   }
 
+  /* Đồng bộ font và padding cho input, select, textarea */
   .contact-section__form input,
-  .contact-section__form textarea {
+  .contact-section__form textarea,
+  .contact-section__form select,
+  .contact-section__custom-group input,
+  .contact-section__custom-group select {
     font-size: 14px;
+    padding: 14px 12px;
   }
 
+  /* Điều chỉnh lại line border giả nếu dùng .input-wrapper::after */
+  .input-wrapper::after {
+    left: 12px;
+    width: calc(100% - 24px);
+  }
+
+  /* Nút bấm */
   .contact-section__form button {
     font-size: 14px;
-    padding: 12px;
+    padding: 12px 20px;
   }
+}
+
+.aos-disabled * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+.input-wrapper textarea{
+    width: 100%;
 }

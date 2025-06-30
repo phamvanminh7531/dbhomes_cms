@@ -42,6 +42,8 @@ body, html {
 }
 
 .navbar .nav-links a {
+  /* width:100%;
+  text-align: center; */
   color: white;
   transition: color 0.3s ease;
 }
@@ -257,6 +259,11 @@ body, html {
     right: 20px;
   }
 
+.navbar .nav-links a {
+  width:100%;
+  text-align: center;
+
+}
   .hero-content h1 {
     font-size: 32px;
   }
