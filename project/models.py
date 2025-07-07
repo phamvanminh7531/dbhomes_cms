@@ -13,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from modelcluster.fields import ParentalManyToManyField
 from streams.blocks import HeadingBlock, ImageBlock, CustomTableBlock, PharagraphBlock, TwoImagesBlock, HeroSectionBlock, ProjectHomePageBlock
 from django.utils.text import slugify
+from unidecode import unidecode
 from django import forms
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -21,6 +22,8 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
 # Create your models here.
+
+
 
 class ProjectPageForm(WagtailAdminPageForm):
     def clean(self):
@@ -154,8 +157,7 @@ class ProjectPage(Page):
         return context
     
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
+        self.slug = slugify(unidecode(self.title))
         super().save(*args, **kwargs)
     
     class Meta:
@@ -204,7 +206,7 @@ class ProjectIndexPage(RoutablePageMixin, Page):
     @route(r'^page/(?P<page>\d+)/$')
     def all_projects(self, request,page=1):
         srch = request.GET.get("srch")
-        return self.render(request, page=int(page))
+        return self.render(request, srch=srch, page=int(page))
     
     @route(r'^(?P<design_style_slug>[-\w]+)/$')
     @route(r'^(?P<design_style_slug>[-\w]+)/page/(?P<page>\d+)/$')

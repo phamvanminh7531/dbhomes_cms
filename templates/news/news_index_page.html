@@ -25,7 +25,7 @@
             {% for news in news_list %}
                 <div class="project-card">
                     <div class="image-wrapper">
-                        <img src="{{ news.intro_image.file.url }}" alt="{{ news.title }}" />
+                        <a href="{{ news.url }}"><img src="{{ news.intro_image.file.url }}" alt="{{ news.title }}" /></a>
                         <div class="news-badge">{{ news.category.name }}</div>
                     </div>
                     <div class="project-info">

@@ -1,0 +1,19 @@
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: white;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.5s ease;
+}
+#loading-screen .logo-container{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+#loading-screen .logo-container img{
+     filter: brightness(0) saturate(100%) invert(17%) sepia(67%) saturate(599%) hue-rotate(0deg) brightness(90%) contrast(85%);
+}

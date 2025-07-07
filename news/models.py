@@ -1,5 +1,6 @@
 # Create your models here.
 from django.db import models
+from django.dispatch import receiver
 from django.shortcuts import get_object_or_404
 from wagtail.snippets.models import register_snippet
 from wagtail.models import Page
@@ -13,12 +14,16 @@ from modelcluster.fields import ParentalManyToManyField
 from streams.blocks import HeadingBlock, ImageBlock, CustomTableBlock, PharagraphBlock, TwoImagesBlock, HeroSectionBlock
 from django.utils.text import slugify
 from django import forms
+from unidecode import unidecode
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
 from wagtailseo.models import SeoMixin, SeoType
+from django.core.exceptions import ValidationError
+
+
 
 class NewsPageForm(WagtailAdminPageForm):
     def clean(self):
@@ -128,11 +133,26 @@ class NewsPage(SeoMixin, Page):
         else:
             context["related_posts"] = NewsPage.objects.live().exclude(id=self.id)[:4]
         return context
+
     
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
+        self.slug = slugify(unidecode(self.title))
         super().save(*args, **kwargs)
+    
+    def clean(self):
+        super().clean()
+
+        # Tạo slug giống như trong save
+        generated_slug = slugify(unidecode(self.title))
+
+        # Kiểm tra slug đã tồn tại chưa, trừ chính nó (nếu đang sửa)
+        existing_pages = NewsPage.objects.filter(slug=generated_slug).exclude(pk=self.pk)
+
+        if existing_pages.exists():
+            raise ValidationError({
+                'title': "Tiêu đề này sau khi chuyển thành slug đã bị trùng. Vui lòng thêm salt cho tiêu đề."
+            })
+    
     
     class Meta:
         verbose_name = "Bài viết Tin Tức"
@@ -164,7 +184,7 @@ class NewsIndexPage(RoutablePageMixin, Page):
     def get_context(self, request, category_slug=None, page=1, **kwargs):
         context = super().get_context(request)
 
-        news = NewsPage.objects.live()
+        news = NewsPage.objects.live().order_by('-date_created')
 
         if category_slug:
             category = get_object_or_404(NewsCategory, slug=category_slug)

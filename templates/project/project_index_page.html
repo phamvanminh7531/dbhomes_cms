@@ -65,19 +65,32 @@
                 {% endif %}
             </div>
 
-            <div class="projects-section__search-wrapper">
+            <!-- <div class="projects-section__search-wrapper">
                 <input type="text" class="projects-section__search-input" placeholder="Tìm kiếm..." />
                 <img src="{% static 'images/iconsearch.png' %}" alt="search icon" class="search-icon" />
-            </div>
+            </div> -->
+            <form method="get" action="" class="projects-section__search-wrapper">
+                <input 
+                    type="text" 
+                    name="srch" 
+                    class="projects-section__search-input" 
+                    placeholder="Tìm kiếm..." 
+                    value="{{ request.GET.srch|default_if_none:'' }}"
+                />
+                <button type="submit" style="background: none; border: none; padding: 0;">
+                    <img src="{% static 'images/iconsearch.png' %}" alt="search icon" class="search-icon" />
+                </button>
+            </form>
         </div>
 
         <div class="projects-section__grid">
             {% for project in projects %}
+            
             <div class="projects-section__item">
                 <div class="projects-section__image-wrapper">
-                    <img src="{{ project.intro_image.file.url }}" alt="{{ project.title }}" />
+                    <a href="{{ project.url }}"><img src="{{ project.intro_image.file.url }}" alt="{{ project.title }}" /></a>
                 </div>
-                <h3 class="projects-section__title">{{ project.title }}</h3>
+                <a href="{{ project.url }}"><h3 class="projects-section__title">{{ project.title }}</h3></a>
                 <div class="projects-section__desc">
                     <p>{{ project.design_style.name }} | {{ project.project_scale.name }} | {{ project.project_acreage}} m²</p>
                 </div>

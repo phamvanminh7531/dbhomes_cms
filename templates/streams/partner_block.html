@@ -22,7 +22,7 @@
             <div class="partners-banner" data-animate="fade-up" data-delay="0.4s">
                 <div class="video-wrapper">
                 {% if self.main_media.video_file %}
-                    <video class="video-frame" controls autoplay muted loop playsinline>
+                    <video class="video-frame" preload="metadata" autoplay muted loop playsinline>
                     <source src="{{ self.main_media.video_file.url }}" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ video.
                     </video>
