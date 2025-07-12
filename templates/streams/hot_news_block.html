@@ -17,7 +17,7 @@
             {% for news in self.news_list %}
                 <div class="project-card" data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000">
                     <div class="image-wrapper">
-                        <img src="{{news.intro_image.file.url }}" alt="{{ news.title }}" />
+                        <a href="{{ news.url }}"><img src="{{news.intro_image.file.url }}" alt="{{ news.title }}" /></a>
                         <div class="news-badge">{{ news.category.name }}</div>
                     </div>
                     <div class="project-info">

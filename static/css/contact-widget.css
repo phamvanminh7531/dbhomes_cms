@@ -1,0 +1,123 @@
+.contact-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.main-button i {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #a44e36;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.main-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.menu {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.menu-item i,
+.menu-item img {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  object-fit: contain; /* cho ảnh khỏi méo */
+  text-align: center;
+  font-size: 24px;
+}
+
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(12deg); }
+  30% { transform: rotate(-12deg); }
+  45% { transform: rotate(10deg); }
+  60% { transform: rotate(-10deg); }
+  75% { transform: rotate(6deg); }
+  90% { transform: rotate(-6deg); }
+}
+
+.main-button {
+  position: relative;
+  animation: shake 1.2s infinite ease-in-out;
+  animation-delay: 3s; /* rung sau mỗi 3s */
+}
+
+/* Sóng xung kích */
+.main-button::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  background-color: rgba(164, 78, 54, 0.7); /* giống màu nền */
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+
+.bg-0 {
+  background-color: #8B4513; /* Phone */
+}
+.bg-1 {
+  background-color: #0078FF; /* Messenger */
+}
+.bg-2 {
+  background-color: #2EA8FF; /* Zalo */
+}

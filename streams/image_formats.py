@@ -20,6 +20,6 @@ register_image_format(
         'captioned_fullwidth', 
         'Full width captioned', 
         'bodytext-image', 
-        'width-750'
+        'width-800'
     )
 )

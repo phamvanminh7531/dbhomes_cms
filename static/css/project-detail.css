@@ -1,3 +1,5 @@
+
+
 .project-detail {
   background-image: url('../images//bg.png');
   background-color: #f9f3ed;
@@ -56,12 +58,14 @@ color: rgba(67, 35, 12, 0.6);
   width:815px;
 }
 
-.project-detail__breadcrumbs {
+.project-detail__breadcrumbs{
   font-size: 14px;
   color: #999;
   margin-bottom: 10px;
 }
-
+.project-detail__breadcrumbs a {
+   color: inherit;
+}
 .project-detail__title {
   font-size: 38px;
   font-weight: bold;
@@ -107,7 +111,7 @@ color: rgba(67, 35, 12, 0.6);
   margin-top: 8px;
   font-size: 14px;
   color: #43230C;
-  text-align: left; /* canh trái */
+  text-align: center; /* canh trái */
 }
 
 .project-detail__sidebar {
@@ -133,7 +137,7 @@ color: rgba(67, 35, 12, 0.6);
 
 .project-detail__item {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
   align-items: flex-start;
   
 }
@@ -244,10 +248,10 @@ color: rgba(67, 35, 12, 0.6);
   flex-direction: row;
 }
 .project-detail__caption p{
-  text-align: justify;
+  text-align: center;
 }
 .project-detail__image-row img {
-  width: 48.9%;
+  width: 48.5%;
   height: auto;
   display: block;
   border-radius: 8px;
@@ -263,6 +267,7 @@ color: rgba(67, 35, 12, 0.6);
 .project-detail__description ul {
   padding-left: 20px;
   margin: 0;
+  margin-top: 12px;
   list-style-type: disc;
   color:#43230C;
 }
@@ -277,34 +282,10 @@ color: rgba(67, 35, 12, 0.6);
 
 .project-detail__description b {
   font-weight: 600;
+
    color:#43230C;
 }
 
-/* Tablet - nhỏ hơn 1024px */
-@media (max-width: 1024px) {
-  .project-detail__container {
-    flex-direction: column;
-    padding: 0 20px;
-  }
-
-  .project-detail__main {
-    width: 100%;
-  }
-
-  .project-detail__sidebar {
-    height: auto;
-    margin-top: 30px;
-  }
-
-  .project-detail__item-thumb {
-    width: 200px;
-    height: auto;
-  }
-
-  .project-detail__item-text {
-    max-width: 100%;
-  }
-}
 
 /* Mobile - nhỏ hơn 600px */
 @media (max-width: 600px) {
@@ -385,4 +366,56 @@ color: rgba(67, 35, 12, 0.6);
 .project-detail__image-row img {
   width: 45%;
 }
+}
+
+.project-detail__description figure{
+  text-align: center;
+  margin-top:20px;
+  margin-bottom: 36px;
+}
+.project-detail__description figure img{
+  width:100%;
+
+  display: block;
+  border-radius: 8px;
+}
+.project-detail__description a{
+     text-decoration: underline !important;
+    color: #43230C;
+    font-weight: 900;
+}
+@media (max-width: 1145px) {
+  .project-detail__container {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+ 
+   .project-detail__main {
+    width: 100%;
+  }
+
+  .project-detail__sidebar {
+    height: auto;
+    margin-top: 30px;
+  }
+
+  .project-detail__item-thumb {
+    width: 200px;
+    height: auto;
+  }
+
+  .project-detail__item-text {
+    max-width: 100%;
+  }
+}
+.project-detail__description h2{
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.project-detail__description h3{
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 20px;
 }

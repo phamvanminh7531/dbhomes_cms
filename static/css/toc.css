@@ -1,0 +1,100 @@
+.toc-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 24px;
+    font-family: "Segoe UI", sans-serif;
+    position: relative;
+   width:50%;
+}
+
+
+.toc-container.closed {
+  width:200px;
+  background-color: transparent;
+}
+/* Header with title + toggle button */
+.toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.toc-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.toc-toggle {
+    font-size: 18px;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #333;
+}
+
+.toc-toggle:hover {
+    background-color: #eee;
+}
+
+/* TOC List */
+.toc {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.toc ol.toc-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.toc-list .toc-link {
+    text-decoration: none;
+    color: #222;
+    display: inline-block;
+    padding: 3px 0;
+}
+
+.toc-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.is-active-li > .toc-link {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Nested levels */
+.toc-list .toc-list {
+    padding-left: 20px;
+}
+
+.toc {
+    display: none;
+}
+
+.toc.show {
+    display: block;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .toc-container {
+    width: 100% !important;
+    margin-bottom: 16px;
+  }
+
+  
+
+  .toc-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

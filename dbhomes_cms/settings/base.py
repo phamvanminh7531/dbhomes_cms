@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
+    "wagtailset.draftail_anchors",
     "wagtail",
     "modelcluster",
     "taggit",
@@ -91,6 +92,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "wagtail.contrib.settings.context_processors.settings",
                 "streams.context_processors.footer_settings",
+                "streams.context_processors.contact_buttons",
                 "streams.context_processors.navbar",
                 "sekizai.context_processors.sekizai"
             ],

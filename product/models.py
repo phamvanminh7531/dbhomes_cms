@@ -74,6 +74,12 @@ class ProductPage(Page):
         FieldPanel('tags', widget=forms.CheckboxSelectMultiple),
     ]
 
+    def get_sitemap_urls(self, request=None):
+        # Return an empty list to exclude this page and its children from the sitemap
+        return []
+
+
+
 class ProductIndexPage(RoutablePageMixin, Page):
     subpage_types = ['product.ProductPage']
 
@@ -136,3 +142,4 @@ class ProductIndexPage(RoutablePageMixin, Page):
         })
 
         return context
+    

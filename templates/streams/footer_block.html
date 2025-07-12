@@ -7,6 +7,7 @@
 {% addtoblock "js" %}
 <script src="{% static 'js/animation-footer.js' %}"></script>
 {% endaddtoblock %}
+
 <section class="footer-db">
   <div class="main-content-container">
     <div class="footer-db-container">
@@ -49,7 +50,7 @@
               {% for address in footer_settings.office_addresses.all %}
               <div>
                   <strong style="font-weight: 600;">{{ address.title }}</strong>
-                  <p style="margin-top: 20px;">{{ address.address}}</p>
+                  <a class="gmap-url" target="_blank" href="{{ address.gmap_url }}"><p style="margin-top: 20px;">{{ address.address}}</p></a>
               </div>
               {% endfor %}
           </div>

@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="{% static 'css/feature-project.css' %}" />
 <link rel="stylesheet" href="{% static 'css/share.css' %}" />
 <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.34.0/dist/tocbot.css">
+<link rel="stylesheet" href="{% static 'css/toc.css' %}">
 {% endblock %}
-
-
 
 {% block content %}
 {% for block in page.hero_section %}
@@ -21,7 +21,7 @@
 {% endfor %}
 <section class="project-detail">
     <div class="project-detail__container">
-        <div class="project-detail__main">
+        <div class="project-detail__main" id="content">
             <div class="project-detail__breadcrumbs">
                 {% for ancestor in page.get_ancestors %}
                 {% if not ancestor.is_root %}
@@ -36,10 +36,19 @@
             </div>
 
             <div class="project-detail__title">
-                <h1>{{ page.title }}</h1>
+                <h1 id="title">{{ page.title }}</h1>
+            </div>
+            <div class="toc-container">
+                <div class="toc-header">
+                    <span class="toc-title">Mục lục</span>
+                    <button class="toc-toggle" onclick="toggleTOC()" aria-label="Toggle TOC">
+                        ☰
+                    </button>
+                </div>
+                <nav class="toc show" id="toc"></nav>
             </div>
             {% for block in page.content %}
-            {% include_block block %}
+                {% include_block block %}
             {% endfor %}
         </div>
         <aside class="project-detail__sidebar">
@@ -98,6 +107,8 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/tocbot@4.34.0/dist/tocbot.min.js"></script>
+<script src="{% static 'js/toc.js' %}"></script>
 <script src="{% static 'js/glightbox.js' %}"></script>
 <script src="{% static 'js/share.js' %}"></script>
 {% endblock %}

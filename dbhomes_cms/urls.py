@@ -8,8 +8,14 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from wagtail.contrib.sitemaps.views import sitemap
+from .sitemaps import NewsSitemap, ProjectSitemap
 
 from search import views as search_views
+
+sitemaps = {
+    'news': NewsSitemap,
+    'project': ProjectSitemap,
+}
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -17,7 +23,8 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("contact/", include("contact.urls")),
     path("search/", search_views.search, name="search"),
-    path('sitemap.xml', sitemap),
+    # path('sitemap.xml', sitemap, {"sitemaps": sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', sitemap, name='django.contrib.sitemaps.views.sitemap'),
 
 ]
 

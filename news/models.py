@@ -90,7 +90,7 @@ class NewsPage(SeoMixin, Page):
         blank=True,
         related_name='related_to',
         verbose_name="Bài viết liên quan",
-        help_text="Chọn tối đa 5 bài viết liên quan."
+        help_text="Chọn tối đa 3 bài viết liên quan."
     )
 
 
@@ -129,14 +129,15 @@ class NewsPage(SeoMixin, Page):
         elif self.category:
             context["related_posts"] = NewsPage.objects.live().filter(
                 category=self.category
-            ).exclude(id=self.id)[:4]
+            ).exclude(id=self.id)[:3]
         else:
-            context["related_posts"] = NewsPage.objects.live().exclude(id=self.id)[:4]
+            context["related_posts"] = NewsPage.objects.live().exclude(id=self.id)[:3]
         return context
 
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(unidecode(self.title))
+        if not self.slug:
+            self.slug = slugify(unidecode(self.title))
         super().save(*args, **kwargs)
     
     def clean(self):

@@ -12,6 +12,7 @@ from wagtail.admin.forms import WagtailAdminModelForm
 from django.core.exceptions import ValidationError
 
 
+
 @register_snippet
 class Menu(ClusterableModel):
     title = models.CharField(max_length=100)
@@ -63,6 +64,34 @@ class MenuItem(Orderable):
 
     def __str__(self):
         return self.label
+
+# "-------------------------------------------------------------------------------------------------------------------"
+@register_snippet
+class ContactButton(models.Model):
+    TYPE_CHOICES = [
+        ("call", "Gọi ngay"),
+        ("messenger", "Messenger"),
+        ("zalo", "Zalo"),
+    ]
+
+    type = models.CharField(max_length=50, choices=TYPE_CHOICES, default="custom", verbose_name="Loại nút")
+    url = models.CharField(verbose_name="Liên kết", max_length=255)
+    label = models.CharField(max_length=100, verbose_name="Nhãn hiển thị", default="")
+
+    class Meta:
+        verbose_name = "Nút liên hệ"
+        verbose_name_plural = "Danh sách nút liên hệ"
+
+    def __str__(self):
+        return f"{self.get_type_display()} - {self.url}"
+
+    panels = [
+        FieldPanel("type"),
+        FieldPanel("label"),
+        FieldPanel("url"),
+    ]
+
+
     
 # "-------------------------------------------------------------------------------------------------------------------"
 
@@ -337,9 +366,12 @@ class FooterOfficeAddress(Orderable):
         help_text="Địa chỉ văn phòng"
     )
 
+    gmap_url = models.CharField(max_length=255, blank=True, null=True, default="")
+
     panels = [
         FieldPanel('title'),
         FieldPanel('address'),
+        FieldPanel('gmap_url'),
     ]
 
     class Meta:

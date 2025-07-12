@@ -10,6 +10,7 @@ from wagtail.images.blocks import ImageChooserBlock  # Import này quan trọng
 from wagtail.snippets.blocks import SnippetChooserBlock
 from .models import Menu, HeroSection  # Import Menu model
 from wagtail.contrib.table_block.blocks import TableBlock
+from django.utils.text import slugify
 
 
 
@@ -561,10 +562,15 @@ class HeadingBlock(blocks.StructBlock):
     """"Block cho tiêu đề"""
     heading_text = blocks.CharBlock(required=True)
 
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        context['heading_id'] = slugify(value['heading_text'])
+        return context
+
     class Meta:
         template = "streams/heading_block.html"
         icon = "title"
-        label = "Tiêu đề"
+        label = "Tiêu đề h2"
 
 class ImageBlock(blocks.StructBlock):
     """Single Image Block"""
@@ -591,7 +597,7 @@ class PharagraphBlock(blocks.StructBlock):
     """Paragraph Block"""
     text = RichTextBlock(
         required=True,
-        features=["h2", "h3", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
+        features=["anchor-identifier", "h1", "h2", "h3", "h4", "h5", "bold", "italic", "ol", "ul", "hr", "link", "document-link", "image", "embed", "blockquote", "superscript", "subscript", "strikethrough", "code"]
     )
 
     class Meta:

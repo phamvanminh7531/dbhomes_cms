@@ -1,8 +1,4 @@
-<div class="project-detail__image-group">
-    <img src="{{ self.image.file.url }}" />
-    <div class="project-detail__caption">
-        <p>
-            {{ self.caption|default:""}}
-        </p>
-    </div>
-</div>
+<figure class="project-detail__image-group">
+    <img src="{{ self.image.file.url }}" alt="{{ self.caption }}" class="bodytext-image glightbox"/>
+    <figcaption class="project-detail__caption">{{ self.caption|default:""}}</figcaption>
+</figure>

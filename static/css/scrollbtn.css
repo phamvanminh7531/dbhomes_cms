@@ -1,0 +1,73 @@
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+background-color: #F5EFE6;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Vòng chạy xung quanh */
+#scrollToTopBtn::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(#8C795F var(--scroll, 0%), transparent 0%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Lớp che trong để tạo đường viền mảnh */
+#scrollToTopBtn::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+background-color: #F5EFE6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+
+
+
+#scrollToTopBtn i {
+  position: relative;
+  z-index: 2;
+  font-size: 16px; /* hoặc tùy chỉnh kích thước */
+  color: black;
+}
+.rotating-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotateText 8s linear infinite;
+  transform-origin: center;
+  z-index: 1;
+}
+
+@keyframes rotateText {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

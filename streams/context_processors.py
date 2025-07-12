@@ -1,4 +1,4 @@
-from .models import FooterSettings, Menu
+from .models import FooterSettings, Menu, ContactButton
 
 def footer_settings(request):
     """
@@ -22,6 +22,11 @@ def footer_settings(request):
         return {
             'footer_settings': None
         }
+
+def contact_buttons(request):
+    return {
+        'contact_buttons': ContactButton.objects.all()
+    }
 
 def navbar(request):
     """

@@ -1,6 +1,6 @@
 .projects-section {
+  background-image: url('../images//bg.png');
   padding: 60px 20px;
-   background-image: url('../images//bg.png');
   background-repeat: repeat;
 }
 .projects-section__filter-bar {
@@ -21,7 +21,6 @@
   display: flex;
   gap:12px;
     flex-wrap: wrap;
-
 }
 .filter-button {
   padding: 8px 16px;
@@ -47,7 +46,8 @@
 }
 .filter-tags-wrapper{
   display: flex;
-  gap:12px
+  gap:12px;
+  flex-wrap: wrap;
 }
 .filter-tag {
   background-color: #C8B497;
@@ -70,32 +70,40 @@
   max-height: 500px; /* hoặc auto nếu bạn dùng JS */
 }
 
-.dropdown-menu li {
-  position: relative; /* cần thiết để pseudo-element căn theo li */
+/* Cho li trong thẻ a */
+.dropdown-menu a > li {
   padding: 8px 16px;
   cursor: pointer;
   white-space: nowrap;
+  position: relative;
+  list-style: none;
+  background: none;
 }
 
-.dropdown-menu li::after {
+/* Đường gạch dưới li */
+.dropdown-menu a > li::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 16px; /* cách lề trái */
-  width: 80%;  /* chiều dài đường gạch */
+  left: 16px;
+  width: 80%;
   height: 1px;
   background-color: #43230c47;
 }
 
-.dropdown-menu li:last-child::after {
-  display: none; /* không có gạch dưới ở item cuối */
+.dropdown-menu a:last-child > li::after {
+  display: none;
 }
-.dropdown-menu li:last-child {
-  border-bottom: none;
-}
-.dropdown-menu li:hover {
+
+.dropdown-menu a > li:hover {
   background-color: #f0f0f0;
 }
+
+/* Nếu cần xử lý hover toàn bộ a cũng highlight li */
+.dropdown-menu a:hover > li {
+  background-color: #f0f0f0;
+}
+
 .dropdown-menu {
     position: absolute;
     display: none;
@@ -114,10 +122,10 @@
 }
 
 
-.dropdown-menu li {
-  list-style: none;
-  background: none;
-
+.dropdown-menu a {
+  display: block;
+  text-decoration: none;
+  color: #43230C; /* thay vì none */
 }
 
 
@@ -200,7 +208,7 @@
 .projects-section__link {
   font-size: 16px;
   color: #43230C;
-  text-decoration: underline;
+  text-decoration: underline !important;
   font-weight: 500;
 }
 .projects-section__pagination {
@@ -233,14 +241,9 @@
   text-decoration: underline;
 }
 @media (max-width: 768px) {
-  .projects-section__grid {
-    grid-template-columns: 1fr; /* 1 cột */
-  }
+
   .projects-section__title {
   font-size: 24px;
-}
-.filter-tags-wrapper{
-  flex-wrap: wrap;
 }
 .filter-button{
   padding: 8px 6px;
@@ -263,13 +266,20 @@ min-width: 140px;
   top: 100%;
   left: 0;
   display: none;
-  z-index: 9999; /* cao hơn nữa để nổi trên các thứ khác */
+  z-index: 9999;
 }
 
 .dropdown.open .dropdown-menu {
   display: block;
 }
 }
-@media (max-width: 324px){
-
+@media (max-width: 768px) {
+  .projects-section__grid {
+  grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 666px) {
+  .projects-section__grid {
+  grid-template-columns: repeat(1, 1fr);
+  }
 }

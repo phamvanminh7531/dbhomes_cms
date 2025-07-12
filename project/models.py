@@ -23,8 +23,6 @@ from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
 # Create your models here.
 
-
-
 class ProjectPageForm(WagtailAdminPageForm):
     def clean(self):
         cleaned_data = super().clean()
@@ -151,13 +149,14 @@ class ProjectPage(Page):
         elif self.design_style:
             context["related_posts"] = ProjectPage.objects.filter(
                 design_style = self.design_style
-            ).exclude(id=self.id)[:4]
+            ).exclude(id=self.id)[:3]
         else:
-            context["related_posts"] = ProjectPage.objects.live().exclude(id=self.id)[:4]
+            context["related_posts"] = ProjectPage.objects.live().exclude(id=self.id)[:3]
         return context
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(unidecode(self.title))
+        if not self.slug:
+            self.slug = slugify(unidecode(self.title))
         super().save(*args, **kwargs)
     
     class Meta:
