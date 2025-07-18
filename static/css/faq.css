@@ -149,7 +149,6 @@
   justify-content: space-between;
   gap: 30px;
   padding: 60px 0 120px;
-  background-image: url('../images/stripe-bg.png'); /* nền sọc nếu có */
   background-size: cover;
   text-align: center;
   flex-wrap: wrap;

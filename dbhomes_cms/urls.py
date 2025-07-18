@@ -9,7 +9,6 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from wagtail.contrib.sitemaps.views import sitemap
 from .sitemaps import NewsSitemap, ProjectSitemap
-
 from search import views as search_views
 
 sitemaps = {

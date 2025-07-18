@@ -11,6 +11,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from .models import Menu, HeroSection  # Import Menu model
 from wagtail.contrib.table_block.blocks import TableBlock
 from django.utils.text import slugify
+from wagtailvideos.blocks import VideoChooserBlock
 
 
 
@@ -226,7 +227,7 @@ class TechnologyBlock(blocks.StructBlock):
 
 class MediaBlock(StructBlock):
     """Chọn video hoặc nhập link video"""
-    video_file = DocumentChooserBlock(required=False, help_text="Tải lên video (.mp4, .mov)")
+    video_file = VideoChooserBlock(label="Video")
     video_url = URLBlock(required=False, help_text="Hoặc nhập link video YouTube/Vimeo")
 
     class Meta:
@@ -518,7 +519,7 @@ class ContactFormBlock(blocks.StructBlock):
 class ProjectCategoryItems(blocks.StructBlock):
     title = blocks.CharBlock(required=True, help_text="Tên danh mục")
     image = ImageChooserBlock(required=True, help_text="Hình ảnh đại diện cho danh mục dự án")
-    link = blocks.CharBlock(required=True, help_text="Slug dẫn tới danh sách dự án vs: /du-an/quy-mo-can-ho-2pn/")
+    project_type = SnippetChooserBlock("project.ProjectType")
     
     
     class Meta:

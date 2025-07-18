@@ -22,7 +22,7 @@
 
         <div class="living-space-section__grid">
             {% for item in self.items %}
-                <a href="{{item.link}}" class="living-space-section__item aos-init aos-animate" data-aos="fade-up"
+                <a href="/du-an/{{item.project_type.slug}}/" class="living-space-section__item aos-init aos-animate" data-aos="fade-up"
                     data-aos-delay="300" data-aos-duration="1000">
                     <div class="living-space-section__image-wrapper">
                         <img src="{{item.image.file.url}}" alt="{{item.title}}">

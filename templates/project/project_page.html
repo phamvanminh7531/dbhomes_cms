@@ -21,15 +21,19 @@
     <div class="project-detail__container">
         <div class="project-detail__main">
             <div class="project-detail__breadcrumbs">
-                {% for ancestor in page.get_ancestors %}
-                {% if not ancestor.is_root %}
-                <a class="breadcrumb" href="{{ ancestor.url }}">{{ ancestor.title }}</a>
-                {% if not forloop.last %} › {% endif %}
-                {% endif %}
+                <!-- {% for ancestor in page.get_ancestors %}
+                    {% if not ancestor.is_root %}
+                        <a class="breadcrumb" href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                        {% if not forloop.last %} › {% endif %}
+                    {% endif %}
                 {% endfor %}
                 {% if not page.is_root %}
+                    › <span class="highlight">{{ page.title }}</span>
+                {% endif %} -->
+
+                <a class="breadcrumb" href="/">Trang chủ</a>
+                › <a class="breadcrumb" href="/du-an/{{ page.project_type.slug }}">Dự án</a>
                 › <span class="highlight">{{ page.title }}</span>
-                {% endif %}
             </div>
 
             <div class="project-detail__title">

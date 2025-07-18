@@ -27,6 +27,15 @@ class ProjectPageForm(WagtailAdminPageForm):
     def clean(self):
         cleaned_data = super().clean()
         related_posts = cleaned_data.get("related_posts")
+        project_type = cleaned_data.get("project_type")
+        project_scale = cleaned_data.get("project_scale")
+
+        if project_scale and project_type:
+            if project_scale.parent_id != project_type.id:
+                self.add_error(
+                    "project_scale",
+                    "Quy mô dự án phải thuộc đúng loại dự án đã chọn."
+                )
 
         if related_posts and len(related_posts) != 3:
             self.add_error(
@@ -47,16 +56,45 @@ class DesignStyle(models.Model):
         verbose_name = "Danh sách phong cách thiết kế"
         verbose_name_plural = "Danh sách phong cách thiết kế"
 
+
 @register_snippet
-class ProjectScale(models.Model):
-    name = models.CharField(max_length=50)
+class ProjectType(ClusterableModel):
+    name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("slug"),
+        InlinePanel("project_scale", label="Quy mô dự án"),
+    ]
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Loại dự án"
+        verbose_name_plural = "Loại dự án"
+
+
+class ProjectScale(Orderable):
+    parent = ParentalKey(ProjectType, on_delete=models.CASCADE, related_name="project_scale", null=True)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True)
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("slug"),
+    ]
+
+    def __str__(self):
+        return self.name
+    
     class Meta:
         verbose_name = "Danh sách quy mô dự án"
         verbose_name_plural = "Danh sách quy mô dự án"
+
+
+
 
 class ProjectHomePage(Page):
     body = StreamField([
@@ -92,10 +130,19 @@ class ProjectPage(Page):
         on_delete=models.PROTECT,
         related_name="design_style"
     )
+
+    project_type = models.ForeignKey(
+        "project.ProjectType",
+        on_delete=models.PROTECT,
+        related_name="project_type",
+        null=True
+    )
+
     project_scale = models.ForeignKey(
         "project.ProjectScale",
         on_delete=models.PROTECT,
-        related_name="project_scale"
+        related_name="project_scale",
+        null=True
     )
 
     intro_image = models.ForeignKey(
@@ -128,12 +175,12 @@ class ProjectPage(Page):
         MultiFieldPanel([
             FieldPanel("project_location"),
             FieldPanel("project_acreage"),
-            FieldPanel("design_style"),
+            FieldPanel("project_type"),
             FieldPanel("project_scale"),
+            FieldPanel("design_style"),
         ], heading="Thông tin cơ bản"),
         
         MultiFieldPanel([
-            
             FieldPanel("intro_image"),
         ], heading="Nội dung"),
         FieldPanel("content"),
@@ -178,63 +225,77 @@ class ProjectIndexPage(RoutablePageMixin, Page):
     @route(r'^(?P<slug>[-\w]+)/page/(?P<page>\d+)/$')
     def resolve_slug(self, request, slug, page=1):
         """
-        Ưu tiên slug là ProjectPage → nếu không, tiếp tục lọc theo DesignStyle → nếu không, tiếp tục lọc theo ProjectScale
+        Ưu tiên slug là ProjectPage → nếu không, tiếp tục lọc theo ProjectType
         """
-        # 1. Kiểm tra ProjectPage
+        # 1. Kiểm tra ProjectPage trước
         try:
             child_page = ProjectPage.objects.live().descendant_of(self).get(slug=slug)
             return child_page.serve(request)
         except ProjectPage.DoesNotExist:
             pass
-
-        # 2. Kiểm tra DesignStyle (nếu tồn tại)
-        design_style = DesignStyle.objects.filter(slug=slug).first()
-        if design_style:
-            return self.projects_by_design_style(request, design_style_slug=slug, page=page)
-
-        # 3. Kiểm tra ProjectScale (nếu tồn tại)
-        project_scale = ProjectScale.objects.filter(slug=slug).first()
-        if project_scale:
-            return self.projects_by_project_scale(request, project_scale_slug=slug, page=page)
+        
+        # 2. Kiểm tra ProjectType
+        try:
+            project_type = ProjectType.objects.get(slug=slug)
+            return self.all_projects_by_type(request, project_type_slug=slug, page=page)
+        except ProjectType.DoesNotExist:
+            pass
 
         # Nếu không khớp gì thì 404
         raise Http404("Không tìm thấy nội dung với slug này.")
-            
 
-    @route(r'^$')
-    @route(r'^page/(?P<page>\d+)/$')
-    def all_projects(self, request,page=1):
+    @route(r'^(?P<project_type_slug>[-\w]+)$')
+    @route(r'^(?P<project_type_slug>[-\w]+)/page/(?P<page>\d+)/$')
+    def all_projects_by_type(self, request, project_type_slug, page=1):
         srch = request.GET.get("srch")
-        return self.render(request, srch=srch, page=int(page))
+        return self.render(request, project_type_slug=project_type_slug, srch=srch, page=int(page))
     
-    @route(r'^(?P<design_style_slug>[-\w]+)/$')
-    @route(r'^(?P<design_style_slug>[-\w]+)/page/(?P<page>\d+)/$')
-    def projects_by_design_style(self, request, design_style_slug=None, page=1):
-        return self.render(request, design_style_slug=design_style_slug, page=int(page))
+    @route(r'^(?P<project_type_slug>[-\w]+)/(?P<filter_slug>[-\w]+)/$')
+    @route(r'^(?P<project_type_slug>[-\w]+)/(?P<filter_slug>[-\w]+)/page/(?P<page>\d+)/$')
+    def projects_by_filter(self, request, project_type_slug, filter_slug, page=1):
+        """
+        Xử lý cả project_scale và design_style với cùng một route
+        """
+        # Kiểm tra xem slug thứ 2 có phải là design_style không
+        try:
+            design_style = DesignStyle.objects.get(slug=filter_slug)
+            return self.render(request, project_type_slug=project_type_slug, design_style_slug=filter_slug, page=int(page))
+        except DesignStyle.DoesNotExist:
+            pass
+        
+        # Nếu không phải design_style, kiểm tra project_scale
+        try:
+            project_scale = ProjectScale.objects.get(slug=filter_slug)
+            return self.render(request, project_type_slug=project_type_slug, project_scale_slug=filter_slug, page=int(page))
+        except ProjectScale.DoesNotExist:
+            pass
+        
+        # Nếu không tìm thấy gì thì 404
+        raise Http404("Không tìm thấy design style hoặc project scale với slug này.")
     
-    @route(r'^(?P<project_scale_slug>[-\w]+)/$')
-    @route(r'^(?P<project_scale_slug>[-\w]+)/page/(?P<page>\d+)/$')
-    def projects_by_project_scale(self, request, project_scale_slug=None, page=1):
-        return self.render(request, project_scale_slug=project_scale_slug, page=int(page))
+    @route(r'^(?P<project_type_slug>[-\w]+)/(?P<design_style_slug>[-\w]+)/(?P<project_scale_slug>[-\w]+)/$')
+    @route(r'^(?P<project_type_slug>[-\w]+)/(?P<design_style_slug>[-\w]+)/(?P<project_scale_slug>[-\w]+)/page/(?P<page>\d+)/$')
+    def products_by_design_style_and_project_scale(self, request, project_type_slug, design_style_slug, project_scale_slug, page=1):
+        return self.render(request, project_type_slug=project_type_slug, design_style_slug=design_style_slug, project_scale_slug=project_scale_slug, page=int(page))
     
-    @route(r'^(?P<design_style_slug>[-\w]+)/(?P<project_scale_slug>[-\w]+)/$')
-    @route(r'^(?P<design_style_slug>[-\w]+)/(?P<project_scale_slug>[-\w]+)/page/(?P<page>\d+)/$')
-    def products_by_design_style_and_project_scale(self, request, design_style_slug, project_scale_slug, page=1):
-        return self.render(request, design_style_slug=design_style_slug, project_scale_slug=project_scale_slug, page=int(page))
-    
-    def get_context(self, request, design_style_slug=None, project_scale_slug=None, srch=None, page=1, **kwargs):
+    def get_context(self, request, project_type_slug=None, design_style_slug=None, project_scale_slug=None, srch=None, page=1, **kwargs):
         context = super().get_context(request)
-
         projects = ProjectPage.objects.live().descendant_of(self)
-
+        
+        if project_type_slug:
+            print("Filter project type")
+            project_type = get_object_or_404(ProjectType, slug=project_type_slug)
+            projects = projects.filter(project_type=project_type)
+            context['current_project_type'] = project_type
+        
         if design_style_slug:
             design_style = get_object_or_404(DesignStyle, slug=design_style_slug)
-            projects = projects.filter(design_style = design_style)
+            projects = projects.filter(design_style=design_style)
             context['current_design_style'] = design_style
         
         if project_scale_slug:
             project_scale = get_object_or_404(ProjectScale, slug=project_scale_slug)
-            projects = projects.filter(project_scale = project_scale)
+            projects = projects.filter(project_scale=project_scale)
             context['current_project_scale'] = project_scale
         
         if srch:
@@ -266,13 +327,22 @@ class ProjectIndexPage(RoutablePageMixin, Page):
             'project_scales': ProjectScale.objects.all(),
             'paginator': paginator,
         })
-
+        
+        # Fix project_scales context để lọc theo project_type nếu có
+        if project_type_slug:
+            try:
+                project_type = ProjectType.objects.get(slug=project_type_slug)
+                context['project_scales'] = ProjectScale.objects.filter(parent=project_type)
+            except ProjectType.DoesNotExist:
+                pass
+        
+        print(context)
         return context
     
     class Meta:
         verbose_name = "Trang Danh sách Dự án"
         verbose_name_plural = "Trang Danh sách Dự án"
-
+        
 @register_snippet
 class MostViewedProjectList(ClusterableModel):
     title = models.CharField(max_length=255, default="Dự án được xem nhiều nhất", editable=False)

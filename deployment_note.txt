@@ -1,0 +1,22 @@
+1. create and grant db user
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'some_pass';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+FLUSH PRIVILEGES;
+
+
+edit /etc/mysql/mysql.conf.d/mysqld.cnf
+bind-address = 0.0.0.0
+
+
+
+
+
+
+apt-get install pkg-config python3-dev default-libmysqlclient-dev build-essential
+
+
+2. Nginx
+nano /etc/nginx/sites-available/dbhomes_cms
+
+ln -s /etc/nginx/sites-available/dbhomes_cms /etc/nginx/sites-enabled
