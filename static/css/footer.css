@@ -95,7 +95,7 @@
 .footer-db-links a {
   all: unset;        /* reset gần như tất cả style */
   color: inherit;    /* kế thừa màu chữ từ cha */
-  cursor: default;   /* con trỏ chuột bình thường, không phải pointer */
+  cursor: pointer;   /* con trỏ chuột bình thường, không phải pointer */
   text-decoration: none; /* bỏ gạch chân */
 }
 

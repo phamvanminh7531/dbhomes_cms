@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.urls import include, path
 from django.contrib import admin
-
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
@@ -10,11 +9,14 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from wagtail.contrib.sitemaps.views import sitemap
 from .sitemaps import NewsSitemap, ProjectSitemap
 from search import views as search_views
+from django.shortcuts import redirect
 
 sitemaps = {
     'news': NewsSitemap,
     'project': ProjectSitemap,
 }
+
+
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -41,3 +43,11 @@ urlpatterns = urlpatterns + [
     # of your site, rather than the site root:
     #    path("pages/", include(wagtail_urls)),
 ]
+
+
+
+def custom_404_view(request, exception=None):
+    return redirect("/")
+
+handler404 = custom_404_view
+

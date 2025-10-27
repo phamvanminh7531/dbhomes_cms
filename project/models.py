@@ -21,9 +21,34 @@ from django.http import Http404
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
+from wagtailseo.models import SeoMixin, SeoType
+from wagtail.admin.widgets import SlugInput
 # Create your models here.
 
 class ProjectPageForm(WagtailAdminPageForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["slug"].widget = SlugInput(formatters=[
+                                                            # --- Chữ thường không dấu ---
+                                                            [r"[àáạảãâầấậẩẫăằắặẳẵ]", "a"],
+                                                            [r"[èéẹẻẽêềếệểễ]", "e"],
+                                                            [r"[ìíịỉĩ]", "i"],
+                                                            [r"[òóọỏõôồốộổỗơờớợởỡ]", "o"],
+                                                            [r"[ùúụủũưừứựửữ]", "u"],
+                                                            [r"[ỳýỵỷỹ]", "y"],
+                                                            [r"đ", "d"],
+
+                                                            # --- Chữ hoa không dấu ---
+                                                            [r"[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]", "A"],
+                                                            [r"[ÈÉẸẺẼÊỀẾỆỂỄ]", "E"],
+                                                            [r"[ÌÍỊỈĨ]", "I"],
+                                                            [r"[ÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ]", "O"],
+                                                            [r"[ÙÚỤỦŨƯỪỨỰỬỮ]", "U"],
+                                                            [r"[ỲÝỴỶỸ]", "Y"],
+                                                            [r"Đ", "D"],
+                                                        ])
+    
     def clean(self):
         cleaned_data = super().clean()
         related_posts = cleaned_data.get("related_posts")
@@ -112,9 +137,13 @@ class ProjectHomePage(Page):
         verbose_name = "Trang Dự án"
         verbose_name_plural = "Trang Dự án"
 
-class ProjectPage(Page):
+class ProjectPage(SeoMixin, Page):
     base_form_class = ProjectPageForm
     subpage_types = []
+
+    # Indicate this is article-style content.
+    seo_content_type = SeoType.ARTICLE
+    promote_panels = SeoMixin.seo_panels
 
     project_location = models.CharField(max_length=255, help_text="Vị trí (Tên chung cư, chủ đầu tư vv)")
     project_acreage = models.IntegerField(help_text="Diện tích")
@@ -123,6 +152,9 @@ class ProjectPage(Page):
         ('hero_section', HeroSectionBlock()),
         # Thêm các block khác nếu có
     ], blank=False, max_num=1, use_json_field=True, )
+
+    # Thông tin meta
+    date_created = models.DateField("Ngày tạo", blank=True, null=True)
 
     # Thông tin cơ bản
     design_style = models.ForeignKey(
@@ -173,6 +205,7 @@ class ProjectPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('hero_section'),
         MultiFieldPanel([
+            FieldPanel("date_created"),
             FieldPanel("project_location"),
             FieldPanel("project_acreage"),
             FieldPanel("project_type"),
@@ -280,7 +313,7 @@ class ProjectIndexPage(RoutablePageMixin, Page):
     
     def get_context(self, request, project_type_slug=None, design_style_slug=None, project_scale_slug=None, srch=None, page=1, **kwargs):
         context = super().get_context(request)
-        projects = ProjectPage.objects.live().descendant_of(self)
+        projects = ProjectPage.objects.live().descendant_of(self).order_by('-date_created')
         
         if project_type_slug:
             print("Filter project type")
@@ -335,9 +368,11 @@ class ProjectIndexPage(RoutablePageMixin, Page):
                 context['project_scales'] = ProjectScale.objects.filter(parent=project_type)
             except ProjectType.DoesNotExist:
                 pass
-        
-        print(context)
         return context
+    
+    def get_sitemap_urls(self, request=None):
+        # Return an empty list to exclude this page and its children from the sitemap
+        return []
     
     class Meta:
         verbose_name = "Trang Danh sách Dự án"

@@ -22,10 +22,34 @@ from modelcluster.models import ClusterableModel
 from wagtail.models import Orderable
 from wagtailseo.models import SeoMixin, SeoType
 from django.core.exceptions import ValidationError
+from wagtail.admin.widgets import SlugInput
 
 
 
 class NewsPageForm(WagtailAdminPageForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["slug"].widget = SlugInput(formatters=[
+                                                            # --- Chữ thường không dấu ---
+                                                            [r"[àáạảãâầấậẩẫăằắặẳẵ]", "a"],
+                                                            [r"[èéẹẻẽêềếệểễ]", "e"],
+                                                            [r"[ìíịỉĩ]", "i"],
+                                                            [r"[òóọỏõôồốộổỗơờớợởỡ]", "o"],
+                                                            [r"[ùúụủũưừứựửữ]", "u"],
+                                                            [r"[ỳýỵỷỹ]", "y"],
+                                                            [r"đ", "d"],
+
+                                                            # --- Chữ hoa không dấu ---
+                                                            [r"[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]", "A"],
+                                                            [r"[ÈÉẸẺẼÊỀẾỆỂỄ]", "E"],
+                                                            [r"[ÌÍỊỈĨ]", "I"],
+                                                            [r"[ÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ]", "O"],
+                                                            [r"[ÙÚỤỦŨƯỪỨỰỬỮ]", "U"],
+                                                            [r"[ỲÝỴỶỸ]", "Y"],
+                                                            [r"Đ", "D"],
+                                                        ])
+
     def clean(self):
         cleaned_data = super().clean()
         related_posts = cleaned_data.get("related_posts")

@@ -8,6 +8,8 @@ __pycache__/
 
 # Django & Wagtail media uploads
 media/
+staticfiles/
+**/migrations/
 *.jpg
 *.jpeg
 *.png

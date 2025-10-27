@@ -178,7 +178,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 
 WAGTAIL_SITE_NAME = "dbhomes_cms"
 
-CSRF_TRUSTED_ORIGINS = ["http://testing.dbhomes.com.vn"]
+CSRF_TRUSTED_ORIGINS = ["https://testing.dbhomes.com.vn"]
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html

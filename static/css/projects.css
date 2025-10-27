@@ -1,7 +1,8 @@
 .projects-section {
-  background-image: url('../images//bg.png');
+  background-image: url('../images//bg.webp');
   padding: 60px 20px;
   background-repeat: repeat;
+ 
 }
 .projects-section__filter-bar {
   display: flex;
@@ -11,7 +12,9 @@
   position: relative;
   z-index: 1000;
 }
-
+.projects-section .main-content-container{
+   position: unset;
+}
 .projects-section__filter-label {
   font-weight: 500;
   color: #43230C;
