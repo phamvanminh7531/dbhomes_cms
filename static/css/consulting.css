@@ -1,7 +1,7 @@
 /* Section wrapper */
 .consultation-section {
   background-repeat: repeat;
-  background-image: url('../images/bg.png');
+  background-image: url('../images/bg.webp');
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -256,7 +256,7 @@
 }
 
 .consultation-section .custom-select-dropdown {
-  background-image: url('../images/bg.png');
+  background-image: url('../images/bg.webp');
   display: none;
   position: absolute;
   top: 100%;

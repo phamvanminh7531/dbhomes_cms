@@ -17,7 +17,7 @@
         <div class="tab-menu">
             <a href="{% pageurl page %}#featured-projects" class="tab {% if not current_category %}active{% endif %}">Tất cả</a>
             {% for cat in categories %}
-                <a href="{% pageurl page %}{{ cat.slug }}#featured-projects" class="tab {% if current_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+                <a href="{% pageurl page %}{{ cat.slug }}/#featured-projects" class="tab {% if current_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
             {% endfor %}
         </div>
 
@@ -84,5 +84,4 @@
 
 {% block extra_js %}
 <script src="{% static 'js/newstab.js' %}"></script>
-<script src="{% static 'js/pagnigation-news.js' %}"></script>
 {% endblock %}

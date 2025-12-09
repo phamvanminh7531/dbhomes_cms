@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /django-admin/
+Disallow: /search/
+
+Sitemap: https://dbhomes.com.vn/sitemap.xml
+Sitemap: https://testing.dbhomes.com.vn:8000/sitemap.xml

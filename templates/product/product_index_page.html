@@ -43,10 +43,10 @@
 <section class="product-listing-section" id="product-list-section">
     <div class="main-content-container">
         <div class="product-listing-section__tabs">
-            <a href="{% if current_category %}{% pageurl page %}{{ current_category.slug }}#product-section{% else %}{% pageurl page %}#product-section{% endif %}"
+            <a href="{% if current_category %}{% pageurl page %}{{ current_category.slug }}/#product-section{% else %}{% pageurl page %}#product-section{% endif %}"
                 class="{% if not current_tag %}active{% endif %}">Tất cả</a>
             {% for tag in tags %}
-            <a href="{% if current_category %}{% pageurl page %}{{ current_category.slug }}/tag/{{ tag.slug }}#product-section{% else %}{% pageurl page %}tag/{{ tag.slug }}#product-section{% endif %}"
+            <a href="{% if current_category %}{% pageurl page %}{{ current_category.slug }}/tag/{{ tag.slug }}/#product-section{% else %}{% pageurl page %}tag/{{ tag.slug }}/#product-section{% endif %}"
                 class="{% if current_tag.slug == tag.slug %}active{% endif %}">
                 {{ tag.name }}
             </a>

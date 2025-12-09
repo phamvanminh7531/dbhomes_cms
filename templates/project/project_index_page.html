@@ -24,7 +24,7 @@
                         {% for scale in project_scales %}
 
                         <a class="filter-items"
-                            href="{% if current_design_style %}{{ page.url }}{{ current_project_type.slug }}/{{ current_design_style.slug }}/{{ scale.slug }}#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}/{{ scale.slug }}#projects-section{% endif %}">
+                            href="{% if current_design_style %}{{ page.url }}{{ current_project_type.slug }}/{{ current_design_style.slug }}/{{ scale.slug }}/#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}/{{ scale.slug }}/#projects-section{% endif %}">
 
                             <li>{{ scale.name }}</li>
                         </a>
@@ -41,7 +41,7 @@
                         {% for style in desgin_styles %}
 
                         <a class="filter-items"
-                            href="{% if current_project_scale %}{{ page.url }}{{ current_project_type.slug }}/{{ style.slug }}/{{current_project_scale.slug}}#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}/{{ style.slug }}#projects-section{% endif %}">
+                            href="{% if current_project_scale %}{{ page.url }}{{ current_project_type.slug }}/{{ style.slug }}/{{current_project_scale.slug}}/#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}/{{ style.slug }}/#projects-section{% endif %}">
                             <li>{{ style.name }}</li>
                         </a>
                         {% endfor %}
@@ -52,13 +52,13 @@
 
             <div id="filter-tags-container" class="filter-tags-wrapper">
                 {% if current_design_style %}
-                <a href="{% if current_project_scale %}{{ page.url }}{{ current_project_type.slug }}/{{ current_project_scale.slug }}#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}#projects-section{% endif %}"
+                <a href="{% if current_project_scale %}{{ page.url }}{{ current_project_type.slug }}/{{ current_project_scale.slug }}/#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}/#projects-section{% endif %}"
                     class="filter-tag">
                     x {{ current_design_style.name }}
                 </a>
                 {% endif %}
                 {% if current_project_scale %}
-                <a href="{% if current_design_style %}{{ page.url }}{{ current_project_type.slug }}/{{ current_design_style.slug }}#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}#projects-section{% endif %}"
+                <a href="{% if current_design_style %}{{ page.url }}{{ current_project_type.slug }}/{{ current_design_style.slug }}/#projects-section{% else %}{{ page.url }}{{ current_project_type.slug }}/#projects-section{% endif %}"
                     class="filter-tag">
                     x {{ current_project_scale.name }}
                 </a>

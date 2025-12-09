@@ -1,4 +1,5 @@
 .living-space-section {
+  background-image: url('../images//bg.webp');
   background-repeat: repeat;
   padding: 60px 20px;
   overflow-x: hidden;
@@ -6,7 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-    background-image: url('../images//bg.png');
   flex-direction: column;
 }
 
@@ -47,16 +47,17 @@
   height: 400px;
   display: flex;
   justify-content: center;
+    transition: transform 0.4s ease;
 }
 
 .living-space-section__image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+
 }
 
-.living-space-section__image-wrapper:hover img {
+.living-space-section__image-wrapper:hover{
   transform: scale(1.08);
 }
 

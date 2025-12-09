@@ -81,7 +81,7 @@ Nội dung:
         subject,
         text_content,
         settings.DEFAULT_FROM_EMAIL,
-        [email for _, email in settings.ADMINS],
+        settings.RECIEVES_EMAILS,
     )
     msg.attach_alternative(html_content, "text/html")
     msg.send()

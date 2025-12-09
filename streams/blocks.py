@@ -495,7 +495,7 @@ class CustomerFeedback(blocks.StructBlock):
         label = "Thông tin feedback của khách hàng"
 
 class CustomerFeedBackBlock(blocks.StructBlock):
-    feedbacks = blocks.ListBlock(CustomerFeedback(), min_num=1, max_num=10, help_text="Danh sách các feedback")
+    feedbacks = blocks.ListBlock(CustomerFeedback(), min_num=5, max_num=10, help_text="Danh sách các feedback. Tối thiểu 5")
 
     class Meta:
         template = "streams/customer_feedback_block.html"
